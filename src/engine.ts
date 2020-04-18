@@ -48,12 +48,15 @@ class Grid {
 let grid = new Grid();
 
 function drawGrid(g: Grid) {
+  push();
+  translate(50, 50);
   g.dots.forEach((row, y) => {
     row.forEach((dot, x) => {
       fill(color(getCSSColor(dot)));
       circle(x * offset, y * offset, dotSize);
     });
   });
+  pop();
 }
 
 function setup() {
@@ -66,7 +69,7 @@ function setup() {
 }
 
 function draw() {
-  translate(50, 50);
+  clear();
   update(grid);
   drawGrid(grid);
 }
@@ -91,4 +94,12 @@ function keyPressed() {
 
 function endGame() {
   noLoop();
+}
+
+function setBottomText(message: string) {
+  push();
+  textFont("monospace");
+  textSize(18);
+  text(message, 42, 640);
+  pop();
 }

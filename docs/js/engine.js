@@ -43,12 +43,15 @@ var Grid = /** @class */ (function () {
 }());
 var grid = new Grid();
 function drawGrid(g) {
+    push();
+    translate(50, 50);
     g.dots.forEach(function (row, y) {
         row.forEach(function (dot, x) {
             fill(color(getCSSColor(dot)));
             circle(x * offset, y * offset, dotSize);
         });
     });
+    pop();
 }
 function setup() {
     // TODO canvas size is a bit arbitrary
@@ -58,7 +61,7 @@ function setup() {
     init(grid);
 }
 function draw() {
-    translate(50, 50);
+    clear();
     update(grid);
     drawGrid(grid);
 }
@@ -78,4 +81,11 @@ function keyPressed() {
 }
 function endGame() {
     noLoop();
+}
+function setBottomText(message) {
+    push();
+    textFont("monospace");
+    textSize(18);
+    text(message, 42, 640);
+    pop();
 }

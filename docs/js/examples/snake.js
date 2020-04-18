@@ -1,5 +1,14 @@
 "use strict";
+function pointsEqual(a, b) {
+    return a.x === b.x && a.y === b.y;
+}
+var score = 0;
+// sectionsToAdd stores the number of dots to add to the snake. We add sections
+// when the snake 'eats' a pill, to increase difficulty. As the game progesses,
+// we add more and more sections per pill
+var sectionsToAdd = 0;
 // TODO: ransomise initial direction
+// TODO: make this an enum
 var direction = "RIGHT";
 // TODO: randomise snake start position
 var snake = [
@@ -14,8 +23,6 @@ function setSnake(grid) {
         grid.setDot(dot.x, dot.y, 1);
     });
 }
-// TODO: I think there's a bug where the pill can be created in the spot the
-// snake is about to move to
 function createPill(grid) {
     var pill = {
         x: Math.floor(random(24)),
@@ -23,11 +30,16 @@ function createPill(grid) {
     };
     // Don't create a pill on the snake
     function pointInSnake(p) {
-        snake.forEach(function (dot) {
-            if (dot.x === p.x && dot.y === p.y) {
+        // Consider the point one ahead of the snake to be in the snake too
+        if (pointsEqual(p, getNextLocation(snake[0], direction))) {
+            return true;
+        }
+        for (var _i = 0, snake_1 = snake; _i < snake_1.length; _i++) {
+            var dot = snake_1[_i];
+            if (pointsEqual(dot, p)) {
                 return true;
             }
-        });
+        }
         return false;
     }
     while (pointInSnake(pill)) {
@@ -36,6 +48,7 @@ function createPill(grid) {
             y: Math.floor(random(24))
         };
     }
+    console.log("creating pill at (" + pill.x + ", " + pill.y + ")");
     grid.setDot(pill.x, pill.y, Color.Red);
 }
 function init(grid) {
@@ -47,7 +60,43 @@ function init(grid) {
 function update(grid) {
     directionChangeThisFrame = false;
     var head = snake[0];
-    var nextLocation = { x: head.x, y: head.y };
+    var nextLocation = getNextLocation(head, direction);
+    // If nextLocation is in the snake, end the game
+    if (grid.getDot(nextLocation.x, nextLocation.y) === Color.Black) {
+        // Color the snake in red
+        snake.forEach(function (dot) {
+            grid.setDot(dot.x, dot.y, Color.Red);
+        });
+        endGame();
+        return;
+    }
+    // If nextLocation is a pill, increase snake size
+    if (grid.getDot(nextLocation.x, nextLocation.y) === Color.Red) {
+        sectionsToAdd += getSectionsForScore(score);
+        createPill(grid);
+        score++;
+    }
+    setBottomText("Score: " + score);
+    // Push the next location to the front of the snake
+    snake.unshift(nextLocation);
+    // Clear the back of the snake, if we don't have sections we need to add
+    if (sectionsToAdd === 0) {
+        var exLocation = snake.pop();
+        if (exLocation) {
+            grid.setDot(exLocation.x, exLocation.y, 0);
+        }
+    }
+    else {
+        sectionsToAdd--;
+    }
+    setSnake(grid);
+}
+function getSectionsForScore(score) {
+    // N.B: this is quite a steep increase in difficulty
+    return score + 1;
+}
+function getNextLocation(location, direction) {
+    var nextLocation = { x: location.x, y: location.y };
     if (direction === "RIGHT") {
         nextLocation.x++;
     }
@@ -73,32 +122,7 @@ function update(grid) {
     if (nextLocation.y < 0) {
         nextLocation.y = 23;
     }
-    // If nextLocation is in the snake, end the game
-    if (grid.getDot(nextLocation.x, nextLocation.y) === Color.Black) {
-        // Color the snake in red
-        snake.forEach(function (dot) {
-            grid.setDot(dot.x, dot.y, Color.Red);
-        });
-        endGame();
-        return;
-    }
-    // If nextLocation is a pill, increase snake size
-    if (grid.getDot(nextLocation.x, nextLocation.y) === Color.Red) {
-        var end = snake.pop();
-        if (!end) {
-            console.error("zero length snake");
-            return;
-        }
-        snake.push(end);
-        snake.push(end);
-        createPill(grid);
-    }
-    snake.unshift(nextLocation);
-    var exLocation = snake.pop();
-    if (exLocation) {
-        grid.setDot(exLocation.x, exLocation.y, 0);
-    }
-    setSnake(grid);
+    return nextLocation;
 }
 function onLeftKeyPress() {
     if (directionChangeThisFrame) {
