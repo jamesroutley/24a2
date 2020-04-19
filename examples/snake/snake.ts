@@ -36,8 +36,8 @@ function setSnake(grid: Grid) {
 
 function createPill(grid: Grid) {
   let pill = {
-    x: Math.floor(random(24)),
-    y: Math.floor(random(24))
+    x: Math.floor(Math.random() * 24),
+    y: Math.floor(Math.random() * 24)
   };
 
   // Don't create a pill on the snake
@@ -55,8 +55,8 @@ function createPill(grid: Grid) {
   }
   while (pointInSnake(pill)) {
     pill = {
-      x: Math.floor(random(24)),
-      y: Math.floor(random(24))
+      x: Math.floor(Math.random() * 24),
+      y: Math.floor(Math.random() * 24)
     };
   }
 
@@ -66,7 +66,7 @@ function createPill(grid: Grid) {
 
 function init(grid: Grid) {
   // Drop framerate
-  frameRate(5);
+  setFrameRate(5);
 
   setSnake(grid);
   createPill(grid);

@@ -89,3 +89,6 @@ function setBottomText(message) {
     text(message, 42, 640);
     pop();
 }
+function setFrameRate(n) {
+    frameRate(n);
+}

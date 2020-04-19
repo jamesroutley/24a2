@@ -9,6 +9,14 @@ enum Color {
   Red
 }
 
+// User defined functions
+declare function init(grid: Grid): void;
+declare function update(grid: Grid): void;
+declare function onLeftKeyPress(): void;
+declare function onRightKeyPress(): void;
+declare function onUpKeyPress(): void;
+declare function onDownKeyPress(): void;
+
 function getCSSColor(color: Color): string {
   switch (color) {
     case Color.Gray:
@@ -102,4 +110,8 @@ function setBottomText(message: string) {
   textSize(18);
   text(message, 42, 640);
   pop();
+}
+
+function setFrameRate(n: number): void {
+  frameRate(n);
 }
