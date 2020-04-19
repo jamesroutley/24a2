@@ -1,117 +1,172 @@
-let dotSize = 16;
-let gap = 8;
-let offset = dotSize + gap;
-let gridSize = 24;
-
 enum Color {
-  Gray,
-  Black,
-  Red
+  Gray = "GRAY",
+  Black = "BLACK",
+  Red = "RED"
 }
 
-// User defined functions
-declare function init(grid: Grid): void;
-declare function update(grid: Grid): void;
-declare function onLeftKeyPress(): void;
-declare function onRightKeyPress(): void;
-declare function onUpKeyPress(): void;
-declare function onDownKeyPress(): void;
-
-function getCSSColor(color: Color): string {
-  switch (color) {
-    case Color.Gray:
-      return "gainsboro";
-    case Color.Black:
-      return "black";
-    case Color.Red:
-      return "red";
-    default:
-      console.error("no CSS color defined");
-      return "orange";
-  }
+enum Direction {
+  Left = "LEFT",
+  Right = "RIGHT",
+  Up = "UP",
+  Down = "DOWN"
 }
 
 class Grid {
-  dots: Array<Array<Color>>;
+  private _dotSize: number;
+  private _gap: number;
+  private _gridSize: number;
+
+  // HACK: this variable is named like a private variable but isn't actually
+  // private because we use it in Game
+  // TODO: fix
+  _dots: Array<Array<Color>>;
   constructor() {
-    this.dots = new Array(gridSize);
-    for (let y = 0; y < gridSize; y++) {
-      let row = new Array(gridSize);
+    this._dotSize = 16;
+    this._gap = 8;
+    this._gridSize = 24;
+    this._dots = new Array(this._gridSize);
+    for (let y = 0; y < this._gridSize; y++) {
+      let row = new Array(this._gridSize);
       for (let i = 0; i < row.length; i++) {
         row[i] = Color.Gray;
       }
-      this.dots[y] = row;
+      this._dots[y] = row;
     }
   }
 
+  _getDotSize(): number {
+    return this._dotSize;
+  }
+
+  _getOffset(): number {
+    return this._dotSize + this._gap;
+  }
+
+  _getGridSize(): number {
+    return this._gridSize;
+  }
+
   getDot(x: number, y: number): Color {
-    return this.dots[y][x];
+    return this._dots[y][x];
   }
 
   setDot(x: number, y: number, val: Color) {
-    this.dots[y][x] = val;
+    this._dots[y][x] = val;
   }
 }
 
-let grid = new Grid();
-
-function drawGrid(g: Grid) {
-  push();
-  translate(50, 50);
-  g.dots.forEach((row, y) => {
-    row.forEach((dot, x) => {
-      fill(color(getCSSColor(dot)));
-      circle(x * offset, y * offset, dotSize);
-    });
-  });
-  pop();
+interface GameConfig {
+  create: (game: Game, grid: Grid) => void;
+  update: (game: Game, grid: Grid) => void;
+  onKeyPress: (direction: Direction) => void;
 }
 
-function setup() {
-  // TODO canvas size is a bit arbitrary
-  createCanvas(652, 652);
-  // Don't draw outlines around circles
-  noStroke();
+class Game {
+  private _config: GameConfig;
+  // TODO: make these private
+  private _grid: Grid;
+  private _text: string;
+  private _frameRate: number;
+  private _ended: boolean;
 
-  init(grid);
-}
-
-function draw() {
-  clear();
-  update(grid);
-  drawGrid(grid);
-}
-
-function keyPressed() {
-  if (keyCode === LEFT_ARROW) {
-    onLeftKeyPress();
+  constructor(config: GameConfig) {
+    this._config = config;
+    this._grid = new Grid();
+    this._text = "";
+    this._frameRate = 24;
+    this._ended = false;
   }
 
-  if (keyCode === RIGHT_ARROW) {
-    onRightKeyPress();
+  setText(text: string): void {
+    this._text = text;
   }
 
-  if (keyCode === UP_ARROW) {
-    onUpKeyPress();
+  setFrameRate(rate: number): void {
+    this._frameRate = rate;
   }
 
-  if (keyCode === DOWN_ARROW) {
-    onDownKeyPress();
+  end(): void {
+    this._ended = true;
   }
-}
 
-function endGame() {
-  noLoop();
-}
+  run() {
+    new p5(
+      function(this: Game, p: p5) {
+        const drawGrid = (grid: Grid) => {
+          const offset = grid._getOffset();
+          const dotSize = grid._getDotSize();
+          p.push();
+          p.translate(50, 50);
+          grid._dots.forEach((row, y) => {
+            row.forEach((dot, x) => {
+              p.fill(p.color(this._getCSSColor(dot)));
+              p.circle(x * offset, y * offset, dotSize);
+            });
+          });
+          p.pop();
+        };
 
-function setBottomText(message: string) {
-  push();
-  textFont("monospace");
-  textSize(18);
-  text(message, 42, 640);
-  pop();
-}
+        p.setup = function(this: Game) {
+          // TODO canvas size is a bit arbitrary
+          p.createCanvas(652, 652);
+          // Don't draw outlines around circles
+          p.noStroke();
 
-function setFrameRate(n: number): void {
-  frameRate(n);
+          this._config.create(this, this._grid);
+        }.bind(this);
+
+        p.draw = function(this: Game) {
+          if (this._ended) {
+            p.noLoop();
+            return;
+          }
+          p.clear();
+          // TODO: we could only set this if it's changed
+          p.frameRate(this._frameRate);
+          this._config.update(this, this._grid);
+          drawGrid(this._grid);
+
+          p.push();
+          p.textFont("monospace");
+          p.textSize(18);
+          p.text(this._text, 42, 640);
+          p.pop();
+        }.bind(this);
+
+        p.keyPressed = function(this: Game) {
+          // TODO: use WASD instead of arrow keys - they don't have a meaning
+          // in the browser
+          if (p.keyCode === p.LEFT_ARROW) {
+            this._config.onKeyPress(Direction.Left);
+          }
+
+          if (p.keyCode === p.RIGHT_ARROW) {
+            this._config.onKeyPress(Direction.Right);
+          }
+
+          if (p.keyCode === p.UP_ARROW) {
+            this._config.onKeyPress(Direction.Up);
+          }
+
+          if (p.keyCode === p.DOWN_ARROW) {
+            this._config.onKeyPress(Direction.Down);
+          }
+        }.bind(this);
+      }.bind(this)
+    );
+  }
+
+  _getCSSColor(color: Color): string {
+    switch (color) {
+      case Color.Gray:
+        return "gainsboro";
+      case Color.Black:
+        return "black";
+      case Color.Red:
+        return "red";
+      default:
+        console.error("no CSS color defined");
+        return "orange";
+    }
+  }
 }

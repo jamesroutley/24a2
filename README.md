@@ -13,3 +13,50 @@ Things 24a2 supports:
 Things 24a2 doesn't support:
 
 - Everything else
+
+## Example
+
+```js
+// We use this config object to specify the functions that 24a2 should call on
+// each frame of the game
+let config = {
+  create: create,
+  update: update,
+  onKeyPress: onKeyPress
+};
+
+// Initialise a new game
+let game = new Game(config);
+
+// Create is called once, at startup. Use this function to initialise
+// variables etc
+function create(game: Game, grid: Grid) {
+  game.setFrameRate(5);
+}
+
+let frameCount = 0;
+
+// Update is called on each iteration of the game
+function update(game: Game, grid: Grid) {
+  game.setText(`Frame count: ${frameC}`);
+  frameCount++;
+
+  if (frameCount === 100) {
+    // We can stop the game with game.end()
+    game.end();
+  }
+}
+
+// onKeyPress is called when one of the arrow keys is called
+function onKeyPress(direction: Direction) {
+  // TODO
+}
+
+// Start the game
+game.run();
+```
+
+## TODO
+
+- [ ]: Automatic API documentation, possibly using [TypeDoc](https://typedoc.org/)
+- [ ]:

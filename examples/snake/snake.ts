@@ -1,3 +1,12 @@
+let config = {
+  create: create,
+  update: update,
+  onKeyPress: onKeyPress
+};
+
+let game = new Game(config);
+game.run();
+
 interface Point {
   x: number;
   y: number;
@@ -14,9 +23,8 @@ let score = 0;
 // we add more and more sections per pill
 let sectionsToAdd = 0;
 
-// TODO: ransomise initial direction
-// TODO: make this an enum
-let direction = "RIGHT";
+// TODO: ransomise initial snakeDirection
+let snakeDirection = Direction.Right;
 
 // TODO: randomise snake start position
 let snake: Array<Point> = [
@@ -26,11 +34,11 @@ let snake: Array<Point> = [
 
 // This fixes a bug where you can turn back on yourself if you quickly type
 // two arrow keys before the next time `update` is called
-let directionChangeThisFrame: boolean = false;
+let snakeDirectionChangeThisFrame: boolean = false;
 
 function setSnake(grid: Grid) {
   snake.forEach(dot => {
-    grid.setDot(dot.x, dot.y, 1);
+    grid.setDot(dot.x, dot.y, Color.Black);
   });
 }
 
@@ -43,7 +51,7 @@ function createPill(grid: Grid) {
   // Don't create a pill on the snake
   function pointInSnake(p: Point): boolean {
     // Consider the point one ahead of the snake to be in the snake too
-    if (pointsEqual(p, getNextLocation(snake[0], direction))) {
+    if (pointsEqual(p, getNextLocation(snake[0], snakeDirection))) {
       return true;
     }
     for (let dot of snake) {
@@ -60,22 +68,21 @@ function createPill(grid: Grid) {
     };
   }
 
-  console.log(`creating pill at (${pill.x}, ${pill.y})`);
   grid.setDot(pill.x, pill.y, Color.Red);
 }
 
-function init(grid: Grid) {
+function create(game: Game, grid: Grid) {
   // Drop framerate
-  setFrameRate(5);
+  game.setFrameRate(5);
 
   setSnake(grid);
   createPill(grid);
 }
 
-function update(grid: Grid) {
-  directionChangeThisFrame = false;
+function update(game: Game, grid: Grid) {
+  snakeDirectionChangeThisFrame = false;
   let head = snake[0];
-  let nextLocation = getNextLocation(head, direction);
+  let nextLocation = getNextLocation(head, snakeDirection);
 
   // If nextLocation is in the snake, end the game
   if (grid.getDot(nextLocation.x, nextLocation.y) === Color.Black) {
@@ -83,7 +90,7 @@ function update(grid: Grid) {
     snake.forEach(dot => {
       grid.setDot(dot.x, dot.y, Color.Red);
     });
-    endGame();
+    game.end();
     return;
   }
 
@@ -94,7 +101,7 @@ function update(grid: Grid) {
     score++;
   }
 
-  setBottomText(`Score: ${score}`);
+  game.setText(`Score: ${score}`);
 
   // Push the next location to the front of the snake
   snake.unshift(nextLocation);
@@ -102,7 +109,7 @@ function update(grid: Grid) {
   if (sectionsToAdd === 0) {
     let exLocation = snake.pop();
     if (exLocation) {
-      grid.setDot(exLocation.x, exLocation.y, 0);
+      grid.setDot(exLocation.x, exLocation.y, Color.Gray);
     }
   } else {
     sectionsToAdd--;
@@ -116,18 +123,18 @@ function getSectionsForScore(score: number): number {
   return score + 1;
 }
 
-function getNextLocation(location: Point, direction: string): Point {
+function getNextLocation(location: Point, snakeDirection: Direction): Point {
   let nextLocation = { x: location.x, y: location.y };
-  if (direction === "RIGHT") {
+  if (snakeDirection === Direction.Right) {
     nextLocation.x++;
   }
-  if (direction === "LEFT") {
+  if (snakeDirection === Direction.Left) {
     nextLocation.x--;
   }
-  if (direction === "UP") {
+  if (snakeDirection === Direction.Up) {
     nextLocation.y--;
   }
-  if (direction === "DOWN") {
+  if (snakeDirection === Direction.Down) {
     nextLocation.y++;
   }
 
@@ -148,46 +155,35 @@ function getNextLocation(location: Point, direction: string): Point {
   return nextLocation;
 }
 
-function onLeftKeyPress() {
-  if (directionChangeThisFrame) {
+function onKeyPress(direction: Direction) {
+  if (snakeDirectionChangeThisFrame) {
     return;
   }
-  if (direction === "RIGHT") {
-    return;
+  switch (direction) {
+    case Direction.Left:
+      if (snakeDirection === Direction.Right) {
+        return;
+      }
+      snakeDirection = Direction.Left;
+      break;
+    case Direction.Right:
+      if (snakeDirection === Direction.Left) {
+        return;
+      }
+      snakeDirection = Direction.Right;
+      break;
+    case Direction.Up:
+      if (snakeDirection === Direction.Down) {
+        return;
+      }
+      snakeDirection = Direction.Up;
+      break;
+    case Direction.Down:
+      if (snakeDirection === Direction.Up) {
+        return;
+      }
+      snakeDirection = Direction.Down;
+      break;
   }
-  direction = "LEFT";
-  directionChangeThisFrame = true;
-}
-
-function onRightKeyPress() {
-  if (directionChangeThisFrame) {
-    return;
-  }
-  if (direction === "LEFT") {
-    return;
-  }
-  direction = "RIGHT";
-  directionChangeThisFrame = true;
-}
-
-function onUpKeyPress() {
-  if (directionChangeThisFrame) {
-    return;
-  }
-  if (direction === "DOWN") {
-    return;
-  }
-  direction = "UP";
-  directionChangeThisFrame = true;
-}
-
-function onDownKeyPress() {
-  if (directionChangeThisFrame) {
-    return;
-  }
-  if (direction === "UP") {
-    return;
-  }
-  direction = "DOWN";
-  directionChangeThisFrame = true;
+  snakeDirectionChangeThisFrame = true;
 }

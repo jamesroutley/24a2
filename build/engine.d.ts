@@ -1,29 +1,41 @@
-declare let dotSize: number;
-declare let gap: number;
-declare let offset: number;
-declare let gridSize: number;
 declare enum Color {
-    Gray = 0,
-    Black = 1,
-    Red = 2
+    Gray = "GRAY",
+    Black = "BLACK",
+    Red = "RED"
 }
-declare function init(grid: Grid): void;
-declare function update(grid: Grid): void;
-declare function onLeftKeyPress(): void;
-declare function onRightKeyPress(): void;
-declare function onUpKeyPress(): void;
-declare function onDownKeyPress(): void;
-declare function getCSSColor(color: Color): string;
+declare enum Direction {
+    Left = "LEFT",
+    Right = "RIGHT",
+    Up = "UP",
+    Down = "DOWN"
+}
 declare class Grid {
-    dots: Array<Array<Color>>;
+    private _dotSize;
+    private _gap;
+    private _gridSize;
+    _dots: Array<Array<Color>>;
     constructor();
+    _getDotSize(): number;
+    _getOffset(): number;
+    _getGridSize(): number;
     getDot(x: number, y: number): Color;
     setDot(x: number, y: number, val: Color): void;
 }
-declare let grid: Grid;
-declare function drawGrid(g: Grid): void;
-declare function setup(): void;
-declare function draw(): void;
-declare function endGame(): void;
-declare function setBottomText(message: string): void;
-declare function setFrameRate(n: number): void;
+interface GameConfig {
+    create: (game: Game, grid: Grid) => void;
+    update: (game: Game, grid: Grid) => void;
+    onKeyPress: (direction: Direction) => void;
+}
+declare class Game {
+    private _config;
+    private _grid;
+    private _text;
+    private _frameRate;
+    private _ended;
+    constructor(config: GameConfig);
+    setText(text: string): void;
+    setFrameRate(rate: number): void;
+    end(): void;
+    run(): void;
+    _getCSSColor(color: Color): string;
+}
