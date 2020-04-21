@@ -3,8 +3,5 @@
 build:
 	tsc
 
-clean-docs:
-	rm -rf docs
-
-docs: clean-docs
-	cp -r website docs
+docs:
+	cd website && hugo

@@ -1,0 +1,1 @@
+../../../../examples/skiing/build/skiing.js

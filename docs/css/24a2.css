@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&display=swap");
+
+body {
+  font-family: "IBM Plex Mono", monospace;
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 50px auto 50px;
+  padding: 0 12px 0;
+}
+
+canvas {
+  display: block;
+  margin: auto;
+}
+
+code {
+  font-family: "IBM Plex Mono", monospace;
+}
