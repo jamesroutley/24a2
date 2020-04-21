@@ -4,7 +4,7 @@ build:
 	tsc
 
 clean-docs:
-	rm -rf docs/js
+	rm -rf docs
 
-docs: clean-docs build
-	cp -r build docs/js
+docs: clean-docs
+	cp -r website docs
