@@ -4,6 +4,8 @@ var Color;
     Color["Gray"] = "GRAY";
     Color["Black"] = "BLACK";
     Color["Red"] = "RED";
+    Color["Green"] = "GREEN";
+    Color["Yellow"] = "YELLOW";
 })(Color || (Color = {}));
 var Direction;
 (function (Direction) {
@@ -41,6 +43,13 @@ var Grid = /** @class */ (function () {
     Grid.prototype.setDot = function (x, y, val) {
         this._dots[y][x] = val;
     };
+    Grid.prototype.clear = function () {
+        for (var y = 0; y < 24; y++) {
+            for (var x = 0; x < 24; x++) {
+                this.setDot(x, y, Color.Gray);
+            }
+        }
+    };
     return Grid;
 }());
 var Game = /** @class */ (function () {
@@ -50,12 +59,16 @@ var Game = /** @class */ (function () {
         this._text = "";
         this._frameRate = 24;
         this._ended = false;
+        this._frameCount = 0;
     }
     Game.prototype.setText = function (text) {
         this._text = text;
     };
     Game.prototype.setFrameRate = function (rate) {
         this._frameRate = rate;
+    };
+    Game.prototype.getFrameCount = function () {
+        return this._frameCount;
     };
     Game.prototype.end = function () {
         this._ended = true;
@@ -84,6 +97,7 @@ var Game = /** @class */ (function () {
                 this._config.create(this, this._grid);
             }.bind(this);
             p.draw = function () {
+                this._frameCount = p.frameCount;
                 if (this._ended) {
                     p.noLoop();
                     return;
@@ -125,6 +139,10 @@ var Game = /** @class */ (function () {
                 return "black";
             case Color.Red:
                 return "red";
+            case Color.Green:
+                return "green";
+            case Color.Yellow:
+                return "gold";
             default:
                 console.error("no CSS color defined");
                 return "orange";

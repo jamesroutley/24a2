@@ -1,7 +1,9 @@
 enum Color {
   Gray = "GRAY",
   Black = "BLACK",
-  Red = "RED"
+  Red = "RED",
+  Green = "GREEN",
+  Yellow = "YELLOW"
 }
 
 enum Direction {
@@ -53,6 +55,14 @@ class Grid {
   setDot(x: number, y: number, val: Color) {
     this._dots[y][x] = val;
   }
+
+  clear() {
+    for (let y = 0; y < 24; y++) {
+      for (let x = 0; x < 24; x++) {
+        this.setDot(x, y, Color.Gray);
+      }
+    }
+  }
 }
 
 interface GameConfig {
@@ -68,6 +78,7 @@ class Game {
   private _text: string;
   private _frameRate: number;
   private _ended: boolean;
+  private _frameCount: number;
 
   constructor(config: GameConfig) {
     this._config = config;
@@ -75,6 +86,7 @@ class Game {
     this._text = "";
     this._frameRate = 24;
     this._ended = false;
+    this._frameCount = 0;
   }
 
   setText(text: string): void {
@@ -83,6 +95,10 @@ class Game {
 
   setFrameRate(rate: number): void {
     this._frameRate = rate;
+  }
+
+  getFrameCount(): number {
+    return this._frameCount;
   }
 
   end(): void {
@@ -116,6 +132,7 @@ class Game {
         }.bind(this);
 
         p.draw = function(this: Game) {
+          this._frameCount = p.frameCount;
           if (this._ended) {
             p.noLoop();
             return;
@@ -164,6 +181,10 @@ class Game {
         return "black";
       case Color.Red:
         return "red";
+      case Color.Green:
+        return "green";
+      case Color.Yellow:
+        return "gold";
       default:
         console.error("no CSS color defined");
         return "orange";

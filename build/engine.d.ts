@@ -1,7 +1,9 @@
 declare enum Color {
     Gray = "GRAY",
     Black = "BLACK",
-    Red = "RED"
+    Red = "RED",
+    Green = "GREEN",
+    Yellow = "YELLOW"
 }
 declare enum Direction {
     Left = "LEFT",
@@ -20,6 +22,7 @@ declare class Grid {
     _getGridSize(): number;
     getDot(x: number, y: number): Color;
     setDot(x: number, y: number, val: Color): void;
+    clear(): void;
 }
 interface GameConfig {
     create: (game: Game, grid: Grid) => void;
@@ -32,9 +35,11 @@ declare class Game {
     private _text;
     private _frameRate;
     private _ended;
+    private _frameCount;
     constructor(config: GameConfig);
     setText(text: string): void;
     setFrameRate(rate: number): void;
+    getFrameCount(): number;
     end(): void;
     run(): void;
     _getCSSColor(color: Color): string;

@@ -34,12 +34,10 @@ function create(game: Game, grid: Grid) {
   game.setFrameRate(5);
 }
 
-let frameCount = 0;
-
 // Update is called on each iteration of the game
 function update(game: Game, grid: Grid) {
-  game.setText(`Frame count: ${frameC}`);
-  frameCount++;
+  const frameCount = game.getFrameCount();
+  game.setText(`Frame count: ${frameCount}`);
 
   if (frameCount === 100) {
     // We can stop the game with game.end()
@@ -60,3 +58,7 @@ game.run();
 
 - [ ]: Automatic API documentation, possibly using [TypeDoc](https://typedoc.org/)
 - [ ]:
+
+## Possible features
+
+- Builtin (x, y) Point object
