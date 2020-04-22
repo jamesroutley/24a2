@@ -22,8 +22,8 @@ Things 24a2 doesn't support:
 ## Example code
 
 ```javascript
-// We use this config object to specify the functions that 24a2 should call on
-// each frame of the game
+// We use this config object to specify the functions that
+// 24a2 should call on each frame of the game
 let config = {
   create: create,
   update: update,
@@ -33,8 +33,8 @@ let config = {
 // Initialise a new game
 let game = new Game(config);
 
-// Create is called once, at startup. Use this function to initialise
-// variables etc
+// Create is called once, at startup. Use this function to
+// initialise variables etc
 function create(game: Game, grid: Grid) {
   game.setFrameRate(5);
 }

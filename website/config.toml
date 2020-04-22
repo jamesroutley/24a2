@@ -2,3 +2,6 @@ baseURL = "http://24a2.routley.io/"
 languageCode = "en-us"
 title = "24a2 - an ultra minimalist game engine"
 publishDir = "../docs"
+
+PygmentsCodeFences = true
+pygmentsStyle = "vs"

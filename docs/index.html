@@ -41,44 +41,42 @@
 </ul>
 
 <h2 id="example-code">Example code</h2>
-
-<pre><code class="language-javascript">// We use this config object to specify the functions that 24a2 should call on
-// each frame of the game
-let config = {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#008000">// We use this config object to specify the functions that
+</span><span style="color:#008000">// 24a2 should call on each frame of the game
+</span><span style="color:#008000"></span><span style="color:#00f">let</span> config = {
   create: create,
   update: update,
   onKeyPress: onKeyPress
 };
 
-// Initialise a new game
-let game = new Game(config);
+<span style="color:#008000">// Initialise a new game
+</span><span style="color:#008000"></span><span style="color:#00f">let</span> game = <span style="color:#00f">new</span> Game(config);
 
-// Create is called once, at startup. Use this function to initialise
-// variables etc
-function create(game: Game, grid: Grid) {
+<span style="color:#008000">// Create is called once, at startup. Use this function to
+</span><span style="color:#008000">// initialise variables etc
+</span><span style="color:#008000"></span><span style="color:#00f">function</span> create(game: Game, grid: Grid) {
   game.setFrameRate(5);
 }
 
-// Update is called on each iteration of the game
-function update(game: Game, grid: Grid) {
-  const frameCount = game.getFrameCount();
-  game.setText(`Frame count: ${frameCount}`);
+<span style="color:#008000">// Update is called on each iteration of the game
+</span><span style="color:#008000"></span><span style="color:#00f">function</span> update(game: Game, grid: Grid) {
+  <span style="color:#00f">const</span> frameCount = game.getFrameCount();
+  game.setText(<span style="color:#a31515">`Frame count: </span><span style="color:#a31515">${</span>frameCount<span style="color:#a31515">}</span><span style="color:#a31515">`</span>);
 
-  if (frameCount === 100) {
-    // We can stop the game with game.end()
-    game.end();
+  <span style="color:#00f">if</span> (frameCount === 100) {
+    <span style="color:#008000">// We can stop the game with game.end()
+</span><span style="color:#008000"></span>    game.end();
   }
 }
 
-// onKeyPress is called when one of the arrow keys is called
-function onKeyPress(direction: Direction) {
-  // TODO
-}
+<span style="color:#008000">// onKeyPress is called when one of the arrow keys is called
+</span><span style="color:#008000"></span><span style="color:#00f">function</span> onKeyPress(direction: Direction) {
+  <span style="color:#008000">// TODO
+</span><span style="color:#008000"></span>}
 
-// Start the game
-game.run();
-</code></pre>
- 
+<span style="color:#008000">// Start the game
+</span><span style="color:#008000"></span>game.run();
+</code></pre></div> 
     </main>
   </body>
 </html>
