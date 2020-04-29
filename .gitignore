@@ -178,3 +178,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/node,macos,linux,windows
+
+# A `public` directory is built if you run `hugo` from the top level. This is
+# a mistake, and we shouldn't commit this. Use `make docs` instead
+public/
