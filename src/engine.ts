@@ -66,9 +66,10 @@ class Grid {
 }
 
 interface GameConfig {
-  create: (game: Game, grid: Grid) => void;
-  update: (game: Game, grid: Grid) => void;
-  onKeyPress: (direction: Direction) => void;
+  create?: (game: Game, grid: Grid) => void;
+  update?: (game: Game, grid: Grid) => void;
+  onKeyPress?: (direction: Direction) => void;
+  onDotClicked?: (x: number, y: number) => void;
 }
 
 class Game {
@@ -128,7 +129,9 @@ class Game {
           // Don't draw outlines around circles
           p.noStroke();
 
-          this._config.create(this, this._grid);
+          if (this._config.create) {
+            this._config.create(this, this._grid);
+          }
         }.bind(this);
 
         p.draw = function(this: Game) {
@@ -140,7 +143,9 @@ class Game {
           p.clear();
           // TODO: we could only set this if it's changed
           p.frameRate(this._frameRate);
-          this._config.update(this, this._grid);
+          if (this._config.update) {
+            this._config.update(this, this._grid);
+          }
           drawGrid(this._grid);
 
           p.push();
@@ -151,6 +156,9 @@ class Game {
         }.bind(this);
 
         p.keyPressed = function(this: Game) {
+          if (!this._config.onKeyPress) {
+            return;
+          }
           // TODO: use WASD instead of arrow keys - they don't have a meaning
           // in the browser
           if (p.keyCode === p.LEFT_ARROW) {
@@ -167,6 +175,33 @@ class Game {
 
           if (p.keyCode === p.DOWN_ARROW) {
             this._config.onKeyPress(Direction.Down);
+          }
+        }.bind(this);
+
+        p.mouseClicked = function(this: Game) {
+          if (!this._config.onDotClicked) {
+            return;
+          }
+          const offset = this._grid._getOffset();
+          const dotSize = this._grid._getDotSize();
+          // Iterate over all dot locations, and check whether the distance
+          // between the click and the dot centre is less than the dot's
+          // radius
+          for (let y = 0; y < 24; y++) {
+            for (let x = 0; x < 24; x++) {
+              const dx = 50 + x * offset;
+              const dy = 50 + y * offset;
+
+              // p.mouseX and p.mouseY give is the coordinates in the canvas
+              // space.
+              const distance = p.dist(dx, dy, p.mouseX, p.mouseY);
+
+              if (distance < dotSize / 2) {
+                this._config.onDotClicked(x, y);
+                // We've found the dot, so exit early
+                return;
+              }
+            }
           }
         }.bind(this);
       }.bind(this)

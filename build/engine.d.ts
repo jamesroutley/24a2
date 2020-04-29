@@ -25,9 +25,10 @@ declare class Grid {
     clear(): void;
 }
 interface GameConfig {
-    create: (game: Game, grid: Grid) => void;
-    update: (game: Game, grid: Grid) => void;
-    onKeyPress: (direction: Direction) => void;
+    create?: (game: Game, grid: Grid) => void;
+    update?: (game: Game, grid: Grid) => void;
+    onKeyPress?: (direction: Direction) => void;
+    onDotClicked?: (x: number, y: number) => void;
 }
 declare class Game {
     private _config;
