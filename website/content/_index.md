@@ -1,4 +1,6 @@
-# 24a2
+---
+title: 24a4
+---
 
 24a2 is an ultra minimalist game engine. It's objective is to let you build a game in a couple of hours. It does this by severely limiting what you can do.
 
@@ -17,7 +19,7 @@ Things 24a2 doesn't support:
 ## Example games
 
 - [Snake](/games/snake)
-- [Skiing](/games/skiing.html)
+- [Skiing](/games/skiing)
 
 ## Example code
 

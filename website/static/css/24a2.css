@@ -3,9 +3,10 @@
 body {
   font-family: "IBM Plex Mono", monospace;
   line-height: 1.7;
-  max-width: 700px;
+  max-width: 800px;
   margin: 50px auto 50px;
   padding: 0 12px 0;
+  height: 100%;
 }
 
 canvas {
@@ -15,4 +16,37 @@ canvas {
 
 code {
   font-family: "IBM Plex Mono", monospace;
+}
+
+h1 {
+  text-align: center;
+}
+
+.sidebar > ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+/* https://every-layout.dev/layouts/sidebar/ */
+.with-sidebar {
+  overflow: hidden;
+}
+
+.with-sidebar > * {
+  display: flex;
+  flex-wrap: wrap;
+  margin: calc(32px / 2 * -1);
+  align-items: flex-start;
+}
+
+.with-sidebar > * > * {
+  margin: calc(32px / 2);
+  flex-basis: 160px;
+  flex-grow: 1;
+}
+
+.with-sidebar > * > :last-child {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-width: calc(75% - 32px);
 }

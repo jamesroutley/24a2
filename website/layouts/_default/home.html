@@ -1,1 +1,12 @@
-{{ define "main" }} {{ .Content }} {{ end }}
+{{ define "main" }}
+<h1>{{ .Page.Title }}</h1>
+<div class="with-sidebar">
+  <div>
+    <!-- intermediary wrapper -->
+    {{ partial "sidebar.html" }}
+    <div>
+      {{ .Content }}
+    </div>
+  </div>
+</div>
+{{ end }}
