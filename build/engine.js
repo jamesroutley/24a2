@@ -119,22 +119,29 @@ var Game = /** @class */ (function () {
             }.bind(this);
             p.keyPressed = function () {
                 if (!this._config.onKeyPress) {
-                    return;
+                    // Return true to not prevent the browser's default behaviour for
+                    // this keypress
+                    return true;
                 }
                 // TODO: use WASD instead of arrow keys - they don't have a meaning
                 // in the browser
                 if (p.keyCode === p.LEFT_ARROW) {
                     this._config.onKeyPress(Direction.Left);
+                    return false;
                 }
                 if (p.keyCode === p.RIGHT_ARROW) {
                     this._config.onKeyPress(Direction.Right);
+                    return false;
                 }
                 if (p.keyCode === p.UP_ARROW) {
                     this._config.onKeyPress(Direction.Up);
+                    return false;
                 }
                 if (p.keyCode === p.DOWN_ARROW) {
                     this._config.onKeyPress(Direction.Down);
+                    return false;
                 }
+                return true;
             }.bind(this);
             p.mouseClicked = function () {
                 if (!this._config.onDotClicked) {

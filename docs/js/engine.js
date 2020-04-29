@@ -94,7 +94,9 @@ var Game = /** @class */ (function () {
                 p.createCanvas(652, 652);
                 // Don't draw outlines around circles
                 p.noStroke();
-                this._config.create(this, this._grid);
+                if (this._config.create) {
+                    this._config.create(this, this._grid);
+                }
             }.bind(this);
             p.draw = function () {
                 this._frameCount = p.frameCount;
@@ -105,7 +107,9 @@ var Game = /** @class */ (function () {
                 p.clear();
                 // TODO: we could only set this if it's changed
                 p.frameRate(this._frameRate);
-                this._config.update(this, this._grid);
+                if (this._config.update) {
+                    this._config.update(this, this._grid);
+                }
                 drawGrid(this._grid);
                 p.push();
                 p.textFont("monospace");
@@ -114,19 +118,53 @@ var Game = /** @class */ (function () {
                 p.pop();
             }.bind(this);
             p.keyPressed = function () {
+                if (!this._config.onKeyPress) {
+                    // Return true to not prevent the browser's default behaviour for
+                    // this keypress
+                    return true;
+                }
                 // TODO: use WASD instead of arrow keys - they don't have a meaning
                 // in the browser
                 if (p.keyCode === p.LEFT_ARROW) {
                     this._config.onKeyPress(Direction.Left);
+                    return false;
                 }
                 if (p.keyCode === p.RIGHT_ARROW) {
                     this._config.onKeyPress(Direction.Right);
+                    return false;
                 }
                 if (p.keyCode === p.UP_ARROW) {
                     this._config.onKeyPress(Direction.Up);
+                    return false;
                 }
                 if (p.keyCode === p.DOWN_ARROW) {
                     this._config.onKeyPress(Direction.Down);
+                    return false;
+                }
+                return true;
+            }.bind(this);
+            p.mouseClicked = function () {
+                if (!this._config.onDotClicked) {
+                    return;
+                }
+                var offset = this._grid._getOffset();
+                var dotSize = this._grid._getDotSize();
+                // Iterate over all dot locations, and check whether the distance
+                // between the click and the dot centre is less than the dot's
+                // radius
+                for (var y = 0; y < 24; y++) {
+                    for (var x = 0; x < 24; x++) {
+                        var dx = 50 + x * offset;
+                        var dy = 50 + y * offset;
+                        // p.mouseX and p.mouseY give is the coordinates in the canvas
+                        // space.
+                        var distance = p.dist(dx, dy, p.mouseX, p.mouseY);
+                        if (distance < dotSize / 2) {
+                            this._config.onDotClicked(x, y);
+                            // We've found the dot, so exit early
+                            return;
+                        }
+                    }
                 }
             }.bind(this);
         }.bind(this));
