@@ -17,7 +17,8 @@ Things 24a2 doesn't support:
 ## Example games
 
 - [Snake](/games/snake)
-- [Skiing](/games/skiing.html)
+- [Skiing](/games/skiing)
+- [Game of life](/games/game_of_life)
 
 ## Example code
 

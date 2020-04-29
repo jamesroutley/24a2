@@ -1,0 +1,1 @@
+../../../../examples/game_of_life/build/game_of_life.js
