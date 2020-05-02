@@ -1,9 +1,10 @@
 {
   "inputFiles": ["./src"],
   "mode": "file",
-  "out": "docs/reference",
-  "theme": "minimal",
+  "out": "website/content/reference",
+  "readme": "none",
   "excludePrivate": true,
-  "hideGenerator": true,
-  "readme": "none"
+  "theme": "docusaurus",
+  "skipSidebar": true,
+  "hideBreadcrumbs": true
 }

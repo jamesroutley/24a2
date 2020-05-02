@@ -1,11 +1,12 @@
-.PHONY: docs
+.PHONY: docs typedoc
 
 build:
 	tsc
 
-docs:
+docs: typedoc
 	cd website && hugo
-	$(MAKE) typedoc
 
 typedoc:
+	rm -r website/content/reference
 	yarn run typedoc
+	/bin/bash website/fix_reference_links.sh

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>References on 24a2 - an ultra minimalist game engine</title>
+    <link>http://24a2.routley.io/reference/</link>
+    <description>Recent content in References on 24a2 - an ultra minimalist game engine</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://24a2.routley.io/reference/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>http://24a2.routley.io/reference/classes/game/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://24a2.routley.io/reference/classes/game/</guid>
+      <description>Class: Game Hierarchy  Game  Index Constructors  constructor  Methods  _getCSSColor end getFrameCount run setFrameRate setText  Constructors constructor + new Game(config: GameConfig): Game
+Defined in engine.ts:82
+Parameters:
+   Name Type     config GameConfig    Returns: Game
+Methods _getCSSColor ▸ _getCSSColor(color: Color): string
+Defined in engine.ts:218
+Parameters:
+   Name Type     color Color    Returns: string</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://24a2.routley.io/reference/classes/grid/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://24a2.routley.io/reference/classes/grid/</guid>
+      <description>Class: Grid Hierarchy  Grid  Index Constructors  constructor  Properties  _dots  Methods  _getDotSize _getGridSize _getOffset clear getDot setDot  Constructors constructor + new Grid(): Grid
+Defined in engine.ts:24
+Returns: Grid
+Properties _dots • _dots: Array‹Array‹Color››
+Defined in engine.ts:24
+Methods _getDotSize ▸ _getDotSize(): number
+Defined in engine.ts:39
+Returns: number
+_getGridSize ▸ _getGridSize(): number
+Defined in engine.ts:47
+Returns: number
+_getOffset ▸ _getOffset(): number
+Defined in engine.ts:43</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://24a2.routley.io/reference/enums/color/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://24a2.routley.io/reference/enums/color/</guid>
+      <description>Enumeration: Color Index Enumeration members  Black Gray Green Red Yellow  Enumeration members Black • Black: = &amp;ldquo;BLACK&amp;rdquo;
+Defined in engine.ts:3
+Gray • Gray: = &amp;ldquo;GRAY&amp;rdquo;
+Defined in engine.ts:2
+Green • Green: = &amp;ldquo;GREEN&amp;rdquo;
+Defined in engine.ts:5
+Red • Red: = &amp;ldquo;RED&amp;rdquo;
+Defined in engine.ts:4
+Yellow • Yellow: = &amp;ldquo;YELLOW&amp;rdquo;
+Defined in engine.ts:6</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://24a2.routley.io/reference/enums/direction/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://24a2.routley.io/reference/enums/direction/</guid>
+      <description>Enumeration: Direction Index Enumeration members  Down Left Right Up  Enumeration members Down • Down: = &amp;ldquo;DOWN&amp;rdquo;
+Defined in engine.ts:13
+Left • Left: = &amp;ldquo;LEFT&amp;rdquo;
+Defined in engine.ts:10
+Right • Right: = &amp;ldquo;RIGHT&amp;rdquo;
+Defined in engine.ts:11
+Up • Up: = &amp;ldquo;UP&amp;rdquo;
+Defined in engine.ts:12</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://24a2.routley.io/reference/interfaces/gameconfig/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://24a2.routley.io/reference/interfaces/gameconfig/</guid>
+      <description>Interface: GameConfig Hierarchy  GameConfig  Index Properties  create onDotClicked onKeyPress update  Properties Optional create • create? : undefined | function
+Defined in engine.ts:69
+Optional onDotClicked • onDotClicked? : undefined | function
+Defined in engine.ts:72
+Optional onKeyPress • onKeyPress? : undefined | function
+Defined in engine.ts:71
+Optional update • update? : undefined | function
+Defined in engine.ts:70</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://24a2.routley.io/reference/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://24a2.routley.io/reference/readme/</guid>
+      <description> 24a2 Index Enumerations  Color Direction  Classes  Game Grid  Interfaces  GameConfig  </description>
+    </item>
+    
+  </channel>
+</rss>
