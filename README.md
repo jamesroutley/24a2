@@ -53,12 +53,3 @@ function onKeyPress(direction: Direction) {
 // Start the game
 game.run();
 ```
-
-## TODO
-
-- [ ]: Automatic API documentation, possibly using [TypeDoc](https://typedoc.org/)
-- [ ]:
-
-## Possible features
-
-- Builtin (x, y) Point object
