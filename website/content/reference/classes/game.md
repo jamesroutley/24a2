@@ -29,7 +29,7 @@ sidebar_label: "Game"
 
 \+ **new Game**(`config`: [GameConfig](../interfaces/gameconfig)): *[Game](game)*
 
-*Defined in [engine.ts:82](https://github.com/jamesroutley/24a2/blob/71abf1a/src/engine.ts#L82)*
+*Defined in [engine.ts:82](https://github.com/jamesroutley/24a2/blob/796fc84/src/engine.ts#L82)*
 
 **Parameters:**
 
@@ -45,7 +45,7 @@ Name | Type |
 
 ▸ **_getCSSColor**(`color`: [Color](../enums/color)): *string*
 
-*Defined in [engine.ts:218](https://github.com/jamesroutley/24a2/blob/71abf1a/src/engine.ts#L218)*
+*Defined in [engine.ts:218](https://github.com/jamesroutley/24a2/blob/796fc84/src/engine.ts#L218)*
 
 **Parameters:**
 
@@ -61,7 +61,7 @@ ___
 
 ▸ **end**(): *void*
 
-*Defined in [engine.ts:105](https://github.com/jamesroutley/24a2/blob/71abf1a/src/engine.ts#L105)*
+*Defined in [engine.ts:105](https://github.com/jamesroutley/24a2/blob/796fc84/src/engine.ts#L105)*
 
 **Returns:** *void*
 
@@ -71,7 +71,7 @@ ___
 
 ▸ **getFrameCount**(): *number*
 
-*Defined in [engine.ts:101](https://github.com/jamesroutley/24a2/blob/71abf1a/src/engine.ts#L101)*
+*Defined in [engine.ts:101](https://github.com/jamesroutley/24a2/blob/796fc84/src/engine.ts#L101)*
 
 **Returns:** *number*
 
@@ -81,7 +81,7 @@ ___
 
 ▸ **run**(): *void*
 
-*Defined in [engine.ts:109](https://github.com/jamesroutley/24a2/blob/71abf1a/src/engine.ts#L109)*
+*Defined in [engine.ts:109](https://github.com/jamesroutley/24a2/blob/796fc84/src/engine.ts#L109)*
 
 **Returns:** *void*
 
@@ -91,7 +91,7 @@ ___
 
 ▸ **setFrameRate**(`rate`: number): *void*
 
-*Defined in [engine.ts:97](https://github.com/jamesroutley/24a2/blob/71abf1a/src/engine.ts#L97)*
+*Defined in [engine.ts:97](https://github.com/jamesroutley/24a2/blob/796fc84/src/engine.ts#L97)*
 
 **Parameters:**
 
@@ -107,7 +107,7 @@ ___
 
 ▸ **setText**(`text`: string): *void*
 
-*Defined in [engine.ts:93](https://github.com/jamesroutley/24a2/blob/71abf1a/src/engine.ts#L93)*
+*Defined in [engine.ts:93](https://github.com/jamesroutley/24a2/blob/796fc84/src/engine.ts#L93)*
 
 **Parameters:**
 
