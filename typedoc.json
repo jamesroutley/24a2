@@ -1,0 +1,9 @@
+{
+  "inputFiles": ["./src"],
+  "mode": "file",
+  "out": "docs/reference",
+  "theme": "minimal",
+  "excludePrivate": true,
+  "hideGenerator": true,
+  "readme": "none"
+}

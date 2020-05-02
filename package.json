@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "license": "MIT",
   "devDependencies": {
-    "@types/p5": "^0.9.0"
+    "@types/p5": "^0.9.0",
+    "typedoc": "^0.17.6",
+    "typescript": "^3.8.3"
   }
 }

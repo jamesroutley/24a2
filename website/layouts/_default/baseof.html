@@ -10,8 +10,17 @@
     <link type="text/css" rel="stylesheet" href="/css/24a2.css" />
   </head>
   <body>
-    <main>
-      {{- block "main" . }}{{- end }}
-    </main>
+    <h1>{{ .Page.Title }}</h1>
+    <div class="with-sidebar">
+      <div>
+        <!-- intermediary wrapper -->
+        {{ partial "sidebar.html" }}
+        <div>
+          <main>
+            {{- block "main" . }}{{- end }}
+          </main>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
