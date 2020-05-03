@@ -19,7 +19,7 @@ sidebar_label: "Direction"
 
 • **Down**: = "DOWN"
 
-*Defined in [engine.ts:13](https://github.com/jamesroutley/24a2/blob/f0a7e7e/src/engine.ts#L13)*
+*Defined in [engine.ts:13](https://github.com/jamesroutley/24a2/blob/5df3740/src/engine.ts#L13)*
 
 ___
 
@@ -27,7 +27,7 @@ ___
 
 • **Left**: = "LEFT"
 
-*Defined in [engine.ts:10](https://github.com/jamesroutley/24a2/blob/f0a7e7e/src/engine.ts#L10)*
+*Defined in [engine.ts:10](https://github.com/jamesroutley/24a2/blob/5df3740/src/engine.ts#L10)*
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 • **Right**: = "RIGHT"
 
-*Defined in [engine.ts:11](https://github.com/jamesroutley/24a2/blob/f0a7e7e/src/engine.ts#L11)*
+*Defined in [engine.ts:11](https://github.com/jamesroutley/24a2/blob/5df3740/src/engine.ts#L11)*
 
 ___
 
@@ -43,4 +43,4 @@ ___
 
 • **Up**: = "UP"
 
-*Defined in [engine.ts:12](https://github.com/jamesroutley/24a2/blob/f0a7e7e/src/engine.ts#L12)*
+*Defined in [engine.ts:12](https://github.com/jamesroutley/24a2/blob/5df3740/src/engine.ts#L12)*

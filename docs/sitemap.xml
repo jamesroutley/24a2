@@ -3,14 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://24a2.routley.io/games/skiing/</loc>
-  </url>
-  
-  <url>
-    <loc>http://24a2.routley.io/games/snake/</loc>
-  </url>
-  
-  <url>
     <loc>http://24a2.routley.io/reference/</loc>
   </url>
   
@@ -44,6 +36,14 @@
   
   <url>
     <loc>http://24a2.routley.io/reference/classes/grid/</loc>
+  </url>
+  
+  <url>
+    <loc>http://24a2.routley.io/games/skiing/</loc>
+  </url>
+  
+  <url>
+    <loc>http://24a2.routley.io/games/snake/</loc>
   </url>
   
   <url>

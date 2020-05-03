@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>{{ .Site.Title }} {{ with .Params.Title }} | {{ . }}{{ end }}</title>
-
-    <link type="text/css" rel="stylesheet" href="/css/24a2.css" />
-  </head>
+  {{ partial "head.html" }}
   <body>
     <h1>{{ .Page.Title }}</h1>
     <div class="with-sidebar">
