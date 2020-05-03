@@ -1,32 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>24a4 on 24a2 - an ultra minimalist game engine</title>
-    <link>http://24a2.routley.io/</link>
-    <description>Recent content in 24a4 on 24a2 - an ultra minimalist game engine</description>
+    <title>24a2 on 24a2 - an ultra minimalist game engine</title>
+    <link>http://24a2.routley.io/reference/</link>
+    <description>Recent content in 24a2 on 24a2 - an ultra minimalist game engine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="http://24a2.routley.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://24a2.routley.io/reference/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title></title>
-      <link>http://24a2.routley.io/games/skiing/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://24a2.routley.io/games/skiing/</guid>
-      <description> Skiing </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://24a2.routley.io/games/snake/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://24a2.routley.io/games/snake/</guid>
-      <description> Snake </description>
-    </item>
     
     <item>
       <title>Color</title>
@@ -114,15 +96,6 @@ Returns: number
 _getOffset ▸ _getOffset(): number
 Defined in engine.ts:43
 Returns: number</description>
-    </item>
-    
-    <item>
-      <title>Tutorial</title>
-      <link>http://24a2.routley.io/tutorial/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://24a2.routley.io/tutorial/</guid>
-      <description>Let&amp;rsquo;s build a simple game using 24a2.</description>
     </item>
     
   </channel>

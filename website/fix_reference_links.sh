@@ -12,3 +12,5 @@ sed -i '' 's/(game#/(#/g' website/content/reference/classes/game.md
 sed -i '' 's/(grid#/(#/g' website/content/reference/classes/grid.md
 
 sed -i '' 's/(gameconfig#/(#/g' website/content/reference/interfaces/gameconfig.md
+
+mv website/content/reference/index.md website/content/reference/_index.md

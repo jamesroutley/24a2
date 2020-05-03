@@ -4,6 +4,7 @@ build:
 	tsc
 
 docs: typedoc
+	rm -r docs
 	cd website && hugo
 
 typedoc:
