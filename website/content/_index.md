@@ -2,21 +2,29 @@
 title: 24a4
 ---
 
-24a2 is an ultra minimalist game engine. It's objective is to let you build a game in a couple of hours. It does this by severely limiting what you can do.
+24a2 is a simple game engine that lets you to build a game in a few hours. It
+has a very limited set of features which makes it easy to learn, and encourages
+you to solve problems creatively.
 
-Things 24a2 supports:
+24a2 games are written in JavaScript (or TypeScript) and are played in a web
+browser, so you can easily share what you've created.
 
-- A 24x24 grid of dots
-- The ability to set the colour of each dot to one of eight colours
-- The ability to read a dot's colour
-- Keyboard input (arrow keys only)
-- Variable framerate
+## Introduction
 
-Things 24a2 doesn't support:
+All 24a2 games feature a 24 by 24 grid of dots. You can set the color of each
+dot, and read the color of each dot back. 24a2 can also run a function you
+define when an arrow key is pressed, or when a dot is clicked on.
 
-- Everything else
+That's about it! There are a few other features, which you can find out about in
+the [tutorial](/tutorial) and the [API reference](/reference").
+
+Using 24a2 means you don't have to think about the visual style of your game,
+complicated physics or sound - you can just focus on actually building
+something.
 
 ## Example games
+
+Here are a few demo games you can play to get a feel for what 24a2 is like:
 
 - [Snake](/games/snake)
 - [Skiing](/games/skiing)
