@@ -55,7 +55,7 @@ Defined in engine.ts:82
 Parameters:
    Name Type     config GameConfig    Returns: Game
 Methods _getCSSColor ▸ _getCSSColor(color: Color): string
-Defined in engine.ts:218
+Defined in engine.ts:223
 Parameters:
    Name Type     color Color    Returns: string</description>
     </item>
@@ -82,19 +82,19 @@ Defined in engine.ts:70</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://24a2.routley.io/reference/classes/grid/</guid>
-      <description>Hierarchy  Grid  Index Constructors  constructor  Properties  _dots  Methods  _getDotSize _getGridSize _getOffset clear getDot setDot  Constructors constructor + new Grid(): Grid
+      <description>Hierarchy  Grid  Index Constructors  constructor  Properties  _dots  Methods  _clear _getDotSize _getGridSize _getOffset getDot setDot  Constructors constructor + new Grid(): Grid
 Defined in engine.ts:24
 Returns: Grid
 Properties _dots • _dots: Array‹Array‹Color››
 Defined in engine.ts:24
-Methods _getDotSize ▸ _getDotSize(): number
+Methods _clear ▸ _clear(): void
+Defined in engine.ts:59
+Returns: void
+_getDotSize ▸ _getDotSize(): number
 Defined in engine.ts:39
 Returns: number
 _getGridSize ▸ _getGridSize(): number
 Defined in engine.ts:47
-Returns: number
-_getOffset ▸ _getOffset(): number
-Defined in engine.ts:43
 Returns: number</description>
     </item>
     
@@ -122,7 +122,8 @@ Returns: number</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://24a2.routley.io/tutorial/</guid>
-      <description>Let&amp;rsquo;s build a simple game using 24a2.</description>
+      <description>Let&amp;rsquo;s build a simple game using 24a2. In our game, we&amp;rsquo;ll have a player who can move around and collect items. Each item will give the player a number of points. There will also be bad items, which end the game. TODO: metaphor
+1. Basic setup 24a2 games are written in JavaScript, and are played in the browser. In this step, we&amp;rsquo;ll create two files, an index.html which stores the content of our webpage, and game.</description>
     </item>
     
   </channel>

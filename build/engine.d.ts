@@ -22,7 +22,7 @@ declare class Grid {
     _getGridSize(): number;
     getDot(x: number, y: number): Color;
     setDot(x: number, y: number, val: Color): void;
-    clear(): void;
+    _clear(): void;
 }
 interface GameConfig {
     create?: (game: Game, grid: Grid) => void;

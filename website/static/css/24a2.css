@@ -18,6 +18,10 @@ code {
   font-family: "IBM Plex Mono", monospace;
 }
 
+pre {
+  overflow: scroll;
+}
+
 h1 {
   text-align: center;
 }

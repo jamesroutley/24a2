@@ -56,7 +56,7 @@ class Grid {
     this._dots[y][x] = val;
   }
 
-  clear() {
+  _clear() {
     for (let y = 0; y < 24; y++) {
       for (let x = 0; x < 24; x++) {
         this.setDot(x, y, Color.Gray);
@@ -141,11 +141,16 @@ class Game {
             return;
           }
           p.clear();
+
           // TODO: we could only set this if it's changed
           p.frameRate(this._frameRate);
+
+          this._grid._clear();
+
           if (this._config.update) {
             this._config.update(this, this._grid);
           }
+
           drawGrid(this._grid);
 
           p.push();
