@@ -23,7 +23,7 @@ sidebar_label: "GameConfig"
 
 • **create**? : *undefined | function*
 
-*Defined in [engine.ts:69](https://github.com/jamesroutley/24a2/blob/c9b91cc/src/engine.ts#L69)*
+*Defined in [engine.ts:69](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L69)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **onDotClicked**? : *undefined | function*
 
-*Defined in [engine.ts:72](https://github.com/jamesroutley/24a2/blob/c9b91cc/src/engine.ts#L72)*
+*Defined in [engine.ts:72](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L72)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **onKeyPress**? : *undefined | function*
 
-*Defined in [engine.ts:71](https://github.com/jamesroutley/24a2/blob/c9b91cc/src/engine.ts#L71)*
+*Defined in [engine.ts:71](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L71)*
 
 ___
 
@@ -47,4 +47,4 @@ ___
 
 • **update**? : *undefined | function*
 
-*Defined in [engine.ts:70](https://github.com/jamesroutley/24a2/blob/c9b91cc/src/engine.ts#L70)*
+*Defined in [engine.ts:70](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L70)*
