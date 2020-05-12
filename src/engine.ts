@@ -50,6 +50,18 @@ interface GameConfig {
    * dot.
    */
   onDotClicked?: (x: number, y: number) => void;
+  /**
+   * @ignore
+   *
+   * Sets the width of the grid
+   */
+  _gridWidth?: number;
+  /**
+   * @ignore
+   *
+   * Sets the height of the grid
+   */
+  _gridHeight?: number;
 }
 
 /**
@@ -85,15 +97,24 @@ class Game {
     this._config = config;
     this._frameRate = 24;
 
-    // TODO: make this configurable
-    const gridSize = 24;
+    let gridHeight = 24;
+    if (config._gridHeight && config._gridHeight > 0) {
+      gridHeight = config._gridHeight;
+    }
 
-    this._dots = new Array(gridSize);
-    for (let y = 0; y < gridSize; y++) {
-      let row = new Array(gridSize);
+    let gridWidth = 24;
+    if (config._gridWidth && config._gridWidth > 0) {
+      gridWidth = config._gridWidth;
+    }
+
+    this._dots = new Array(gridHeight || 24);
+    console.log(this._dots);
+    for (let y = 0; y < this._dots.length; y++) {
+      let row = new Array(gridWidth || 24);
       for (let i = 0; i < row.length; i++) {
         row[i] = Color.Gray;
       }
+      console.log(y);
       this._dots[y] = row;
     }
   }
@@ -143,6 +164,17 @@ class Game {
    * Returns the color of a dot.
    */
   getDot(x: number, y: number): Color {
+    if (y < 0 || y >= this._dots.length) {
+      throw new Error(
+        `Error trying to get dot (${x}, ${y}): y is out of bounds`
+      );
+    }
+    if (x < 0 || x >= this._dots[y].length) {
+      throw new Error(
+        `Error trying to get dot (${x}, ${y}): x is out of bounds`
+      );
+    }
+
     return this._dots[y][x];
   }
 
@@ -150,6 +182,17 @@ class Game {
    * Sets the color of a dot.
    */
   setDot(x: number, y: number, val: Color) {
+    if (y < 0 || y >= this._dots.length) {
+      throw new Error(
+        `Error trying to set dot (${x}, ${y}): y is out of bounds`
+      );
+    }
+    if (x < 0 || x >= this._dots[y].length) {
+      throw new Error(
+        `Error trying to set dot (${x}, ${y}): x is out of bounds`
+      );
+    }
+
     this._dots[y][x] = val;
   }
 

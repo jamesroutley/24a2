@@ -48,6 +48,18 @@ interface GameConfig {
      * dot.
      */
     onDotClicked?: (x: number, y: number) => void;
+    /**
+     * @ignore
+     *
+     * Sets the width of the grid
+     */
+    _gridWidth?: number;
+    /**
+     * @ignore
+     *
+     * Sets the height of the grid
+     */
+    _gridHeight?: number;
 }
 /**
  * Game is the object that controls the actual running of the game. You

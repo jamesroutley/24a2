@@ -52,14 +52,22 @@ var Game = /** @class */ (function () {
         this._gapSize = 8;
         this._config = config;
         this._frameRate = 24;
-        // TODO: make this configurable
-        var gridSize = 24;
-        this._dots = new Array(gridSize);
-        for (var y = 0; y < gridSize; y++) {
-            var row = new Array(gridSize);
+        var gridHeight = 24;
+        if (config._gridHeight && config._gridHeight > 0) {
+            gridHeight = config._gridHeight;
+        }
+        var gridWidth = 24;
+        if (config._gridWidth && config._gridWidth > 0) {
+            gridWidth = config._gridWidth;
+        }
+        this._dots = new Array(gridHeight || 24);
+        console.log(this._dots);
+        for (var y = 0; y < this._dots.length; y++) {
+            var row = new Array(gridWidth || 24);
             for (var i = 0; i < row.length; i++) {
                 row[i] = Color.Gray;
             }
+            console.log(y);
             this._dots[y] = row;
         }
     }
@@ -104,12 +112,24 @@ var Game = /** @class */ (function () {
      * Returns the color of a dot.
      */
     Game.prototype.getDot = function (x, y) {
+        if (y < 0 || y >= this._dots.length) {
+            throw new Error("Error trying to get dot (" + x + ", " + y + "): y is out of bounds");
+        }
+        if (x < 0 || x >= this._dots[y].length) {
+            throw new Error("Error trying to get dot (" + x + ", " + y + "): x is out of bounds");
+        }
         return this._dots[y][x];
     };
     /**
      * Sets the color of a dot.
      */
     Game.prototype.setDot = function (x, y, val) {
+        if (y < 0 || y >= this._dots.length) {
+            throw new Error("Error trying to set dot (" + x + ", " + y + "): y is out of bounds");
+        }
+        if (x < 0 || x >= this._dots[y].length) {
+            throw new Error("Error trying to set dot (" + x + ", " + y + "): x is out of bounds");
+        }
         this._dots[y][x] = val;
     };
     /**
