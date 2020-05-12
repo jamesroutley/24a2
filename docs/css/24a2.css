@@ -43,11 +43,6 @@ h1 {
   padding-left: 0;
 }
 
-.sidebar > ul > li > ul {
-  list-style-type: none;
-  padding-left: 24px;
-}
-
 /* https://every-layout.dev/layouts/sidebar/ */
 .with-sidebar {
   overflow: hidden;
