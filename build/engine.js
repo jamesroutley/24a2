@@ -44,14 +44,14 @@ var Direction;
  */
 var Game = /** @class */ (function () {
     function Game(config) {
+        this._text = "";
+        this._ended = false;
+        this._frameCount = 0;
         // Variables used when rendering the grid
         this._dotSize = 16;
         this._gapSize = 8;
         this._config = config;
-        this._text = "";
         this._frameRate = 24;
-        this._ended = false;
-        this._frameCount = 0;
         // TODO: make this configurable
         var gridSize = 24;
         this._dots = new Array(gridSize);

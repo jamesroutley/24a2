@@ -70,10 +70,10 @@ interface GameConfig {
 class Game {
   private _config: GameConfig;
 
-  private _text: string;
+  private _text = "";
   private _frameRate: number;
-  private _ended: boolean;
-  private _frameCount: number;
+  private _ended = false;
+  private _frameCount = 0;
 
   private _dots: Array<Array<Color>>;
 
@@ -83,10 +83,7 @@ class Game {
 
   constructor(config: GameConfig) {
     this._config = config;
-    this._text = "";
     this._frameRate = 24;
-    this._ended = false;
-    this._frameCount = 0;
 
     // TODO: make this configurable
     const gridSize = 24;
