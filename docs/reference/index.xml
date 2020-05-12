@@ -16,11 +16,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://24a2.routley.io/reference/enums/color/</guid>
-      <description>Index Enumeration members  Black Gray Green Red Yellow  Enumeration members Black • Black: = &amp;ldquo;BLACK&amp;rdquo;
+      <description>Color is a set of constants which you can use to set the color of dots.
+Use it from both TypeScript and JavaScript with:
+game.setDot(x, y, Color.Red)  Index Enumeration members  Black Blue Gray Green Indigo Orange Red Violet Yellow  Enumeration members Black • Black: = &amp;ldquo;BLACK&amp;rdquo;
+Blue • Blue: = &amp;ldquo;BLUE&amp;rdquo;
 Gray • Gray: = &amp;ldquo;GRAY&amp;rdquo;
 Green • Green: = &amp;ldquo;GREEN&amp;rdquo;
-Red • Red: = &amp;ldquo;RED&amp;rdquo;
-Yellow • Yellow: = &amp;ldquo;YELLOW&amp;rdquo;</description>
+Indigo • Indigo: = &amp;ldquo;INDIGO&amp;rdquo;</description>
     </item>
     
     <item>

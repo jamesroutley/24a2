@@ -1,9 +1,22 @@
+/**
+ * Color is a set of constants which you can use to set the color of dots.
+ *
+ * Use it from both TypeScript and JavaScript with:
+ *
+ * ```javascript
+ * game.setDot(x, y, Color.Red)
+ * ```
+ */
 declare enum Color {
     Gray = "GRAY",
     Black = "BLACK",
     Red = "RED",
+    Orange = "ORANGE",
+    Yellow = "YELLOW",
     Green = "GREEN",
-    Yellow = "YELLOW"
+    Blue = "BLUE",
+    Indigo = "INDIGO",
+    Violet = "VIOLET"
 }
 declare enum Direction {
     Left = "LEFT",

@@ -1,11 +1,24 @@
 "use strict";
+/**
+ * Color is a set of constants which you can use to set the color of dots.
+ *
+ * Use it from both TypeScript and JavaScript with:
+ *
+ * ```javascript
+ * game.setDot(x, y, Color.Red)
+ * ```
+ */
 var Color;
 (function (Color) {
     Color["Gray"] = "GRAY";
     Color["Black"] = "BLACK";
     Color["Red"] = "RED";
-    Color["Green"] = "GREEN";
+    Color["Orange"] = "ORANGE";
     Color["Yellow"] = "YELLOW";
+    Color["Green"] = "GREEN";
+    Color["Blue"] = "BLUE";
+    Color["Indigo"] = "INDIGO";
+    Color["Violet"] = "VIOLET";
 })(Color || (Color = {}));
 var Direction;
 (function (Direction) {
@@ -214,13 +227,21 @@ var Game = /** @class */ (function () {
                 return "black";
             case Color.Red:
                 return "red";
-            case Color.Green:
-                return "green";
+            case Color.Orange:
+                return "orange";
             case Color.Yellow:
                 return "gold";
+            case Color.Green:
+                return "green";
+            case Color.Blue:
+                return "blue";
+            case Color.Indigo:
+                return "indigo";
+            case Color.Violet:
+                return "violet";
             default:
-                console.error("no CSS color defined");
-                return "orange";
+                console.error("no CSS color defined for " + color);
+                return "";
         }
     };
     return Game;
