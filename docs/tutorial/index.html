@@ -73,9 +73,9 @@ the following code into it:</p>
 
 <p>Next, create a new file called <code>game.js</code>, and copy and paste the following code
 into it:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">function</span> create(game, grid) {}
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">function</span> create(game) {}
 
-<span style="color:#00f">function</span> update(game, grid) {}
+<span style="color:#00f">function</span> update(game) {}
 
 <span style="color:#00f">function</span> onKeyPress(direction) {}
 
@@ -114,16 +114,16 @@ it should call, we create a new game and run it.</li>
 <p>To set up our game, we need to create a player:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">let</span> player = {};
 
-<span style="color:#00f">function</span> create(game, grid) {
+<span style="color:#00f">function</span> create(game) {
   player = {
     x: 5,
     y: 10
   };
-  grid.setDot(player.x, player.y, Color.Black);
+  game.setDot(player.x, player.y, Color.Black);
 }
 
-<span style="color:#00f">function</span> update(game, grid) {
-  grid.setDot(player.x, player.y, Color.Black);
+<span style="color:#00f">function</span> update(game) {
+  game.setDot(player.x, player.y, Color.Black);
 }
 </code></pre></div>
 <p>We declare a new global variable <code>player</code>, which stores the player&rsquo;s <code>x</code> and <code>y</code>
@@ -179,7 +179,7 @@ to stop this from happening:</p>
 <p>Let&rsquo;s add some code to randomly generate an item.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">let</span> items = [];
 
-<span style="color:#00f">function</span> update(game, grid) {
+<span style="color:#00f">function</span> update(game) {
   <span style="color:#008000">// Only generate an item 5% of the time
 </span><span style="color:#008000"></span>  <span style="color:#00f">if</span> (Math.random() &lt; 0.05) {
     item = {
@@ -192,10 +192,10 @@ to stop this from happening:</p>
   }
 
   <span style="color:#00f">for</span> (item <span style="color:#00f">of</span> items) {
-    grid.setDot(item.x, item.y, Color.Green);
+    game.setDot(item.x, item.y, Color.Green);
   }
 
-  grid.setDot(player.x, player.y, Color.Black);
+  game.setDot(player.x, player.y, Color.Black);
 }
 </code></pre></div>
 <p>We create a new global variable to store the coordinates of each item, <code>items</code>.</p>
@@ -209,7 +209,7 @@ the player currently is.</p>
 <p>Currently, nothing happens when our player walks over an item. Lets change it so
 the item disappears, and the user&rsquo;s score increases. We can display the user&rsquo;s
 current score using the <code>game.setText</code> function.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">function</span> update(game, grid) {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">function</span> update(game) {
   <span style="color:#00f">for</span> (<span style="color:#00f">let</span> i = 0; i &lt; items.length; i++) {
     <span style="color:#00f">const</span> item = items[i];
     <span style="color:#00f">if</span> (item.x == player.x &amp;&amp; item.y == player.y) {
@@ -251,13 +251,13 @@ browser, we can access all functionality that the browser provides.</p>
 }
 </code></pre></div>
 <p>To show the time remaining, let&rsquo;s update the call to <code>game.setText</code> in <code>update</code>:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">function</span> update(game, grid) {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">function</span> update(game) {
   <span style="color:#008000">// ...
 </span><span style="color:#008000"></span>  game.setText(<span style="color:#a31515">`Time left: </span><span style="color:#a31515">${</span>timeRemaining<span style="color:#a31515">}</span><span style="color:#a31515">s. Score: </span><span style="color:#a31515">${</span>score<span style="color:#a31515">}</span><span style="color:#a31515">`</span>);
 }
 </code></pre></div>
 <p>Finally, when the remaining time hits 0, let&rsquo;s end the game:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">function</span> update(game, grid) {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">function</span> update(game) {
   <span style="color:#008000">// ...
 </span><span style="color:#008000"></span>
   <span style="color:#00f">if</span> (timeRemaining &lt;= 0) {

@@ -36,9 +36,9 @@ Next, create a new file called `game.js`, and copy and paste the following code
 into it:
 
 ```javascript
-function create(game, grid) {}
+function create(game) {}
 
-function update(game, grid) {}
+function update(game) {}
 
 function onKeyPress(direction) {}
 
@@ -78,16 +78,16 @@ To set up our game, we need to create a player:
 ```javascript
 let player = {};
 
-function create(game, grid) {
+function create(game) {
   player = {
     x: 5,
     y: 10
   };
-  grid.setDot(player.x, player.y, Color.Black);
+  game.setDot(player.x, player.y, Color.Black);
 }
 
-function update(game, grid) {
-  grid.setDot(player.x, player.y, Color.Black);
+function update(game) {
+  game.setDot(player.x, player.y, Color.Black);
 }
 ```
 
@@ -152,7 +152,7 @@ Let's add some code to randomly generate an item.
 ```javascript
 let items = [];
 
-function update(game, grid) {
+function update(game) {
   // Only generate an item 5% of the time
   if (Math.random() < 0.05) {
     item = {
@@ -165,10 +165,10 @@ function update(game, grid) {
   }
 
   for (item of items) {
-    grid.setDot(item.x, item.y, Color.Green);
+    game.setDot(item.x, item.y, Color.Green);
   }
 
-  grid.setDot(player.x, player.y, Color.Black);
+  game.setDot(player.x, player.y, Color.Black);
 }
 ```
 
@@ -185,7 +185,7 @@ the item disappears, and the user's score increases. We can display the user's
 current score using the `game.setText` function.
 
 ```javascript
-function update(game, grid) {
+function update(game) {
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
     if (item.x == player.x && item.y == player.y) {
@@ -233,7 +233,7 @@ function decreaseTimer() {
 To show the time remaining, let's update the call to `game.setText` in `update`:
 
 ```javascript
-function update(game, grid) {
+function update(game) {
   // ...
   game.setText(`Time left: ${timeRemaining}s. Score: ${score}`);
 }
@@ -242,7 +242,7 @@ function update(game, grid) {
 Finally, when the remaining time hits 0, let's end the game:
 
 ```javascript
-function update(game, grid) {
+function update(game) {
   // ...
 
   if (timeRemaining <= 0) {

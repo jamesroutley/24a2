@@ -24,12 +24,12 @@ var snake = [
 // This fixes a bug where you can turn back on yourself if you quickly type
 // two arrow keys before the next time `update` is called
 var snakeDirectionChangeThisFrame = false;
-function setSnake(grid) {
+function setSnake(game) {
     snake.forEach(function (dot) {
-        grid.setDot(dot.x, dot.y, Color.Black);
+        game.setDot(dot.x, dot.y, Color.Black);
     });
 }
-function createPill(grid) {
+function createPill(game) {
     var pill = {
         x: Math.floor(Math.random() * 24),
         y: Math.floor(Math.random() * 24)
@@ -54,31 +54,31 @@ function createPill(grid) {
             y: Math.floor(Math.random() * 24)
         };
     }
-    grid.setDot(pill.x, pill.y, Color.Red);
+    game.setDot(pill.x, pill.y, Color.Red);
 }
-function create(game, grid) {
+function create(game) {
     // Drop framerate
     game.setFrameRate(5);
-    setSnake(grid);
-    createPill(grid);
+    setSnake(game);
+    createPill(game);
 }
-function update(game, grid) {
+function update(game) {
     snakeDirectionChangeThisFrame = false;
     var head = snake[0];
     var nextLocation = getNextLocation(head, snakeDirection);
     // If nextLocation is in the snake, end the game
-    if (grid.getDot(nextLocation.x, nextLocation.y) === Color.Black) {
+    if (game.getDot(nextLocation.x, nextLocation.y) === Color.Black) {
         // Color the snake in red
         snake.forEach(function (dot) {
-            grid.setDot(dot.x, dot.y, Color.Red);
+            game.setDot(dot.x, dot.y, Color.Red);
         });
         game.end();
         return;
     }
     // If nextLocation is a pill, increase snake size
-    if (grid.getDot(nextLocation.x, nextLocation.y) === Color.Red) {
+    if (game.getDot(nextLocation.x, nextLocation.y) === Color.Red) {
         sectionsToAdd += getSectionsForScore(score);
-        createPill(grid);
+        createPill(game);
         score++;
     }
     game.setText("Score: " + score);
@@ -88,13 +88,13 @@ function update(game, grid) {
     if (sectionsToAdd === 0) {
         var exLocation = snake.pop();
         if (exLocation) {
-            grid.setDot(exLocation.x, exLocation.y, Color.Gray);
+            game.setDot(exLocation.x, exLocation.y, Color.Gray);
         }
     }
     else {
         sectionsToAdd--;
     }
-    setSnake(grid);
+    setSnake(game);
 }
 function getSectionsForScore(score) {
     // N.B: this is quite a steep increase in difficulty

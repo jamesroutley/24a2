@@ -36,13 +36,13 @@ let snake: Array<Point> = [
 // two arrow keys before the next time `update` is called
 let snakeDirectionChangeThisFrame: boolean = false;
 
-function setSnake(grid: Grid) {
+function setSnake(game: Game) {
   snake.forEach(dot => {
-    grid.setDot(dot.x, dot.y, Color.Black);
+    game.setDot(dot.x, dot.y, Color.Black);
   });
 }
 
-function createPill(grid: Grid) {
+function createPill(game: Game) {
   let pill = {
     x: Math.floor(Math.random() * 24),
     y: Math.floor(Math.random() * 24)
@@ -68,36 +68,36 @@ function createPill(grid: Grid) {
     };
   }
 
-  grid.setDot(pill.x, pill.y, Color.Red);
+  game.setDot(pill.x, pill.y, Color.Red);
 }
 
-function create(game: Game, grid: Grid) {
+function create(game: Game) {
   // Drop framerate
   game.setFrameRate(5);
 
-  setSnake(grid);
-  createPill(grid);
+  setSnake(game);
+  createPill(game);
 }
 
-function update(game: Game, grid: Grid) {
+function update(game: Game) {
   snakeDirectionChangeThisFrame = false;
   let head = snake[0];
   let nextLocation = getNextLocation(head, snakeDirection);
 
   // If nextLocation is in the snake, end the game
-  if (grid.getDot(nextLocation.x, nextLocation.y) === Color.Black) {
+  if (game.getDot(nextLocation.x, nextLocation.y) === Color.Black) {
     // Color the snake in red
     snake.forEach(dot => {
-      grid.setDot(dot.x, dot.y, Color.Red);
+      game.setDot(dot.x, dot.y, Color.Red);
     });
     game.end();
     return;
   }
 
   // If nextLocation is a pill, increase snake size
-  if (grid.getDot(nextLocation.x, nextLocation.y) === Color.Red) {
+  if (game.getDot(nextLocation.x, nextLocation.y) === Color.Red) {
     sectionsToAdd += getSectionsForScore(score);
-    createPill(grid);
+    createPill(game);
     score++;
   }
 
@@ -109,13 +109,13 @@ function update(game: Game, grid: Grid) {
   if (sectionsToAdd === 0) {
     let exLocation = snake.pop();
     if (exLocation) {
-      grid.setDot(exLocation.x, exLocation.y, Color.Gray);
+      game.setDot(exLocation.x, exLocation.y, Color.Gray);
     }
   } else {
     sectionsToAdd--;
   }
 
-  setSnake(grid);
+  setSnake(game);
 }
 
 function getSectionsForScore(score: number): number {

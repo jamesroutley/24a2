@@ -11,19 +11,6 @@ declare enum Direction {
     Up = "UP",
     Down = "DOWN"
 }
-declare class Grid {
-    private _dotSize;
-    private _gap;
-    private _gridSize;
-    _dots: Array<Array<Color>>;
-    constructor();
-    _getDotSize(): number;
-    _getOffset(): number;
-    _getGridSize(): number;
-    getDot(x: number, y: number): Color;
-    setDot(x: number, y: number, val: Color): void;
-    _clear(): void;
-}
 /**
  * GameConfig is the object you pass when contructing a new {@link Game}.
  */
@@ -32,12 +19,12 @@ interface GameConfig {
      * `create` is a function which is called once, just before the game starts
      * running. You can use it to initialise game state, if needed.
      */
-    create?: (game: Game, grid: Grid) => void;
+    create?: (game: Game) => void;
     /**
      * `update` is repeatedly called as the game runs. You can use it to define
      * the main functionality of your game.
      */
-    update?: (game: Game, grid: Grid) => void;
+    update?: (game: Game) => void;
     /**
      * `onKeyPress` is a function which is called when the player presses one of
      * the arrow keys.
@@ -66,11 +53,13 @@ interface GameConfig {
  */
 declare class Game {
     private _config;
-    private _grid;
     private _text;
     private _frameRate;
     private _ended;
     private _frameCount;
+    private _dots;
+    private _dotSize;
+    private _gapSize;
     constructor(config: GameConfig);
     /**
      * 24a2 games have a line of text below the grid which can be set to show
@@ -102,8 +91,18 @@ declare class Game {
      */
     end(): void;
     /**
+     * Returns the color of a dot.
+     */
+    getDot(x: number, y: number): Color;
+    /**
+     * Sets the color of a dot.
+     */
+    setDot(x: number, y: number, val: Color): void;
+    /**
      * Calling `run` starts the game.
      */
     run(): void;
+    private _drawGrid;
+    private _clearGrid;
     private _getCSSColor;
 }

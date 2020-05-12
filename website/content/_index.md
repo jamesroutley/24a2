@@ -45,12 +45,12 @@ let game = new Game(config);
 
 // Create is called once, at startup. Use this function to
 // initialise variables etc
-function create(game: Game, grid: Grid) {
+function create(game: Game) {
   game.setFrameRate(5);
 }
 
 // Update is called on each iteration of the game
-function update(game: Game, grid: Grid) {
+function update(game: Game) {
   const frameCount = game.getFrameCount();
   game.setText(`Frame count: ${frameCount}`);
 

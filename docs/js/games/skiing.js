@@ -2,7 +2,7 @@
 var playerX = 11;
 var playerY = 20; // const because the player doesn't move in Y axis
 var treeRows = new Array(24);
-function create(game, grid) {
+function create(game) {
     // Initialise trees
     for (var y = 23; y >= 0; y--) {
         treeRows[y] = {
@@ -11,30 +11,29 @@ function create(game, grid) {
         };
     }
 }
-function update(game, grid) {
+function update(game) {
     game.setText("Distance: " + game.getFrameCount());
-    grid.clear();
     treeRows.unshift(getNextTreeRow(treeRows[0]));
     treeRows.pop();
-    drawTrees(grid);
-    if (grid.getDot(playerX, playerY) === Color.Green) {
+    drawTrees(game);
+    if (game.getDot(playerX, playerY) === Color.Green) {
         // Player has hit a tree, end game
-        grid.setDot(playerX, playerY, Color.Red);
+        game.setDot(playerX, playerY, Color.Red);
         game.end();
         return;
     }
     // Draw player
-    grid.setDot(playerX, playerY, Color.Black);
+    game.setDot(playerX, playerY, Color.Black);
 }
-function drawTrees(grid) {
+function drawTrees(game) {
     treeRows.forEach(function (row, y) {
         // Draw the left hand side of this row
         for (var x = 0; x < row.x; x++) {
-            grid.setDot(x, y, Color.Green);
+            game.setDot(x, y, Color.Green);
         }
         // Draw the right hand side of this row
         for (var x = row.x + row.gap; x < 24; x++) {
-            grid.setDot(x, y, Color.Green);
+            game.setDot(x, y, Color.Green);
         }
     });
 }

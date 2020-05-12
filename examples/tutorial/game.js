@@ -7,14 +7,14 @@ let score = 0;
 // Games last 45 seconds
 let timeRemaining = 45;
 
-function create(game, grid) {
+function create(game) {
   player = {
     x: 5,
     y: 10
   };
 }
 
-function update(game, grid) {
+function update(game) {
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
     if (item.x == player.x && item.y == player.y) {
@@ -35,10 +35,10 @@ function update(game, grid) {
   }
 
   for (item of items) {
-    grid.setDot(item.x, item.y, Color.Green);
+    game.setDot(item.x, item.y, Color.Green);
   }
 
-  grid.setDot(player.x, player.y, Color.Black);
+  game.setDot(player.x, player.y, Color.Black);
 
   game.setText(`Time left: ${timeRemaining}. Score: ${score}`);
 

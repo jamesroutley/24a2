@@ -31,8 +31,10 @@ game.run()
 ### Methods
 
 * [end](../game#end)
+* [getDot](../game#getdot)
 * [getFrameCount](../game#getframecount)
 * [run](../game#run)
+* [setDot](../game#setdot)
 * [setFrameRate](../game#setframerate)
 * [setText](../game#settext)
 
@@ -65,6 +67,23 @@ make sure any code after it is executed.
 
 ___
 
+###  getDot
+
+▸ **getDot**(`x`: number, `y`: number): *[Color](../../enums/color)*
+
+Returns the color of a dot.
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`x` | number |
+`y` | number |
+
+**Returns:** *[Color](../../enums/color)*
+
+___
+
 ###  getFrameCount
 
 ▸ **getFrameCount**(): *number*
@@ -86,6 +105,24 @@ ___
 ▸ **run**(): *void*
 
 Calling `run` starts the game.
+
+**Returns:** *void*
+
+___
+
+###  setDot
+
+▸ **setDot**(`x`: number, `y`: number, `val`: [Color](../../enums/color)): *void*
+
+Sets the color of a dot.
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`x` | number |
+`y` | number |
+`val` | [Color](../../enums/color) |
 
 **Returns:** *void*
 

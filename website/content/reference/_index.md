@@ -14,7 +14,6 @@ sidebar_label: "Globals"
 ### Classes
 
 * [Game](classes/game)
-* [Grid](classes/grid)
 
 ### Interfaces
 

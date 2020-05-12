@@ -14,44 +14,6 @@ var Direction;
     Direction["Up"] = "UP";
     Direction["Down"] = "DOWN";
 })(Direction || (Direction = {}));
-var Grid = /** @class */ (function () {
-    function Grid() {
-        this._dotSize = 16;
-        this._gap = 8;
-        this._gridSize = 24;
-        this._dots = new Array(this._gridSize);
-        for (var y = 0; y < this._gridSize; y++) {
-            var row = new Array(this._gridSize);
-            for (var i = 0; i < row.length; i++) {
-                row[i] = Color.Gray;
-            }
-            this._dots[y] = row;
-        }
-    }
-    Grid.prototype._getDotSize = function () {
-        return this._dotSize;
-    };
-    Grid.prototype._getOffset = function () {
-        return this._dotSize + this._gap;
-    };
-    Grid.prototype._getGridSize = function () {
-        return this._gridSize;
-    };
-    Grid.prototype.getDot = function (x, y) {
-        return this._dots[y][x];
-    };
-    Grid.prototype.setDot = function (x, y, val) {
-        this._dots[y][x] = val;
-    };
-    Grid.prototype._clear = function () {
-        for (var y = 0; y < 24; y++) {
-            for (var x = 0; x < 24; x++) {
-                this.setDot(x, y, Color.Gray);
-            }
-        }
-    };
-    return Grid;
-}());
 /**
  * Game is the object that controls the actual running of the game. You
  * create a new one by passing in a {@Link GameConfig}. Calling `game.run()`
@@ -69,12 +31,24 @@ var Grid = /** @class */ (function () {
  */
 var Game = /** @class */ (function () {
     function Game(config) {
+        // Variables used when rendering the grid
+        this._dotSize = 16;
+        this._gapSize = 8;
         this._config = config;
-        this._grid = new Grid();
         this._text = "";
         this._frameRate = 24;
         this._ended = false;
         this._frameCount = 0;
+        // TODO: make this configurable
+        var gridSize = 24;
+        this._dots = new Array(gridSize);
+        for (var y = 0; y < gridSize; y++) {
+            var row = new Array(gridSize);
+            for (var i = 0; i < row.length; i++) {
+                row[i] = Color.Gray;
+            }
+            this._dots[y] = row;
+        }
     }
     /**
      * 24a2 games have a line of text below the grid which can be set to show
@@ -114,31 +88,29 @@ var Game = /** @class */ (function () {
         this._ended = true;
     };
     /**
+     * Returns the color of a dot.
+     */
+    Game.prototype.getDot = function (x, y) {
+        return this._dots[y][x];
+    };
+    /**
+     * Sets the color of a dot.
+     */
+    Game.prototype.setDot = function (x, y, val) {
+        this._dots[y][x] = val;
+    };
+    /**
      * Calling `run` starts the game.
      */
     Game.prototype.run = function () {
         new p5(function (p) {
-            var _this = this;
-            var drawGrid = function (grid) {
-                var offset = grid._getOffset();
-                var dotSize = grid._getDotSize();
-                p.push();
-                p.translate(50, 50);
-                grid._dots.forEach(function (row, y) {
-                    row.forEach(function (dot, x) {
-                        p.fill(p.color(_this._getCSSColor(dot)));
-                        p.circle(x * offset, y * offset, dotSize);
-                    });
-                });
-                p.pop();
-            };
             p.setup = function () {
                 // TODO canvas size is a bit arbitrary
                 p.createCanvas(652, 652);
                 // Don't draw outlines around circles
                 p.noStroke();
                 if (this._config.create) {
-                    this._config.create(this, this._grid);
+                    this._config.create(this);
                 }
             }.bind(this);
             p.draw = function () {
@@ -150,11 +122,11 @@ var Game = /** @class */ (function () {
                 p.clear();
                 // TODO: we could only set this if it's changed
                 p.frameRate(this._frameRate);
-                this._grid._clear();
+                this._clearGrid();
                 if (this._config.update) {
-                    this._config.update(this, this._grid);
+                    this._config.update(this);
                 }
-                drawGrid(this._grid);
+                this._drawGrid(p);
                 p.push();
                 p.textFont("monospace");
                 p.textSize(18);
@@ -191,19 +163,19 @@ var Game = /** @class */ (function () {
                 if (!this._config.onDotClicked) {
                     return;
                 }
-                var offset = this._grid._getOffset();
-                var dotSize = this._grid._getDotSize();
+                var offset = this._dotSize + this._gapSize;
                 // Iterate over all dot locations, and check whether the distance
                 // between the click and the dot centre is less than the dot's
                 // radius
-                for (var y = 0; y < 24; y++) {
-                    for (var x = 0; x < 24; x++) {
+                for (var y = 0; y < this._dots.length; y++) {
+                    var row = this._dots[y];
+                    for (var x = 0; x < row.length; x++) {
                         var dx = 50 + x * offset;
                         var dy = 50 + y * offset;
                         // p.mouseX and p.mouseY give is the coordinates in the canvas
                         // space.
                         var distance = p.dist(dx, dy, p.mouseX, p.mouseY);
-                        if (distance < dotSize / 2) {
+                        if (distance < this._dotSize / 2) {
                             this._config.onDotClicked(x, y);
                             // We've found the dot, so exit early
                             return;
@@ -212,6 +184,27 @@ var Game = /** @class */ (function () {
                 }
             }.bind(this);
         }.bind(this));
+    };
+    Game.prototype._drawGrid = function (p) {
+        var _this = this;
+        var offset = this._dotSize + this._gapSize;
+        p.push();
+        p.translate(50, 50);
+        this._dots.forEach(function (row, y) {
+            row.forEach(function (dot, x) {
+                p.fill(p.color(_this._getCSSColor(dot)));
+                p.circle(x * offset, y * offset, _this._dotSize);
+            });
+        });
+        p.pop();
+    };
+    Game.prototype._clearGrid = function () {
+        var _this = this;
+        this._dots.forEach(function (row, y) {
+            for (var x = 0; x < row.length; x++) {
+                _this.setDot(x, y, Color.Gray);
+            }
+        });
     };
     Game.prototype._getCSSColor = function (color) {
         switch (color) {

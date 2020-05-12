@@ -182,3 +182,6 @@ $RECYCLE.BIN/
 # A `public` directory is built if you run `hugo` from the top level. This is
 # a mistake, and we shouldn't commit this. Use `make docs` instead
 public/
+
+# A directory I use locally to test when making changes to the engine
+local_example/

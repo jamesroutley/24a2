@@ -13,58 +13,6 @@ enum Direction {
   Down = "DOWN"
 }
 
-class Grid {
-  private _dotSize: number;
-  private _gap: number;
-  private _gridSize: number;
-
-  // HACK: this variable is named like a private variable but isn't actually
-  // private because we use it in Game
-  // TODO: fix
-  _dots: Array<Array<Color>>;
-  constructor() {
-    this._dotSize = 16;
-    this._gap = 8;
-    this._gridSize = 24;
-    this._dots = new Array(this._gridSize);
-    for (let y = 0; y < this._gridSize; y++) {
-      let row = new Array(this._gridSize);
-      for (let i = 0; i < row.length; i++) {
-        row[i] = Color.Gray;
-      }
-      this._dots[y] = row;
-    }
-  }
-
-  _getDotSize(): number {
-    return this._dotSize;
-  }
-
-  _getOffset(): number {
-    return this._dotSize + this._gap;
-  }
-
-  _getGridSize(): number {
-    return this._gridSize;
-  }
-
-  getDot(x: number, y: number): Color {
-    return this._dots[y][x];
-  }
-
-  setDot(x: number, y: number, val: Color) {
-    this._dots[y][x] = val;
-  }
-
-  _clear() {
-    for (let y = 0; y < 24; y++) {
-      for (let x = 0; x < 24; x++) {
-        this.setDot(x, y, Color.Gray);
-      }
-    }
-  }
-}
-
 /**
  * GameConfig is the object you pass when contructing a new {@link Game}.
  */
@@ -73,12 +21,12 @@ interface GameConfig {
    * `create` is a function which is called once, just before the game starts
    * running. You can use it to initialise game state, if needed.
    */
-  create?: (game: Game, grid: Grid) => void;
+  create?: (game: Game) => void;
   /**
    * `update` is repeatedly called as the game runs. You can use it to define
    * the main functionality of your game.
    */
-  update?: (game: Game, grid: Grid) => void;
+  update?: (game: Game) => void;
   /**
    * `onKeyPress` is a function which is called when the player presses one of
    * the arrow keys.
@@ -108,20 +56,36 @@ interface GameConfig {
  */
 class Game {
   private _config: GameConfig;
-  // TODO: make these private
-  private _grid: Grid;
+
   private _text: string;
   private _frameRate: number;
   private _ended: boolean;
   private _frameCount: number;
 
+  private _dots: Array<Array<Color>>;
+
+  // Variables used when rendering the grid
+  private _dotSize = 16;
+  private _gapSize = 8;
+
   constructor(config: GameConfig) {
     this._config = config;
-    this._grid = new Grid();
     this._text = "";
     this._frameRate = 24;
     this._ended = false;
     this._frameCount = 0;
+
+    // TODO: make this configurable
+    const gridSize = 24;
+
+    this._dots = new Array(gridSize);
+    for (let y = 0; y < gridSize; y++) {
+      let row = new Array(gridSize);
+      for (let i = 0; i < row.length; i++) {
+        row[i] = Color.Gray;
+      }
+      this._dots[y] = row;
+    }
   }
 
   /**
@@ -166,25 +130,25 @@ class Game {
   }
 
   /**
+   * Returns the color of a dot.
+   */
+  getDot(x: number, y: number): Color {
+    return this._dots[y][x];
+  }
+
+  /**
+   * Sets the color of a dot.
+   */
+  setDot(x: number, y: number, val: Color) {
+    this._dots[y][x] = val;
+  }
+
+  /**
    * Calling `run` starts the game.
    */
   run() {
     new p5(
       function(this: Game, p: p5) {
-        const drawGrid = (grid: Grid) => {
-          const offset = grid._getOffset();
-          const dotSize = grid._getDotSize();
-          p.push();
-          p.translate(50, 50);
-          grid._dots.forEach((row, y) => {
-            row.forEach((dot, x) => {
-              p.fill(p.color(this._getCSSColor(dot)));
-              p.circle(x * offset, y * offset, dotSize);
-            });
-          });
-          p.pop();
-        };
-
         p.setup = function(this: Game) {
           // TODO canvas size is a bit arbitrary
           p.createCanvas(652, 652);
@@ -192,7 +156,7 @@ class Game {
           p.noStroke();
 
           if (this._config.create) {
-            this._config.create(this, this._grid);
+            this._config.create(this);
           }
         }.bind(this);
 
@@ -207,13 +171,13 @@ class Game {
           // TODO: we could only set this if it's changed
           p.frameRate(this._frameRate);
 
-          this._grid._clear();
+          this._clearGrid();
 
           if (this._config.update) {
-            this._config.update(this, this._grid);
+            this._config.update(this);
           }
 
-          drawGrid(this._grid);
+          this._drawGrid(p);
 
           p.push();
           p.textFont("monospace");
@@ -256,13 +220,13 @@ class Game {
           if (!this._config.onDotClicked) {
             return;
           }
-          const offset = this._grid._getOffset();
-          const dotSize = this._grid._getDotSize();
+          const offset = this._dotSize + this._gapSize;
           // Iterate over all dot locations, and check whether the distance
           // between the click and the dot centre is less than the dot's
           // radius
-          for (let y = 0; y < 24; y++) {
-            for (let x = 0; x < 24; x++) {
+          for (let y = 0; y < this._dots.length; y++) {
+            let row = this._dots[y];
+            for (let x = 0; x < row.length; x++) {
               const dx = 50 + x * offset;
               const dy = 50 + y * offset;
 
@@ -270,7 +234,7 @@ class Game {
               // space.
               const distance = p.dist(dx, dy, p.mouseX, p.mouseY);
 
-              if (distance < dotSize / 2) {
+              if (distance < this._dotSize / 2) {
                 this._config.onDotClicked(x, y);
                 // We've found the dot, so exit early
                 return;
@@ -280,6 +244,27 @@ class Game {
         }.bind(this);
       }.bind(this)
     );
+  }
+
+  private _drawGrid(p: p5) {
+    const offset = this._dotSize + this._gapSize;
+    p.push();
+    p.translate(50, 50);
+    this._dots.forEach((row, y) => {
+      row.forEach((dot, x) => {
+        p.fill(p.color(this._getCSSColor(dot)));
+        p.circle(x * offset, y * offset, this._dotSize);
+      });
+    });
+    p.pop();
+  }
+
+  private _clearGrid() {
+    this._dots.forEach((row, y) => {
+      for (let x = 0; x < row.length; x++) {
+        this.setDot(x, y, Color.Gray);
+      }
+    });
   }
 
   private _getCSSColor(color: Color): string {

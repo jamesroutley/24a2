@@ -8,7 +8,7 @@ interface TreeRow {
   gap: number;
 }
 
-function create(game: Game, grid: Grid) {
+function create(game: Game) {
   // Initialise trees
   for (let y = 23; y >= 0; y--) {
     treeRows[y] = {
@@ -18,37 +18,35 @@ function create(game: Game, grid: Grid) {
   }
 }
 
-function update(game: Game, grid: Grid) {
+function update(game: Game) {
   game.setText(`Distance: ${game.getFrameCount()}`);
-
-  grid.clear();
 
   treeRows.unshift(getNextTreeRow(treeRows[0]));
   treeRows.pop();
 
-  drawTrees(grid);
+  drawTrees(game);
 
-  if (grid.getDot(playerX, playerY) === Color.Green) {
+  if (game.getDot(playerX, playerY) === Color.Green) {
     // Player has hit a tree, end game
-    grid.setDot(playerX, playerY, Color.Red);
+    game.setDot(playerX, playerY, Color.Red);
     game.end();
     return;
   }
 
   // Draw player
-  grid.setDot(playerX, playerY, Color.Black);
+  game.setDot(playerX, playerY, Color.Black);
 }
 
-function drawTrees(grid: Grid) {
+function drawTrees(game: Game) {
   treeRows.forEach((row, y) => {
     // Draw the left hand side of this row
     for (let x = 0; x < row.x; x++) {
-      grid.setDot(x, y, Color.Green);
+      game.setDot(x, y, Color.Green);
     }
 
     // Draw the right hand side of this row
     for (let x = row.x + row.gap; x < 24; x++) {
-      grid.setDot(x, y, Color.Green);
+      game.setDot(x, y, Color.Green);
     }
   });
 }

@@ -42,7 +42,7 @@ Up • Up: = &amp;ldquo;UP&amp;rdquo;</description>
       
       <guid>http://24a2.routley.io/reference/classes/game/</guid>
       <description>Game is the object that controls the actual running of the game. You create a new one by passing in a GameConfig. Calling game.run() will start the game.
-let config = { create: create, // A function you&amp;#39;ve defined  update: update, // A function you&amp;#39;ve defined } let game = new Game(config) game.run()  Hierarchy  Game  Index Constructors  constructor  Methods  end getFrameCount run setFrameRate setText  Constructors constructor + new Game(config: GameConfig): Game</description>
+let config = { create: create, // A function you&amp;#39;ve defined  update: update, // A function you&amp;#39;ve defined } let game = new Game(config) game.run()  Hierarchy  Game  Index Constructors  constructor  Methods  end getDot getFrameCount run setDot setFrameRate setText  Constructors constructor + new Game(config: GameConfig): Game</description>
     </item>
     
     <item>
@@ -56,28 +56,6 @@ Hierarchy  GameConfig  Index Properties  create onDotClicked onKeyPress update  
 create is a function which is called once, just before the game starts running. You can use it to initialise game state, if needed.
 Optional onDotClicked • onDotClicked? : undefined | function
 onDotClicked is a function which is called when the player clicks on a dot.</description>
-    </item>
-    
-    <item>
-      <title>Grid</title>
-      <link>http://24a2.routley.io/reference/classes/grid/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://24a2.routley.io/reference/classes/grid/</guid>
-      <description>Hierarchy  Grid  Index Constructors  constructor  Properties  _dots  Methods  _clear _getDotSize _getGridSize _getOffset getDot setDot  Constructors constructor + new Grid(): Grid
-Returns: Grid
-Properties _dots • _dots: Array‹Array‹Color››
-Methods _clear ▸ _clear(): void
-Returns: void
-_getDotSize ▸ _getDotSize(): number
-Returns: number
-_getGridSize ▸ _getGridSize(): number
-Returns: number
-_getOffset ▸ _getOffset(): number
-Returns: number
-getDot ▸ getDot(x: number, y: number): Color
-Parameters:
-   Name Type     x number   y number    Returns: Color</description>
     </item>
     
   </channel>
