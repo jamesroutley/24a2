@@ -8,10 +8,10 @@ sidebar_label: "Direction"
 
 ### Enumeration members
 
-* [Down](#down)
-* [Left](#left)
-* [Right](#right)
-* [Up](#up)
+* [Down](../direction#down)
+* [Left](../direction#left)
+* [Right](../direction#right)
+* [Up](../direction#up)
 
 ## Enumeration members
 
@@ -19,15 +19,11 @@ sidebar_label: "Direction"
 
 • **Down**: = "DOWN"
 
-*Defined in [engine.ts:13](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L13)*
-
 ___
 
 ###  Left
 
 • **Left**: = "LEFT"
-
-*Defined in [engine.ts:10](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L10)*
 
 ___
 
@@ -35,12 +31,8 @@ ___
 
 • **Right**: = "RIGHT"
 
-*Defined in [engine.ts:11](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L11)*
-
 ___
 
 ###  Up
 
 • **Up**: = "UP"
-
-*Defined in [engine.ts:12](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L12)*

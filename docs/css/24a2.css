@@ -3,7 +3,7 @@
 body {
   font-family: "IBM Plex Mono", monospace;
   line-height: 1.7;
-  max-width: 800px;
+  max-width: 880px;
   margin: 50px auto 50px;
   padding: 0 12px 0;
   height: 100%;
@@ -16,10 +16,22 @@ canvas {
 
 code {
   font-family: "IBM Plex Mono", monospace;
+  font-style: italic;
+  background: #f7f3e8; /* Wimborne White */
+  padding: 4px;
+  border-radius: 8px;
 }
 
 pre {
   overflow: scroll;
+  /* Needs to be important to override the built in theme. I think we can fix
+   * this by exporting the theme as CSS in Hugo  */
+  background: #f7f3e8 !important;
+  padding: 24px;
+}
+
+pre code {
+  padding: 0;
 }
 
 h1 {

@@ -4,6 +4,8 @@ title: "GameConfig"
 sidebar_label: "GameConfig"
 ---
 
+GameConfig is the object you pass when contructing a new [Game](../../classes/game).
+
 ## Hierarchy
 
 * **GameConfig**
@@ -12,10 +14,10 @@ sidebar_label: "GameConfig"
 
 ### Properties
 
-* [create](#optional-create)
-* [onDotClicked](#optional-ondotclicked)
-* [onKeyPress](#optional-onkeypress)
-* [update](#optional-update)
+* [create](../gameconfig#optional-create)
+* [onDotClicked](../gameconfig#optional-ondotclicked)
+* [onKeyPress](../gameconfig#optional-onkeypress)
+* [update](../gameconfig#optional-update)
 
 ## Properties
 
@@ -23,7 +25,8 @@ sidebar_label: "GameConfig"
 
 • **create**? : *undefined | function*
 
-*Defined in [engine.ts:69](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L69)*
+`create` is a function which is called once, just before the game starts
+running. You can use it to initialise game state, if needed.
 
 ___
 
@@ -31,7 +34,8 @@ ___
 
 • **onDotClicked**? : *undefined | function*
 
-*Defined in [engine.ts:72](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L72)*
+`onDotClicked` is a function which is called when the player clicks on a
+dot.
 
 ___
 
@@ -39,7 +43,8 @@ ___
 
 • **onKeyPress**? : *undefined | function*
 
-*Defined in [engine.ts:71](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L71)*
+`onKeyPress` is a function which is called when the player presses one of
+the arrow keys.
 
 ___
 
@@ -47,4 +52,5 @@ ___
 
 • **update**? : *undefined | function*
 
-*Defined in [engine.ts:70](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L70)*
+`update` is repeatedly called as the game runs. You can use it to define
+the main functionality of your game.

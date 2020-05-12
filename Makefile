@@ -1,4 +1,4 @@
-.PHONY: docs typedoc
+.PHONY: build docs typedoc
 
 build:
 	tsc

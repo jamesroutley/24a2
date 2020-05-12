@@ -6,5 +6,6 @@
   "excludePrivate": true,
   "theme": "docusaurus",
   "skipSidebar": true,
-  "hideBreadcrumbs": true
+  "hideBreadcrumbs": true,
+  "disableSources": true
 }

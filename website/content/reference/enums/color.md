@@ -8,11 +8,11 @@ sidebar_label: "Color"
 
 ### Enumeration members
 
-* [Black](#black)
-* [Gray](#gray)
-* [Green](#green)
-* [Red](#red)
-* [Yellow](#yellow)
+* [Black](../color#black)
+* [Gray](../color#gray)
+* [Green](../color#green)
+* [Red](../color#red)
+* [Yellow](../color#yellow)
 
 ## Enumeration members
 
@@ -20,15 +20,11 @@ sidebar_label: "Color"
 
 • **Black**: = "BLACK"
 
-*Defined in [engine.ts:3](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L3)*
-
 ___
 
 ###  Gray
 
 • **Gray**: = "GRAY"
-
-*Defined in [engine.ts:2](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L2)*
 
 ___
 
@@ -36,20 +32,14 @@ ___
 
 • **Green**: = "GREEN"
 
-*Defined in [engine.ts:5](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L5)*
-
 ___
 
 ###  Red
 
 • **Red**: = "RED"
 
-*Defined in [engine.ts:4](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L4)*
-
 ___
 
 ###  Yellow
 
 • **Yellow**: = "YELLOW"
-
-*Defined in [engine.ts:6](https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L6)*

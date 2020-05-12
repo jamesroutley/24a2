@@ -43,6 +43,8 @@
         <div>
           <main> 
 
+<p>GameConfig is the object you pass when contructing a new <a href="../../classes/game">Game</a>.</p>
+
 <h2 id="hierarchy">Hierarchy</h2>
 
 <ul>
@@ -54,10 +56,10 @@
 <h3 id="properties">Properties</h3>
 
 <ul>
-<li><a href="#optional-create">create</a></li>
-<li><a href="#optional-ondotclicked">onDotClicked</a></li>
-<li><a href="#optional-onkeypress">onKeyPress</a></li>
-<li><a href="#optional-update">update</a></li>
+<li><a href="../gameconfig#optional-create">create</a></li>
+<li><a href="../gameconfig#optional-ondotclicked">onDotClicked</a></li>
+<li><a href="../gameconfig#optional-onkeypress">onKeyPress</a></li>
+<li><a href="../gameconfig#optional-update">update</a></li>
 </ul>
 
 <h2 id="properties-1">Properties</h2>
@@ -66,7 +68,8 @@
 
 <p>• <strong>create</strong>? : <em>undefined | function</em></p>
 
-<p><em>Defined in <a href="https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L69">engine.ts:69</a></em></p>
+<p><code>create</code> is a function which is called once, just before the game starts
+running. You can use it to initialise game state, if needed.</p>
 
 <hr />
 
@@ -74,7 +77,8 @@
 
 <p>• <strong>onDotClicked</strong>? : <em>undefined | function</em></p>
 
-<p><em>Defined in <a href="https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L72">engine.ts:72</a></em></p>
+<p><code>onDotClicked</code> is a function which is called when the player clicks on a
+dot.</p>
 
 <hr />
 
@@ -82,7 +86,8 @@
 
 <p>• <strong>onKeyPress</strong>? : <em>undefined | function</em></p>
 
-<p><em>Defined in <a href="https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L71">engine.ts:71</a></em></p>
+<p><code>onKeyPress</code> is a function which is called when the player presses one of
+the arrow keys.</p>
 
 <hr />
 
@@ -90,7 +95,8 @@
 
 <p>• <strong>update</strong>? : <em>undefined | function</em></p>
 
-<p><em>Defined in <a href="https://github.com/jamesroutley/24a2/blob/b4de20c/src/engine.ts#L70">engine.ts:70</a></em></p>
+<p><code>update</code> is repeatedly called as the game runs. You can use it to define
+the main functionality of your game.</p>
  
           </main>
         </div>

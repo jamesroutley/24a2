@@ -17,15 +17,10 @@
       
       <guid>http://24a2.routley.io/reference/enums/color/</guid>
       <description>Index Enumeration members  Black Gray Green Red Yellow  Enumeration members Black • Black: = &amp;ldquo;BLACK&amp;rdquo;
-Defined in engine.ts:3
 Gray • Gray: = &amp;ldquo;GRAY&amp;rdquo;
-Defined in engine.ts:2
 Green • Green: = &amp;ldquo;GREEN&amp;rdquo;
-Defined in engine.ts:5
 Red • Red: = &amp;ldquo;RED&amp;rdquo;
-Defined in engine.ts:4
-Yellow • Yellow: = &amp;ldquo;YELLOW&amp;rdquo;
-Defined in engine.ts:6</description>
+Yellow • Yellow: = &amp;ldquo;YELLOW&amp;rdquo;</description>
     </item>
     
     <item>
@@ -35,13 +30,9 @@ Defined in engine.ts:6</description>
       
       <guid>http://24a2.routley.io/reference/enums/direction/</guid>
       <description>Index Enumeration members  Down Left Right Up  Enumeration members Down • Down: = &amp;ldquo;DOWN&amp;rdquo;
-Defined in engine.ts:13
 Left • Left: = &amp;ldquo;LEFT&amp;rdquo;
-Defined in engine.ts:10
 Right • Right: = &amp;ldquo;RIGHT&amp;rdquo;
-Defined in engine.ts:11
-Up • Up: = &amp;ldquo;UP&amp;rdquo;
-Defined in engine.ts:12</description>
+Up • Up: = &amp;ldquo;UP&amp;rdquo;</description>
     </item>
     
     <item>
@@ -50,14 +41,18 @@ Defined in engine.ts:12</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://24a2.routley.io/reference/classes/game/</guid>
-      <description>Hierarchy  Game  Index Constructors  constructor  Methods  _getCSSColor end getFrameCount run setFrameRate setText  Constructors constructor + new Game(config: GameConfig): Game
-Defined in engine.ts:82
+      <description>Hierarchy  Game  Index Constructors  constructor  Methods  end getFrameCount run setFrameRate setText  Constructors constructor + new Game(config: GameConfig): Game
 Parameters:
    Name Type     config GameConfig    Returns: Game
-Methods _getCSSColor ▸ _getCSSColor(color: Color): string
-Defined in engine.ts:223
+Methods end ▸ end(): void
+Returns: void
+getFrameCount ▸ getFrameCount(): number
+Returns: number
+run ▸ run(): void
+Returns: void
+setFrameRate ▸ setFrameRate(rate: number): void
 Parameters:
-   Name Type     color Color    Returns: string</description>
+   Name Type     rate number    Returns: void</description>
     </item>
     
     <item>
@@ -66,14 +61,11 @@ Parameters:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://24a2.routley.io/reference/interfaces/gameconfig/</guid>
-      <description>Hierarchy  GameConfig  Index Properties  create onDotClicked onKeyPress update  Properties Optional create • create? : undefined | function
-Defined in engine.ts:69
+      <description>GameConfig is the object you pass when contructing a new Game.
+Hierarchy  GameConfig  Index Properties  create onDotClicked onKeyPress update  Properties Optional create • create? : undefined | function
+create is a function which is called once, just before the game starts running. You can use it to initialise game state, if needed.
 Optional onDotClicked • onDotClicked? : undefined | function
-Defined in engine.ts:72
-Optional onKeyPress • onKeyPress? : undefined | function
-Defined in engine.ts:71
-Optional update • update? : undefined | function
-Defined in engine.ts:70</description>
+onDotClicked is a function which is called when the player clicks on a dot.</description>
     </item>
     
     <item>
@@ -83,19 +75,19 @@ Defined in engine.ts:70</description>
       
       <guid>http://24a2.routley.io/reference/classes/grid/</guid>
       <description>Hierarchy  Grid  Index Constructors  constructor  Properties  _dots  Methods  _clear _getDotSize _getGridSize _getOffset getDot setDot  Constructors constructor + new Grid(): Grid
-Defined in engine.ts:24
 Returns: Grid
 Properties _dots • _dots: Array‹Array‹Color››
-Defined in engine.ts:24
 Methods _clear ▸ _clear(): void
-Defined in engine.ts:59
 Returns: void
 _getDotSize ▸ _getDotSize(): number
-Defined in engine.ts:39
 Returns: number
 _getGridSize ▸ _getGridSize(): number
-Defined in engine.ts:47
-Returns: number</description>
+Returns: number
+_getOffset ▸ _getOffset(): number
+Returns: number
+getDot ▸ getDot(x: number, y: number): Color
+Parameters:
+   Name Type     x number   y number    Returns: Color</description>
     </item>
     
   </channel>
