@@ -62,6 +62,11 @@ interface GameConfig {
    * Sets the height of the grid
    */
   _gridHeight?: number;
+
+  /**
+   * The ID of a container to create the canvas in
+   */
+  containerId?: string;
 }
 
 /**
@@ -93,28 +98,27 @@ class Game {
   private _dotSize = 16;
   private _gapSize = 8;
 
+  private _gridHeight = 24;
+  private _gridWidth = 24;
+
   constructor(config: GameConfig) {
     this._config = config;
     this._frameRate = 24;
 
-    let gridHeight = 24;
     if (config._gridHeight && config._gridHeight > 0) {
-      gridHeight = config._gridHeight;
+      this._gridHeight = config._gridHeight;
     }
 
-    let gridWidth = 24;
     if (config._gridWidth && config._gridWidth > 0) {
-      gridWidth = config._gridWidth;
+      this._gridWidth = config._gridWidth;
     }
 
-    this._dots = new Array(gridHeight || 24);
-    console.log(this._dots);
+    this._dots = new Array(this._gridHeight || 24);
     for (let y = 0; y < this._dots.length; y++) {
-      let row = new Array(gridWidth || 24);
+      let row = new Array(this._gridWidth || 24);
       for (let i = 0; i < row.length; i++) {
         row[i] = Color.Gray;
       }
-      console.log(y);
       this._dots[y] = row;
     }
   }
@@ -200,11 +204,22 @@ class Game {
    * Calling `run` starts the game.
    */
   run() {
+    // TODO: there's probably a nicer way of expressing this
+    let parentElement = undefined;
+    if (this._config.containerId) {
+      parentElement =
+        document.getElementById(this._config.containerId) || undefined;
+    }
+
     new p5(
       function(this: Game, p: p5) {
         p.setup = function(this: Game) {
-          // TODO canvas size is a bit arbitrary
-          p.createCanvas(652, 652);
+          let width =
+            50 + 50 + (this._dotSize + this._gapSize) * this._gridWidth;
+          let height =
+            50 + 50 + (this._dotSize + this._gapSize) * this._gridHeight;
+          p.createCanvas(width, height);
+
           // Don't draw outlines around circles
           p.noStroke();
 
@@ -295,7 +310,8 @@ class Game {
             }
           }
         }.bind(this);
-      }.bind(this)
+      }.bind(this),
+      parentElement
     );
   }
 

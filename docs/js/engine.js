@@ -50,24 +50,22 @@ var Game = /** @class */ (function () {
         // Variables used when rendering the grid
         this._dotSize = 16;
         this._gapSize = 8;
+        this._gridHeight = 24;
+        this._gridWidth = 24;
         this._config = config;
         this._frameRate = 24;
-        var gridHeight = 24;
         if (config._gridHeight && config._gridHeight > 0) {
-            gridHeight = config._gridHeight;
+            this._gridHeight = config._gridHeight;
         }
-        var gridWidth = 24;
         if (config._gridWidth && config._gridWidth > 0) {
-            gridWidth = config._gridWidth;
+            this._gridWidth = config._gridWidth;
         }
-        this._dots = new Array(gridHeight || 24);
-        console.log(this._dots);
+        this._dots = new Array(this._gridHeight || 24);
         for (var y = 0; y < this._dots.length; y++) {
-            var row = new Array(gridWidth || 24);
+            var row = new Array(this._gridWidth || 24);
             for (var i = 0; i < row.length; i++) {
                 row[i] = Color.Gray;
             }
-            console.log(y);
             this._dots[y] = row;
         }
     }
@@ -136,10 +134,17 @@ var Game = /** @class */ (function () {
      * Calling `run` starts the game.
      */
     Game.prototype.run = function () {
+        // TODO: there's probably a nicer way of expressing this
+        var parentElement = undefined;
+        if (this._config.containerId) {
+            parentElement =
+                document.getElementById(this._config.containerId) || undefined;
+        }
         new p5(function (p) {
             p.setup = function () {
-                // TODO canvas size is a bit arbitrary
-                p.createCanvas(652, 652);
+                var width = 50 + 50 + (this._dotSize + this._gapSize) * this._gridWidth;
+                var height = 50 + 50 + (this._dotSize + this._gapSize) * this._gridHeight;
+                p.createCanvas(width, height);
                 // Don't draw outlines around circles
                 p.noStroke();
                 if (this._config.create) {
@@ -216,7 +221,7 @@ var Game = /** @class */ (function () {
                     }
                 }
             }.bind(this);
-        }.bind(this));
+        }.bind(this), parentElement);
     };
     Game.prototype._drawGrid = function (p) {
         var _this = this;

@@ -14,12 +14,21 @@ GameConfig is the object you pass when contructing a new [Game](../../classes/ga
 
 ### Properties
 
+* [containerId](../gameconfig#optional-containerid)
 * [create](../gameconfig#optional-create)
 * [onDotClicked](../gameconfig#optional-ondotclicked)
 * [onKeyPress](../gameconfig#optional-onkeypress)
 * [update](../gameconfig#optional-update)
 
 ## Properties
+
+### `Optional` containerId
+
+• **containerId**? : *undefined | string*
+
+The ID of a container to create the canvas in
+
+___
 
 ### `Optional` create
 

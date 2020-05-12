@@ -60,6 +60,10 @@ interface GameConfig {
      * Sets the height of the grid
      */
     _gridHeight?: number;
+    /**
+     * The ID of a container to create the canvas in
+     */
+    containerId?: string;
 }
 /**
  * Game is the object that controls the actual running of the game. You
@@ -85,6 +89,8 @@ declare class Game {
     private _dots;
     private _dotSize;
     private _gapSize;
+    private _gridHeight;
+    private _gridWidth;
     constructor(config: GameConfig);
     /**
      * 24a2 games have a line of text below the grid which can be set to show

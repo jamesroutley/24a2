@@ -54,10 +54,10 @@ let config = { create: create, // A function you&amp;#39;ve defined  update: upd
       
       <guid>http://24a2.routley.io/reference/interfaces/gameconfig/</guid>
       <description>GameConfig is the object you pass when contructing a new Game.
-Hierarchy  GameConfig  Index Properties  create onDotClicked onKeyPress update  Properties Optional create • create? : undefined | function
-create is a function which is called once, just before the game starts running. You can use it to initialise game state, if needed.
-Optional onDotClicked • onDotClicked? : undefined | function
-onDotClicked is a function which is called when the player clicks on a dot.</description>
+Hierarchy  GameConfig  Index Properties  containerId create onDotClicked onKeyPress update  Properties Optional containerId • containerId? : undefined | string
+The ID of a container to create the canvas in
+Optional create • create? : undefined | function
+create is a function which is called once, just before the game starts running. You can use it to initialise game state, if needed.</description>
     </item>
     
     <item>
