@@ -49,6 +49,21 @@ interface GameConfig {
      */
     onDotClicked?: (x: number, y: number) => void;
 }
+/**
+ * Game is the object that controls the actual running of the game. You
+ * create a new one by passing in a {@Link GameConfig}. Calling `game.run()`
+ * will start the game.
+ *
+ * ```javascript
+ * let config = {
+ *    create: create, // A function you've defined
+ *    update: update, // A function you've defined
+ * }
+ *
+ * let game = new Game(config)
+ * game.run()
+ * ```
+ */
 declare class Game {
     private _config;
     private _grid;
@@ -57,10 +72,38 @@ declare class Game {
     private _ended;
     private _frameCount;
     constructor(config: GameConfig);
+    /**
+     * 24a2 games have a line of text below the grid which can be set to show
+     * information to the player. This is commonly used to show instructions or
+     * the player's score. Use this function to set that text.
+     */
     setText(text: string): void;
+    /**
+     * Sets the frame rate of the game. This is set to 24 by default. The frame
+     * rate defines how frequently the `update` function is called - by default
+     * it's called 24 times per second.
+     */
     setFrameRate(rate: number): void;
+    /**
+     * Returns the number of frames that have passed since the game started. The
+     * speed at which this increases is dependent on the frame rate. The higher
+     * the frame rate is, the faster this number will increment, and vice versa.
+     * You can set the frame rate with {@Link Game.setFrameRate}.
+     *
+     * You can use this function to do things like increase difficulty as time
+     * goes on.
+     */
     getFrameCount(): number;
+    /**
+     * Calling `end` stops the game loop. You should call it when the game is
+     * finished. After you call it, the game is rendered one final time. Because
+     * of this, you often want to `return` just after you call `game.end()` to
+     * make sure any code after it is executed.
+     */
     end(): void;
+    /**
+     * Calling `run` starts the game.
+     */
     run(): void;
     private _getCSSColor;
 }

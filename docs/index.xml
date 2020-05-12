@@ -41,18 +41,8 @@ Up • Up: = &amp;ldquo;UP&amp;rdquo;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://24a2.routley.io/reference/classes/game/</guid>
-      <description>Hierarchy  Game  Index Constructors  constructor  Methods  end getFrameCount run setFrameRate setText  Constructors constructor + new Game(config: GameConfig): Game
-Parameters:
-   Name Type     config GameConfig    Returns: Game
-Methods end ▸ end(): void
-Returns: void
-getFrameCount ▸ getFrameCount(): number
-Returns: number
-run ▸ run(): void
-Returns: void
-setFrameRate ▸ setFrameRate(rate: number): void
-Parameters:
-   Name Type     rate number    Returns: void</description>
+      <description>Game is the object that controls the actual running of the game. You create a new one by passing in a GameConfig. Calling game.run() will start the game.
+let config = { create: create, // A function you&amp;#39;ve defined  update: update, // A function you&amp;#39;ve defined } let game = new Game(config) game.run()  Hierarchy  Game  Index Constructors  constructor  Methods  end getFrameCount run setFrameRate setText  Constructors constructor + new Game(config: GameConfig): Game</description>
     </item>
     
     <item>

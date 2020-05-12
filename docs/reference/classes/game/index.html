@@ -43,6 +43,17 @@
         <div>
           <main> 
 
+<p>Game is the object that controls the actual running of the game. You
+create a new one by passing in a <a href="../../interfaces/gameconfig">GameConfig</a>. Calling <code>game.run()</code>
+will start the game.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">let</span> config = {
+   create: create, <span style="color:#008000">// A function you&#39;ve defined
+</span><span style="color:#008000"></span>   update: update, <span style="color:#008000">// A function you&#39;ve defined
+</span><span style="color:#008000"></span>}
+
+<span style="color:#00f">let</span> game = <span style="color:#00f">new</span> Game(config)
+game.run()
+</code></pre></div>
 <h2 id="hierarchy">Hierarchy</h2>
 
 <ul>
@@ -99,6 +110,11 @@
 
 <p>▸ <strong>end</strong>(): <em>void</em></p>
 
+<p>Calling <code>end</code> stops the game loop. You should call it when the game is
+finished. After you call it, the game is rendered one final time. Because
+of this, you often want to <code>return</code> just after you call <code>game.end()</code> to
+make sure any code after it is executed.</p>
+
 <p><strong>Returns:</strong> <em>void</em></p>
 
 <hr />
@@ -106,6 +122,14 @@
 <h3 id="getframecount">getFrameCount</h3>
 
 <p>▸ <strong>getFrameCount</strong>(): <em>number</em></p>
+
+<p>Returns the number of frames that have passed since the game started. The
+speed at which this increases is dependent on the frame rate. The higher
+the frame rate is, the faster this number will increment, and vice versa.
+You can set the frame rate with <a href="../game#setframerate">Game.setFrameRate</a>.</p>
+
+<p>You can use this function to do things like increase difficulty as time
+goes on.</p>
 
 <p><strong>Returns:</strong> <em>number</em></p>
 
@@ -115,6 +139,8 @@
 
 <p>▸ <strong>run</strong>(): <em>void</em></p>
 
+<p>Calling <code>run</code> starts the game.</p>
+
 <p><strong>Returns:</strong> <em>void</em></p>
 
 <hr />
@@ -122,6 +148,10 @@
 <h3 id="setframerate">setFrameRate</h3>
 
 <p>▸ <strong>setFrameRate</strong>(<code>rate</code>: number): <em>void</em></p>
+
+<p>Sets the frame rate of the game. This is set to 24 by default. The frame
+rate defines how frequently the <code>update</code> function is called - by default
+it&rsquo;s called 24 times per second.</p>
 
 <p><strong>Parameters:</strong></p>
 
@@ -148,6 +178,10 @@
 <h3 id="settext">setText</h3>
 
 <p>▸ <strong>setText</strong>(<code>text</code>: string): <em>void</em></p>
+
+<p>24a2 games have a line of text below the grid which can be set to show
+information to the player. This is commonly used to show instructions or
+the player&rsquo;s score. Use this function to set that text.</p>
 
 <p><strong>Parameters:</strong></p>
 

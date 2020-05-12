@@ -3,7 +3,7 @@
 build:
 	tsc
 
-docs: typedoc
+docs: build typedoc
 	rm -r docs
 	cd website && hugo
 

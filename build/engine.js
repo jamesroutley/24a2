@@ -52,6 +52,21 @@ var Grid = /** @class */ (function () {
     };
     return Grid;
 }());
+/**
+ * Game is the object that controls the actual running of the game. You
+ * create a new one by passing in a {@Link GameConfig}. Calling `game.run()`
+ * will start the game.
+ *
+ * ```javascript
+ * let config = {
+ *    create: create, // A function you've defined
+ *    update: update, // A function you've defined
+ * }
+ *
+ * let game = new Game(config)
+ * game.run()
+ * ```
+ */
 var Game = /** @class */ (function () {
     function Game(config) {
         this._config = config;
@@ -61,18 +76,46 @@ var Game = /** @class */ (function () {
         this._ended = false;
         this._frameCount = 0;
     }
+    /**
+     * 24a2 games have a line of text below the grid which can be set to show
+     * information to the player. This is commonly used to show instructions or
+     * the player's score. Use this function to set that text.
+     */
     Game.prototype.setText = function (text) {
         this._text = text;
     };
+    /**
+     * Sets the frame rate of the game. This is set to 24 by default. The frame
+     * rate defines how frequently the `update` function is called - by default
+     * it's called 24 times per second.
+     */
     Game.prototype.setFrameRate = function (rate) {
         this._frameRate = rate;
     };
+    /**
+     * Returns the number of frames that have passed since the game started. The
+     * speed at which this increases is dependent on the frame rate. The higher
+     * the frame rate is, the faster this number will increment, and vice versa.
+     * You can set the frame rate with {@Link Game.setFrameRate}.
+     *
+     * You can use this function to do things like increase difficulty as time
+     * goes on.
+     */
     Game.prototype.getFrameCount = function () {
         return this._frameCount;
     };
+    /**
+     * Calling `end` stops the game loop. You should call it when the game is
+     * finished. After you call it, the game is rendered one final time. Because
+     * of this, you often want to `return` just after you call `game.end()` to
+     * make sure any code after it is executed.
+     */
     Game.prototype.end = function () {
         this._ended = true;
     };
+    /**
+     * Calling `run` starts the game.
+     */
     Game.prototype.run = function () {
         new p5(function (p) {
             var _this = this;
