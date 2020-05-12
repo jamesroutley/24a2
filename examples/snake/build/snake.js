@@ -21,19 +21,11 @@ var snake = [
     { x: 7, y: 7 },
     { x: 6, y: 7 }
 ];
+var pill;
 // This fixes a bug where you can turn back on yourself if you quickly type
 // two arrow keys before the next time `update` is called
 var snakeDirectionChangeThisFrame = false;
-function setSnake(game) {
-    snake.forEach(function (dot) {
-        game.setDot(dot.x, dot.y, Color.Black);
-    });
-}
-function createPill(game) {
-    var pill = {
-        x: Math.floor(Math.random() * 24),
-        y: Math.floor(Math.random() * 24)
-    };
+function createPill() {
     // Don't create a pill on the snake
     function pointInSnake(p) {
         // Consider the point one ahead of the snake to be in the snake too
@@ -48,19 +40,22 @@ function createPill(game) {
         }
         return false;
     }
-    while (pointInSnake(pill)) {
-        pill = {
+    var proposedPill = {
+        x: Math.floor(Math.random() * 24),
+        y: Math.floor(Math.random() * 24)
+    };
+    while (pointInSnake(proposedPill)) {
+        proposedPill = {
             x: Math.floor(Math.random() * 24),
             y: Math.floor(Math.random() * 24)
         };
     }
-    game.setDot(pill.x, pill.y, Color.Red);
+    pill = proposedPill;
 }
 function create(game) {
     // Drop framerate
     game.setFrameRate(5);
-    setSnake(game);
-    createPill(game);
+    createPill();
 }
 function update(game) {
     snakeDirectionChangeThisFrame = false;
@@ -76,9 +71,9 @@ function update(game) {
         return;
     }
     // If nextLocation is a pill, increase snake size
-    if (game.getDot(nextLocation.x, nextLocation.y) === Color.Red) {
+    if (nextLocation.x === pill.x && nextLocation.y === pill.y) {
         sectionsToAdd += getSectionsForScore(score);
-        createPill(game);
+        createPill();
         score++;
     }
     game.setText("Score: " + score);
@@ -94,7 +89,11 @@ function update(game) {
     else {
         sectionsToAdd--;
     }
-    setSnake(game);
+    // Draw snake and pill
+    snake.forEach(function (dot) {
+        game.setDot(dot.x, dot.y, Color.Black);
+    });
+    game.setDot(pill.x, pill.y, Color.Red);
 }
 function getSectionsForScore(score) {
     // N.B: this is quite a steep increase in difficulty

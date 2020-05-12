@@ -32,22 +32,13 @@ let snake: Array<Point> = [
   { x: 6, y: 7 }
 ];
 
+let pill: Point;
+
 // This fixes a bug where you can turn back on yourself if you quickly type
 // two arrow keys before the next time `update` is called
 let snakeDirectionChangeThisFrame: boolean = false;
 
-function setSnake(game: Game) {
-  snake.forEach(dot => {
-    game.setDot(dot.x, dot.y, Color.Black);
-  });
-}
-
-function createPill(game: Game) {
-  let pill = {
-    x: Math.floor(Math.random() * 24),
-    y: Math.floor(Math.random() * 24)
-  };
-
+function createPill() {
   // Don't create a pill on the snake
   function pointInSnake(p: Point): boolean {
     // Consider the point one ahead of the snake to be in the snake too
@@ -61,22 +52,26 @@ function createPill(game: Game) {
     }
     return false;
   }
-  while (pointInSnake(pill)) {
-    pill = {
+
+  let proposedPill = {
+    x: Math.floor(Math.random() * 24),
+    y: Math.floor(Math.random() * 24)
+  };
+  while (pointInSnake(proposedPill)) {
+    proposedPill = {
       x: Math.floor(Math.random() * 24),
       y: Math.floor(Math.random() * 24)
     };
   }
 
-  game.setDot(pill.x, pill.y, Color.Red);
+  pill = proposedPill;
 }
 
 function create(game: Game) {
   // Drop framerate
   game.setFrameRate(5);
 
-  setSnake(game);
-  createPill(game);
+  createPill();
 }
 
 function update(game: Game) {
@@ -95,9 +90,9 @@ function update(game: Game) {
   }
 
   // If nextLocation is a pill, increase snake size
-  if (game.getDot(nextLocation.x, nextLocation.y) === Color.Red) {
+  if (nextLocation.x === pill.x && nextLocation.y === pill.y) {
     sectionsToAdd += getSectionsForScore(score);
-    createPill(game);
+    createPill();
     score++;
   }
 
@@ -115,7 +110,11 @@ function update(game: Game) {
     sectionsToAdd--;
   }
 
-  setSnake(game);
+  // Draw snake and pill
+  snake.forEach(dot => {
+    game.setDot(dot.x, dot.y, Color.Black);
+  });
+  game.setDot(pill.x, pill.y, Color.Red);
 }
 
 function getSectionsForScore(score: number): number {
