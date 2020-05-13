@@ -142,8 +142,11 @@ var Game = /** @class */ (function () {
         }
         new p5(function (p) {
             p.setup = function () {
-                var width = 50 + 50 + (this._dotSize + this._gapSize) * this._gridWidth;
-                var height = 50 + 50 + (this._dotSize + this._gapSize) * this._gridHeight;
+                var width = this._dotSize * this._gridWidth +
+                    this._gapSize * (this._gridWidth - 1);
+                var height = this._dotSize * this._gridHeight +
+                    this._gapSize * (this._gridHeight - 1) +
+                    50;
                 p.createCanvas(width, height);
                 // Don't draw outlines around circles
                 p.noStroke();
@@ -168,7 +171,10 @@ var Game = /** @class */ (function () {
                 p.push();
                 p.textFont("monospace");
                 p.textSize(18);
-                p.text(this._text, 42, 640);
+                var textY = this._dotSize * this._gridHeight +
+                    this._gapSize * (this._gridHeight - 1) +
+                    32;
+                p.text(this._text, 0, textY);
                 p.pop();
             }.bind(this);
             p.keyPressed = function () {
@@ -208,8 +214,8 @@ var Game = /** @class */ (function () {
                 for (var y = 0; y < this._dots.length; y++) {
                     var row = this._dots[y];
                     for (var x = 0; x < row.length; x++) {
-                        var dx = 50 + x * offset;
-                        var dy = 50 + y * offset;
+                        var dx = this._dotSize / 2 + x * offset;
+                        var dy = this._dotSize / 2 + y * offset;
                         // p.mouseX and p.mouseY give is the coordinates in the canvas
                         // space.
                         var distance = p.dist(dx, dy, p.mouseX, p.mouseY);
@@ -227,7 +233,7 @@ var Game = /** @class */ (function () {
         var _this = this;
         var offset = this._dotSize + this._gapSize;
         p.push();
-        p.translate(50, 50);
+        p.translate(this._dotSize / 2, this._dotSize / 2);
         this._dots.forEach(function (row, y) {
             row.forEach(function (dot, x) {
                 p.fill(p.color(_this._getCSSColor(dot)));

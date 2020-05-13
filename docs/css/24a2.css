@@ -66,3 +66,7 @@ h1 {
   flex-grow: 999;
   min-width: calc(75% - 32px);
 }
+
+#landing-sketch {
+  margin-top: 16px;
+}

@@ -215,9 +215,12 @@ class Game {
       function(this: Game, p: p5) {
         p.setup = function(this: Game) {
           let width =
-            50 + 50 + (this._dotSize + this._gapSize) * this._gridWidth;
+            this._dotSize * this._gridWidth +
+            this._gapSize * (this._gridWidth - 1);
           let height =
-            50 + 50 + (this._dotSize + this._gapSize) * this._gridHeight;
+            this._dotSize * this._gridHeight +
+            this._gapSize * (this._gridHeight - 1) +
+            50;
           p.createCanvas(width, height);
 
           // Don't draw outlines around circles
@@ -250,7 +253,11 @@ class Game {
           p.push();
           p.textFont("monospace");
           p.textSize(18);
-          p.text(this._text, 42, 640);
+          let textY =
+            this._dotSize * this._gridHeight +
+            this._gapSize * (this._gridHeight - 1) +
+            32;
+          p.text(this._text, 0, textY);
           p.pop();
         }.bind(this);
 
@@ -295,8 +302,8 @@ class Game {
           for (let y = 0; y < this._dots.length; y++) {
             let row = this._dots[y];
             for (let x = 0; x < row.length; x++) {
-              const dx = 50 + x * offset;
-              const dy = 50 + y * offset;
+              const dx = this._dotSize / 2 + x * offset;
+              const dy = this._dotSize / 2 + y * offset;
 
               // p.mouseX and p.mouseY give is the coordinates in the canvas
               // space.
@@ -318,7 +325,7 @@ class Game {
   private _drawGrid(p: p5) {
     const offset = this._dotSize + this._gapSize;
     p.push();
-    p.translate(50, 50);
+    p.translate(this._dotSize / 2, this._dotSize / 2);
     this._dots.forEach((row, y) => {
       row.forEach((dot, x) => {
         p.fill(p.color(this._getCSSColor(dot)));
