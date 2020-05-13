@@ -47,9 +47,7 @@ let game = new Game(config);
 
 // Create is called once, at startup. Use this function to
 // initialise variables etc
-function create(game: Game) {
-  game.setFrameRate(5);
-}
+function create(game: Game) {}
 
 // Update is called on each iteration of the game
 function update(game: Game) {
@@ -63,9 +61,7 @@ function update(game: Game) {
 }
 
 // onKeyPress is called when one of the arrow keys is called
-function onKeyPress(direction: Direction) {
-  // TODO
-}
+function onKeyPress(direction: Direction) {}
 
 // Start the game
 game.run();

@@ -1,12 +1,3 @@
-let config = {
-  create: create,
-  update: update,
-  onKeyPress: onKeyPress
-};
-
-let game = new Game(config);
-game.run();
-
 interface Point {
   x: number;
   y: number;
@@ -38,20 +29,17 @@ let pill: Point;
 // two arrow keys before the next time `update` is called
 let snakeDirectionChangeThisFrame: boolean = false;
 
-function createPill() {
-  // Don't create a pill on the snake
-  function pointInSnake(p: Point): boolean {
-    // Consider the point one ahead of the snake to be in the snake too
-    if (pointsEqual(p, getNextLocation(snake[0], snakeDirection))) {
+function pointInSnake(p: Point): boolean {
+  for (let dot of snake) {
+    if (pointsEqual(dot, p)) {
       return true;
     }
-    for (let dot of snake) {
-      if (pointsEqual(dot, p)) {
-        return true;
-      }
-    }
-    return false;
   }
+  return false;
+}
+
+function createPill() {
+  // Don't create a pill on the snake
 
   let proposedPill = {
     x: Math.floor(Math.random() * 24),
@@ -68,9 +56,6 @@ function createPill() {
 }
 
 function create(game: Game) {
-  // Drop framerate
-  game.setFrameRate(5);
-
   createPill();
 }
 
@@ -80,7 +65,8 @@ function update(game: Game) {
   let nextLocation = getNextLocation(head, snakeDirection);
 
   // If nextLocation is in the snake, end the game
-  if (game.getDot(nextLocation.x, nextLocation.y) === Color.Black) {
+  if (pointInSnake(nextLocation)) {
+    console.log("here");
     // Color the snake in red
     snake.forEach(dot => {
       game.setDot(dot.x, dot.y, Color.Red);
@@ -186,3 +172,13 @@ function onKeyPress(direction: Direction) {
   }
   snakeDirectionChangeThisFrame = true;
 }
+
+let config = {
+  create: create,
+  update: update,
+  onKeyPress: onKeyPress,
+  frameRate: 5
+};
+
+let game = new Game(config);
+game.run();

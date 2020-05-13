@@ -49,6 +49,14 @@ interface GameConfig {
      */
     onDotClicked?: (x: number, y: number) => void;
     /**
+     * The ID of a container to create the canvas in
+     */
+    containerId?: string;
+    /**
+     * Sets the game's frame rate. By default, this is set to 24.
+     */
+    frameRate?: number;
+    /**
      * @ignore
      *
      * Sets the width of the grid
@@ -60,10 +68,6 @@ interface GameConfig {
      * Sets the height of the grid
      */
     _gridHeight?: number;
-    /**
-     * The ID of a container to create the canvas in
-     */
-    containerId?: string;
 }
 /**
  * Game is the object that controls the actual running of the game. You
@@ -83,7 +87,6 @@ interface GameConfig {
 declare class Game {
     private _config;
     private _text;
-    private _frameRate;
     private _ended;
     private _frameCount;
     private _dots;
@@ -99,16 +102,10 @@ declare class Game {
      */
     setText(text: string): void;
     /**
-     * Sets the frame rate of the game. This is set to 24 by default. The frame
-     * rate defines how frequently the `update` function is called - by default
-     * it's called 24 times per second.
-     */
-    setFrameRate(rate: number): void;
-    /**
      * Returns the number of frames that have passed since the game started. The
      * speed at which this increases is dependent on the frame rate. The higher
      * the frame rate is, the faster this number will increment, and vice versa.
-     * You can set the frame rate with {@Link Game.setFrameRate}.
+     * You can set the frame rate with {@Link GameConfig.frameRate}.
      *
      * You can use this function to do things like increase difficulty as time
      * goes on.

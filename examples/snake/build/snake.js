@@ -1,11 +1,4 @@
 "use strict";
-var config = {
-    create: create,
-    update: update,
-    onKeyPress: onKeyPress
-};
-var game = new Game(config);
-game.run();
 function pointsEqual(a, b) {
     return a.x === b.x && a.y === b.y;
 }
@@ -25,21 +18,17 @@ var pill;
 // This fixes a bug where you can turn back on yourself if you quickly type
 // two arrow keys before the next time `update` is called
 var snakeDirectionChangeThisFrame = false;
-function createPill() {
-    // Don't create a pill on the snake
-    function pointInSnake(p) {
-        // Consider the point one ahead of the snake to be in the snake too
-        if (pointsEqual(p, getNextLocation(snake[0], snakeDirection))) {
+function pointInSnake(p) {
+    for (var _i = 0, snake_1 = snake; _i < snake_1.length; _i++) {
+        var dot = snake_1[_i];
+        if (pointsEqual(dot, p)) {
             return true;
         }
-        for (var _i = 0, snake_1 = snake; _i < snake_1.length; _i++) {
-            var dot = snake_1[_i];
-            if (pointsEqual(dot, p)) {
-                return true;
-            }
-        }
-        return false;
     }
+    return false;
+}
+function createPill() {
+    // Don't create a pill on the snake
     var proposedPill = {
         x: Math.floor(Math.random() * 24),
         y: Math.floor(Math.random() * 24)
@@ -53,8 +42,6 @@ function createPill() {
     pill = proposedPill;
 }
 function create(game) {
-    // Drop framerate
-    game.setFrameRate(5);
     createPill();
 }
 function update(game) {
@@ -62,7 +49,8 @@ function update(game) {
     var head = snake[0];
     var nextLocation = getNextLocation(head, snakeDirection);
     // If nextLocation is in the snake, end the game
-    if (game.getDot(nextLocation.x, nextLocation.y) === Color.Black) {
+    if (pointInSnake(nextLocation)) {
+        console.log("here");
         // Color the snake in red
         snake.forEach(function (dot) {
             game.setDot(dot.x, dot.y, Color.Red);
@@ -160,3 +148,11 @@ function onKeyPress(direction) {
     }
     snakeDirectionChangeThisFrame = true;
 }
+var config = {
+    create: create,
+    update: update,
+    onKeyPress: onKeyPress,
+    frameRate: 5
+};
+var game = new Game(config);
+game.run();

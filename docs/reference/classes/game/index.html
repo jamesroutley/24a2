@@ -68,7 +68,6 @@ game.run()
 <li><a href="../game#getframecount">getFrameCount</a></li>
 <li><a href="../game#run">run</a></li>
 <li><a href="../game#setdot">setDot</a></li>
-<li><a href="../game#setframerate">setFrameRate</a></li>
 <li><a href="../game#settext">setText</a></li>
 </ul>
 
@@ -153,7 +152,7 @@ make sure any code after it is executed.</p>
 <p>Returns the number of frames that have passed since the game started. The
 speed at which this increases is dependent on the frame rate. The higher
 the frame rate is, the faster this number will increment, and vice versa.
-You can set the frame rate with <a href="../game#setframerate">Game.setFrameRate</a>.</p>
+You can set the frame rate with <a href="../../interfaces/gameconfig#optional-framerate">GameConfig.frameRate</a>.</p>
 
 <p>You can use this function to do things like increase difficulty as time
 goes on.</p>
@@ -202,36 +201,6 @@ goes on.</p>
 <tr>
 <td><code>val</code></td>
 <td><a href="../../enums/color">Color</a></td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>Returns:</strong> <em>void</em></p>
-
-<hr />
-
-<h3 id="setframerate">setFrameRate</h3>
-
-<p>▸ <strong>setFrameRate</strong>(<code>rate</code>: number): <em>void</em></p>
-
-<p>Sets the frame rate of the game. This is set to 24 by default. The frame
-rate defines how frequently the <code>update</code> function is called - by default
-it&rsquo;s called 24 times per second.</p>
-
-<p><strong>Parameters:</strong></p>
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td><code>rate</code></td>
-<td>number</td>
 </tr>
 </tbody>
 </table>

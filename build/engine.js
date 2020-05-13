@@ -53,7 +53,6 @@ var Game = /** @class */ (function () {
         this._gridHeight = 24;
         this._gridWidth = 24;
         this._config = config;
-        this._frameRate = 24;
         if (config._gridHeight && config._gridHeight > 0) {
             this._gridHeight = config._gridHeight;
         }
@@ -78,18 +77,10 @@ var Game = /** @class */ (function () {
         this._text = text;
     };
     /**
-     * Sets the frame rate of the game. This is set to 24 by default. The frame
-     * rate defines how frequently the `update` function is called - by default
-     * it's called 24 times per second.
-     */
-    Game.prototype.setFrameRate = function (rate) {
-        this._frameRate = rate;
-    };
-    /**
      * Returns the number of frames that have passed since the game started. The
      * speed at which this increases is dependent on the frame rate. The higher
      * the frame rate is, the faster this number will increment, and vice versa.
-     * You can set the frame rate with {@Link Game.setFrameRate}.
+     * You can set the frame rate with {@Link GameConfig.frameRate}.
      *
      * You can use this function to do things like increase difficulty as time
      * goes on.
@@ -150,24 +141,29 @@ var Game = /** @class */ (function () {
                 p.createCanvas(width, height);
                 // Don't draw outlines around circles
                 p.noStroke();
+                p.frameRate(this._config.frameRate || 24);
                 if (this._config.create) {
                     this._config.create(this);
                 }
             }.bind(this);
             p.draw = function () {
+                // Set the internal frame count to P5's frame count. This lets us
+                // return the frame count in `getFrameCount`
                 this._frameCount = p.frameCount;
+                // If the game has ended, end the P5 iteration and exit.
                 if (this._ended) {
                     p.noLoop();
                     return;
                 }
+                // Clear the drawing
                 p.clear();
-                // TODO: we could only set this if it's changed
-                p.frameRate(this._frameRate);
                 this._clearGrid();
                 if (this._config.update) {
                     this._config.update(this);
                 }
+                // Draw the grid
                 this._drawGrid(p);
+                // Draw the text
                 p.push();
                 p.textFont("monospace");
                 p.textSize(18);

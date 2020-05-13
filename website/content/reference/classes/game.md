@@ -35,7 +35,6 @@ game.run()
 * [getFrameCount](../game#getframecount)
 * [run](../game#run)
 * [setDot](../game#setdot)
-* [setFrameRate](../game#setframerate)
 * [setText](../game#settext)
 
 ## Constructors
@@ -91,7 +90,7 @@ ___
 Returns the number of frames that have passed since the game started. The
 speed at which this increases is dependent on the frame rate. The higher
 the frame rate is, the faster this number will increment, and vice versa.
-You can set the frame rate with [Game.setFrameRate](../game#setframerate).
+You can set the frame rate with [GameConfig.frameRate](../../interfaces/gameconfig#optional-framerate).
 
 You can use this function to do things like increase difficulty as time
 goes on.
@@ -123,24 +122,6 @@ Name | Type |
 `x` | number |
 `y` | number |
 `val` | [Color](../../enums/color) |
-
-**Returns:** *void*
-
-___
-
-###  setFrameRate
-
-▸ **setFrameRate**(`rate`: number): *void*
-
-Sets the frame rate of the game. This is set to 24 by default. The frame
-rate defines how frequently the `update` function is called - by default
-it's called 24 times per second.
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`rate` | number |
 
 **Returns:** *void*
 
