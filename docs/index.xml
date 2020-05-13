@@ -93,7 +93,9 @@ create is a function which is called once, just before the game starts running. 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://24a2.routley.io/tutorial/</guid>
-      <description>Let&amp;rsquo;s build a simple game using 24a2. In our game, we&amp;rsquo;ll have a player who can move around and collect items. Each item will give the player a number of points. There will also be bad items, which end the game. TODO: metaphor
+      <description>Let&amp;rsquo;s build a simple game using 24a2. In our game, we&amp;rsquo;ll have a player who has a limited time to move around and collect items. Each item will give the player a point.
+Play the game
+See the source code
 1. Basic setup 24a2 games are written in JavaScript, and are played in the browser. In this step, we&amp;rsquo;ll create two files, an index.html which stores the content of our webpage, and game.</description>
     </item>
     

@@ -35,9 +35,13 @@
         <div>
           <main> 
 
-<p>Let&rsquo;s build a simple game using 24a2. In our game, we&rsquo;ll have a player who can
-move around and collect items. Each item will give the player a number of
-points. There will also be bad items, which end the game. TODO: metaphor</p>
+<p>Let&rsquo;s build a simple game using 24a2. In our game, we&rsquo;ll have a player who has a
+limited time to move around and collect items. Each item will give the player a
+point.</p>
+
+<p><a href="/games/tutorial">Play the game</a></p>
+
+<p><a href="https://github.com/jamesroutley/24a2/tree/master/examples/tutorial">See the source code</a></p>
 
 <h2 id="1-basic-setup">1. Basic setup</h2>
 
@@ -217,7 +221,7 @@ current score using the <code>game.setText</code> function.</p>
 <p>We iterate through all the items, and if the item is at the same position as the
 player, we increment the score and remove the item from the list.</p>
 
-<h2 id="time-limit">Time limit</h2>
+<h2 id="7-time-limit">7. Time limit</h2>
 
 <p>So far, we&rsquo;ve got a game that lets us move around, and collect items which give
 us points. Let&rsquo;s add a bit of drama by adding a time limit to the game, after
@@ -257,7 +261,21 @@ browser, we can access all functionality that the browser provides.</p>
     game.end();
   }
 }
-</code></pre></div> 
+</code></pre></div>
+<h2 id="8-next-steps">8. Next steps</h2>
+
+<p>That&rsquo;s our game! It&rsquo;s not super fun, but hopefully you&rsquo;ve learnt how to build a
+game using 24a2. If you&rsquo;d like to contine working on your game, here are some
+ideas for things to do:</p>
+
+<ol>
+<li>Randomise the player&rsquo;s start position</li>
+<li>Add different items, which give the player different numbers of points</li>
+<li>Add items which give the player more time</li>
+<li>Use <code>localStorage</code> to store the player&rsquo;s high score, and let them know if
+they&rsquo;ve beaten it when the game ends</li>
+</ol>
+ 
           </main>
         </div>
       </div>

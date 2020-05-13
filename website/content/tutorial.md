@@ -2,9 +2,13 @@
 title: Tutorial
 ---
 
-Let's build a simple game using 24a2. In our game, we'll have a player who can
-move around and collect items. Each item will give the player a number of
-points. There will also be bad items, which end the game. TODO: metaphor
+Let's build a simple game using 24a2. In our game, we'll have a player who has a
+limited time to move around and collect items. Each item will give the player a
+point.
+
+[Play the game](/games/tutorial)
+
+[See the source code](https://github.com/jamesroutley/24a2/tree/master/examples/tutorial)
 
 ## 1. Basic setup
 
@@ -202,7 +206,7 @@ function update(game) {
 We iterate through all the items, and if the item is at the same position as the
 player, we increment the score and remove the item from the list.
 
-## Time limit
+## 7. Time limit
 
 So far, we've got a game that lets us move around, and collect items which give
 us points. Let's add a bit of drama by adding a time limit to the game, after
@@ -251,3 +255,15 @@ function update(game) {
   }
 }
 ```
+
+## 8. Next steps
+
+That's our game! It's not super fun, but hopefully you've learnt how to build a
+game using 24a2. If you'd like to contine working on your game, here are some
+ideas for things to do:
+
+1. Randomise the player's start position
+2. Add different items, which give the player different numbers of points
+3. Add items which give the player more time
+4. Use `localStorage` to store the player's high score, and let them know if
+   they've beaten it when the game ends
