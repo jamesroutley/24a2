@@ -1,5 +1,5 @@
 ---
-title: 24a4
+title: 24a2
 ---
 
 <div id="landing-sketch"></div>
@@ -39,7 +39,7 @@ Here are a few demo games you can play to get a feel for what 24a2 is like:
 let config = {
   create: create,
   update: update,
-  onKeyPress: onKeyPress
+  onKeyPress: onKeyPress,
 };
 
 // Initialise a new game
