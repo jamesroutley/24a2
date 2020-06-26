@@ -54,7 +54,7 @@ the following code into it:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;html&gt;
   &lt;head&gt;
     &lt;script src=<span style="color:#a31515">&#34;https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js&#34;</span>&gt;&lt;/script&gt;
-    &lt;script src=<span style="color:#a31515">&#34;https://cdn.jsdelivr.net/gh/jamesroutley/24a2/build/engine.js&#34;</span>&gt;&lt;/script&gt;
+    &lt;script src=<span style="color:#a31515">&#34;https://cdn.jsdelivr.net/gh/jamesroutley/24a2@v0.1/build/engine.js&#34;</span>&gt;&lt;/script&gt;
     &lt;script src=<span style="color:#a31515">&#34;game.js&#34;</span>&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;&lt;/body&gt;
@@ -78,7 +78,7 @@ into it:</p>
 <span style="color:#00f">let</span> config = {
   create: create,
   update: update,
-  onKeyPress: onKeyPress
+  onKeyPress: onKeyPress,
 };
 
 <span style="color:#00f">let</span> game = <span style="color:#00f">new</span> Game(config);
@@ -113,7 +113,7 @@ it should call, we create a new game and run it.</li>
 <span style="color:#00f">function</span> create(game) {
   player = {
     x: 5,
-    y: 10
+    y: 10,
   };
   game.setDot(player.x, player.y, Color.Black);
 }
@@ -180,7 +180,7 @@ to stop this from happening:</p>
 </span><span style="color:#008000"></span>  <span style="color:#00f">if</span> (Math.random() &lt; 0.05) {
     item = {
       x: Math.floor(Math.random() * 24),
-      y: Math.floor(Math.random() * 24)
+      y: Math.floor(Math.random() * 24),
     };
     <span style="color:#00f">if</span> (item.x !== player.x || item.y !== player.y) {
       items.push(item);

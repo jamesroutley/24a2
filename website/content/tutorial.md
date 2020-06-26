@@ -23,7 +23,7 @@ the following code into it:
 <html>
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/jamesroutley/24a2/build/engine.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jamesroutley/24a2@v0.1/build/engine.js"></script>
     <script src="game.js"></script>
   </head>
   <body></body>
@@ -49,7 +49,7 @@ function onKeyPress(direction) {}
 let config = {
   create: create,
   update: update,
-  onKeyPress: onKeyPress
+  onKeyPress: onKeyPress,
 };
 
 let game = new Game(config);
@@ -85,7 +85,7 @@ let player = {};
 function create(game) {
   player = {
     x: 5,
-    y: 10
+    y: 10,
   };
   game.setDot(player.x, player.y, Color.Black);
 }
@@ -161,7 +161,7 @@ function update(game) {
   if (Math.random() < 0.05) {
     item = {
       x: Math.floor(Math.random() * 24),
-      y: Math.floor(Math.random() * 24)
+      y: Math.floor(Math.random() * 24),
     };
     if (item.x !== player.x || item.y !== player.y) {
       items.push(item);
