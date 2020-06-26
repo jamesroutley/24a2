@@ -34,6 +34,14 @@ pre code {
   padding: 0;
 }
 
+blockquote {
+  background: #f7f3e8; /* Wimborne White */
+  padding: 4px;
+  border-radius: 8px;
+  padding: 16px 40px;
+  margin: 16px 0;
+}
+
 h1 {
   text-align: center;
 }

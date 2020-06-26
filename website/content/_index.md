@@ -11,6 +11,11 @@ you to solve problems creatively.
 24a2 games are written in JavaScript (or TypeScript) and are played in a web
 browser, so you can easily share what you've created.
 
+> ℹ️ 24a2 is new, and may have bugs. If you spot anything, please
+> [raise an issue](https://github.com/jamesroutley/24a2/issues). If you like
+> 24a2, please support us by giving us a
+> [star on GitHub](https://github.com/jamesroutley/24a2) ⭐️
+
 ## Introduction
 
 All 24a2 games feature a 24 by 24 grid of dots. You can set the color of each
