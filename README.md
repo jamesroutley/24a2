@@ -1,16 +1,6 @@
 # 24a2
+24a2 is a simple game engine that lets you to build a game in a few hours. It has a very limited set of features which makes it easy to learn, and encourages you to solve problems creatively.
 
-24a2 is an ultra minimalist game engine. It's objective is to let you build a
-game in a couple of hours. It does this by severely limiting what you can do.
+24a2 games are written in JavaScript (or TypeScript) and are played in a web browser, so you can easily share what you’ve created.
 
-Things 24a2 supports:
-
-- A 24x24 grid of dots
-- The ability to set the colour of each dot to one of eight colours
-- The ability to read a dot's colour
-- Keyboard input (arrow keys only)
-- Variable framerate
-
-Things 24a2 doesn't support:
-
-- Everything else
+Please see our [website for more information, examples, and a tutorial](https://24a2.routley.io/)
