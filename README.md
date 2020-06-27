@@ -1,6 +1,6 @@
 # 24a2
 
-![](/website/static/img/banner.png)
+![](/website/static/img/snake.gif)
 
 24a2 is a simple game engine that lets you to build a game in a few hours. It has a very limited set of features which makes it easy to learn, and encourages you to solve problems creatively.
 
