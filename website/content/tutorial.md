@@ -56,7 +56,7 @@ let game = new Game(config);
 game.run();
 ```
 
-Make sure that `game.js` is saved in the same folder as you `index.html` file.
+Make sure that `game.js` is saved in the same folder as your `index.html` file.
 
 Open `index.html` in your browser, and you should see a 24 by 24 grid of gray
 dots.
