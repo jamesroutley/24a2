@@ -57,6 +57,11 @@ interface GameConfig {
      */
     frameRate?: number;
     /**
+     * Set the color used when clearing the screen. By default, this is set to
+     * *Color.GREY*.
+     */
+    clearColor?: Color;
+    /**
      * @ignore
      *
      * Sets the width of the grid

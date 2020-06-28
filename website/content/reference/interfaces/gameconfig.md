@@ -14,6 +14,7 @@ GameConfig is the object you pass when contructing a new [Game](../../classes/ga
 
 ### Properties
 
+* [clearColor](../gameconfig#optional-clearcolor)
 * [containerId](../gameconfig#optional-containerid)
 * [create](../gameconfig#optional-create)
 * [frameRate](../gameconfig#optional-framerate)
@@ -22,6 +23,15 @@ GameConfig is the object you pass when contructing a new [Game](../../classes/ga
 * [update](../gameconfig#optional-update)
 
 ## Properties
+
+### `Optional` clearColor
+
+• **clearColor**? : *[Color](../../enums/color)*
+
+Set the color used when clearing the screen. By default, this is set to
+*Color.GREY*.
+
+___
 
 ### `Optional` containerId
 

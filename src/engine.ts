@@ -61,6 +61,12 @@ interface GameConfig {
   frameRate?: number;
 
   /**
+   * Set the color used when clearing the screen. By default, this is set to 
+   * *Color.GREY*.
+   */
+  clearColor?: Color;
+
+  /**
    * @ignore
    *
    * Sets the width of the grid
@@ -338,7 +344,7 @@ class Game {
   private _clearGrid() {
     this._dots.forEach((row, y) => {
       for (let x = 0; x < row.length; x++) {
-        this.setDot(x, y, Color.Gray);
+        this.setDot(x, y, this._config.clearColor || Color.Gray);
       }
     });
   }
