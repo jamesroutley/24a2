@@ -41,16 +41,13 @@ function pointInSnake(p: Point): boolean {
 function createPill() {
   // Don't create a pill on the snake
 
-  let proposedPill = {
-    x: Math.floor(Math.random() * 24),
-    y: Math.floor(Math.random() * 24)
-  };
-  while (pointInSnake(proposedPill)) {
+  let proposedPill: Point;
+  do {
     proposedPill = {
       x: Math.floor(Math.random() * 24),
       y: Math.floor(Math.random() * 24)
     };
-  }
+  } while (pointInSnake(proposedPill));
 
   pill = proposedPill;
 }
