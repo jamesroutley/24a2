@@ -54,11 +54,10 @@ let config = { create: create, // A function you&amp;#39;ve defined  update: upd
       
       <guid>http://24a2.routley.io/reference/interfaces/gameconfig/</guid>
       <description>GameConfig is the object you pass when contructing a new Game.
-Hierarchy  GameConfig  Index Properties  clearColor containerId create frameRate onDotClicked onKeyPress update  Properties Optional clearColor • clearColor? : Color
-Set the color used when clearing the screen. By default, this is set to Color.GREY.
-Optional containerId • containerId? : undefined | string
+Hierarchy  GameConfig  Index Properties  containerId create defaultDotColor frameRate onDotClicked onKeyPress update  Properties Optional containerId • containerId? : undefined | string
 The ID of a container to create the canvas in
-Optional create • create?</description>
+Optional create • create? : undefined | function
+create is a function which is called once, just before the game starts running. You can use it to initialise game state, if needed.</description>
     </item>
     
   </channel>

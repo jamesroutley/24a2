@@ -61,10 +61,9 @@ interface GameConfig {
   frameRate?: number;
 
   /**
-   * Set the color used when clearing the screen. By default, this is set to 
-   * *Color.GREY*.
+   * Set the default color of the dots. By default, this is set to *Color.Gray*.
    */
-  clearColor?: Color;
+  defaultDotColor?: Color;
 
   /**
    * @ignore
@@ -344,7 +343,7 @@ class Game {
   private _clearGrid() {
     this._dots.forEach((row, y) => {
       for (let x = 0; x < row.length; x++) {
-        this.setDot(x, y, this._config.clearColor || Color.Gray);
+        this.setDot(x, y, this._config.defaultDotColor || Color.Gray);
       }
     });
   }

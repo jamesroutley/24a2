@@ -57,10 +57,9 @@ interface GameConfig {
      */
     frameRate?: number;
     /**
-     * Set the color used when clearing the screen. By default, this is set to
-     * *Color.GREY*.
+     * Set the default color of the dots. By default, this is set to *Color.Gray*.
      */
-    clearColor?: Color;
+    defaultDotColor?: Color;
     /**
      * @ignore
      *
