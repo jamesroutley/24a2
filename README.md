@@ -17,5 +17,6 @@ Please see our [website for more information, examples, and a tutorial](https://
 ## Games built with 24a2
 
 - [Space invaders](https://incoherency.co.uk/24invaders/), by [@jes](https://incoherency.co.uk/blog/)
+- [Palindrome Colors](https://andrewnc.github.io/games/pal_game.html), by [@andrewnc](https://andrewnc.github.io/)
 
 If you've built something using 24a2 please let us know! Feel free to open an Issue or Pull Request to add it to this list.
