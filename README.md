@@ -18,5 +18,6 @@ Please see our [website for more information, examples, and a tutorial](https://
 
 - [Space invaders](https://incoherency.co.uk/24invaders/), by [@jes](https://incoherency.co.uk/blog/)
 - [Palindrome Colors](https://andrewnc.github.io/games/pal_game.html), by [@andrewnc](https://andrewnc.github.io/)
+- [Samegame](https://kentbrew.neocities.org/samegame/), by [@kentbrew](https://github.com/kentbrew/samegame/)
 
 If you've built something using 24a2 please let us know! Feel free to open an Issue or Pull Request to add it to this list.
