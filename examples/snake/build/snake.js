@@ -29,16 +29,13 @@ function pointInSnake(p) {
 }
 function createPill() {
     // Don't create a pill on the snake
-    var proposedPill = {
-        x: Math.floor(Math.random() * 24),
-        y: Math.floor(Math.random() * 24)
-    };
-    while (pointInSnake(proposedPill)) {
+    var proposedPill;
+    do {
         proposedPill = {
             x: Math.floor(Math.random() * 24),
             y: Math.floor(Math.random() * 24)
         };
-    }
+    } while (pointInSnake(proposedPill));
     pill = proposedPill;
 }
 function create(game) {
