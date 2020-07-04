@@ -37,7 +37,7 @@ interface GameConfig {
      * `update` is repeatedly called as the game runs. You can use it to define
      * the main functionality of your game.
      */
-    update?: (game: Game) => void;
+    update: (game: Game) => void;
     /**
      * `onKeyPress` is a function which is called when the player presses one of
      * the arrow keys.

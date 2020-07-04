@@ -20,7 +20,7 @@ GameConfig is the object you pass when contructing a new [Game](../../classes/ga
 * [frameRate](../gameconfig#optional-framerate)
 * [onDotClicked](../gameconfig#optional-ondotclicked)
 * [onKeyPress](../gameconfig#optional-onkeypress)
-* [update](../gameconfig#optional-update)
+* [update](../gameconfig#update)
 
 ## Properties
 
@@ -76,9 +76,19 @@ the arrow keys.
 
 ___
 
-### `Optional` update
+###  update
 
-• **update**? : *undefined | function*
+• **update**: *function*
 
 `update` is repeatedly called as the game runs. You can use it to define
 the main functionality of your game.
+
+#### Type declaration:
+
+▸ (`game`: [Game](../../classes/game)): *void*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`game` | [Game](../../classes/game) |

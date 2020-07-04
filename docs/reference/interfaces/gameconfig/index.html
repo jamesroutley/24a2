@@ -54,7 +54,7 @@
 <li><a href="../gameconfig#optional-framerate">frameRate</a></li>
 <li><a href="../gameconfig#optional-ondotclicked">onDotClicked</a></li>
 <li><a href="../gameconfig#optional-onkeypress">onKeyPress</a></li>
-<li><a href="../gameconfig#optional-update">update</a></li>
+<li><a href="../gameconfig#update">update</a></li>
 </ul>
 
 <h2 id="properties-1">Properties</h2>
@@ -111,12 +111,34 @@ the arrow keys.</p>
 
 <hr />
 
-<h3 id="optional-update"><code>Optional</code> update</h3>
+<h3 id="update">update</h3>
 
-<p>• <strong>update</strong>? : <em>undefined | function</em></p>
+<p>• <strong>update</strong>: <em>function</em></p>
 
 <p><code>update</code> is repeatedly called as the game runs. You can use it to define
 the main functionality of your game.</p>
+
+<h4 id="type-declaration">Type declaration:</h4>
+
+<p>▸ (<code>game</code>: <a href="../../classes/game">Game</a>): <em>void</em></p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>game</code></td>
+<td><a href="../../classes/game">Game</a></td>
+</tr>
+</tbody>
+</table>
  
           </main>
         </div>
