@@ -45,7 +45,8 @@ ___
 
 • **defaultDotColor**? : *[Color](../../enums/color)*
 
-Set the default color of the dots. By default, this is set to *Color.Gray*.
+Set the default color of the dots. By default, this is set to
+[Color.Gray](../../enums/color#gray).
 
 ___
 

@@ -16,14 +16,14 @@ enum Color {
   Green = "GREEN",
   Blue = "BLUE",
   Indigo = "INDIGO",
-  Violet = "VIOLET"
+  Violet = "VIOLET",
 }
 
 enum Direction {
   Left = "LEFT",
   Right = "RIGHT",
   Up = "UP",
-  Down = "DOWN"
+  Down = "DOWN",
 }
 
 /**
@@ -61,7 +61,8 @@ interface GameConfig {
   frameRate?: number;
 
   /**
-   * Set the default color of the dots. By default, this is set to *Color.Gray*.
+   * Set the default color of the dots. By default, this is set to
+   * {@Link Color.Gray}.
    */
   defaultDotColor?: Color;
 
@@ -211,8 +212,8 @@ class Game {
     }
 
     new p5(
-      function(this: Game, p: p5) {
-        p.setup = function(this: Game) {
+      function (this: Game, p: p5) {
+        p.setup = function (this: Game) {
           let width =
             this._dotSize * this._gridWidth +
             this._gapSize * (this._gridWidth - 1);
@@ -232,7 +233,7 @@ class Game {
           }
         }.bind(this);
 
-        p.draw = function(this: Game) {
+        p.draw = function (this: Game) {
           // Set the internal frame count to P5's frame count. This lets us
           // return the frame count in `getFrameCount`
           this._frameCount = p.frameCount;
@@ -266,7 +267,7 @@ class Game {
           p.pop();
         }.bind(this);
 
-        p.keyPressed = function(this: Game): boolean {
+        p.keyPressed = function (this: Game): boolean {
           if (!this._config.onKeyPress) {
             // Return true to not prevent the browser's default behaviour for
             // this keypress
@@ -296,7 +297,7 @@ class Game {
           return true;
         }.bind(this);
 
-        p.mouseClicked = function(this: Game) {
+        p.mouseClicked = function (this: Game) {
           if (!this._config.onDotClicked) {
             return;
           }
