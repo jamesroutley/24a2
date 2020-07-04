@@ -242,7 +242,7 @@ var Game = /** @class */ (function () {
         var _this = this;
         this._dots.forEach(function (row, y) {
             for (var x = 0; x < row.length; x++) {
-                _this.setDot(x, y, Color.Gray);
+                _this.setDot(x, y, _this._config.defaultDotColor || Color.Gray);
             }
         });
     };

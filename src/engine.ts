@@ -61,6 +61,11 @@ interface GameConfig {
   frameRate?: number;
 
   /**
+   * Set the default color of the dots. By default, this is set to *Color.Gray*.
+   */
+  defaultDotColor?: Color;
+
+  /**
    * @ignore
    *
    * Sets the width of the grid
@@ -338,7 +343,7 @@ class Game {
   private _clearGrid() {
     this._dots.forEach((row, y) => {
       for (let x = 0; x < row.length; x++) {
-        this.setDot(x, y, Color.Gray);
+        this.setDot(x, y, this._config.defaultDotColor || Color.Gray);
       }
     });
   }

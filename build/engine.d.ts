@@ -57,6 +57,10 @@ interface GameConfig {
      */
     frameRate?: number;
     /**
+     * Set the default color of the dots. By default, this is set to *Color.Gray*.
+     */
+    defaultDotColor?: Color;
+    /**
      * @ignore
      *
      * Sets the width of the grid

@@ -16,6 +16,7 @@ GameConfig is the object you pass when contructing a new [Game](../../classes/ga
 
 * [containerId](../gameconfig#optional-containerid)
 * [create](../gameconfig#optional-create)
+* [defaultDotColor](../gameconfig#optional-defaultdotcolor)
 * [frameRate](../gameconfig#optional-framerate)
 * [onDotClicked](../gameconfig#optional-ondotclicked)
 * [onKeyPress](../gameconfig#optional-onkeypress)
@@ -37,6 +38,14 @@ ___
 
 `create` is a function which is called once, just before the game starts
 running. You can use it to initialise game state, if needed.
+
+___
+
+### `Optional` defaultDotColor
+
+• **defaultDotColor**? : *[Color](../../enums/color)*
+
+Set the default color of the dots. By default, this is set to *Color.Gray*.
 
 ___
 
