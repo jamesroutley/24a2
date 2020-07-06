@@ -20,5 +20,6 @@ Please see our [website for more information, examples, and a tutorial](https://
 - [Palindrome Colors](https://andrewnc.github.io/games/pal_game.html), by [@andrewnc](https://andrewnc.github.io/)
 - [Samegame](https://kentbrew.neocities.org/samegame/), by [@kentbrew](https://github.com/kentbrew/samegame/)
 - [You Killed a Bear](https://craigmbooth.com/projects/ykab/), by [@craigmbooth](https://craigmbooth.com)
+- [Maze Craze](http://maze-craze-24a2.surge.sh/), by [@shaneriley](https://github.com/shaneriley/maze_craze_24a2)
 
 If you've built something using 24a2 please let us know! Feel free to open an Issue or Pull Request to add it to this list.
