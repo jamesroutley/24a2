@@ -23,7 +23,7 @@ the following code into it:
 <html>
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/jamesroutley/24a2@v0.1/build/engine.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jamesroutley/24a2/build/engine.js"></script>
     <script src="game.js"></script>
   </head>
   <body></body>
