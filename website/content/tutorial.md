@@ -189,6 +189,8 @@ the item disappears, and the user's score increases. We can display the user's
 current score using the `game.setText` function.
 
 ```javascript
+let score = 0;
+
 function update(game) {
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
@@ -200,6 +202,8 @@ function update(game) {
   }
 
   // ...
+  
+  game.setText(Score: ${score}`)
 }
 ```
 
