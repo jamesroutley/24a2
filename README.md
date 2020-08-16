@@ -22,5 +22,6 @@ Please see our [website for more information, examples, and a tutorial](https://
 - [You Killed a Bear](https://craigmbooth.com/projects/ykab/), by [@craigmbooth](https://craigmbooth.com)
 - [Maze Craze](http://maze-craze-24a2.surge.sh/), by [@shaneriley](https://github.com/shaneriley/maze_craze_24a2)
 - [24Rogue](https://www.raza6.fr/24Rogue/), by [@raza6](https://github.com/raza6/24rogue)
+- [Paint](https://bernardini687.github.io/paint/index.html), by [@bernardini687](https://github.com/bernardini687)
 
 If you've built something using 24a2 please let us know! Feel free to open an Issue or Pull Request to add it to this list.
