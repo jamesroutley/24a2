@@ -67,17 +67,35 @@ interface GameConfig {
   defaultDotColor?: Color;
 
   /**
-   * @ignore
    *
-   * Sets the width of the grid
+   * Sets the width of the grid. By default, this is set to 24.
+   */
+  gridWidth?: number;
+
+  /**
+   *
+   * Sets the height of the grid. By default, this is set to 24.
+   */
+  gridHeight?: number;
+
+  /**
+   * @ignore
    */
   _gridWidth?: number;
   /**
    * @ignore
-   *
-   * Sets the height of the grid
    */
   _gridHeight?: number;
+
+  /**
+   * Specifies whether 24a2 should clear the grid at the beginning of each
+   * frame. 24a2 clears the grid by setting the colour of every dot to
+   * {@Link GameConfig.defaultDotColor}. Setting clearGrid to false lets you
+   * simplify the code for some games by letting 24a2 store the state for each
+   * dot. You can use {@Link Game.getDot} to read back the colour of dots. By
+   * default, this is set to true.
+   */
+  clearGrid?: boolean;
 }
 
 /**
@@ -111,15 +129,35 @@ class Game {
   private _gridHeight = 24;
   private _gridWidth = 24;
 
+  private _clear = true;
+
   constructor(config: GameConfig) {
     this._config = config;
 
+    // Retain support for the deprecated _gridHeight and _gridWidth config
+    // options
     if (config._gridHeight && config._gridHeight > 0) {
+      console.log(
+        "The config option _gridHeight is deprecated, please use gridHeight instead"
+      );
       this._gridHeight = config._gridHeight;
     }
-
     if (config._gridWidth && config._gridWidth > 0) {
+      console.log(
+        "The config option _gridWidth is deprecated, please use gridWidth instead"
+      );
       this._gridWidth = config._gridWidth;
+    }
+
+    if (config.gridHeight && config.gridHeight > 0) {
+      this._gridHeight = config.gridHeight;
+    }
+    if (config.gridWidth && config.gridWidth > 0) {
+      this._gridWidth = config.gridWidth;
+    }
+
+    if (config.clearGrid === false) {
+      this._clear = false;
     }
 
     this._dots = new Array(this._gridHeight || 24);
@@ -246,7 +284,9 @@ class Game {
 
           // Clear the drawing
           p.clear();
-          this._clearGrid();
+          if (this._clear) {
+            this._clearGrid();
+          }
 
           if (this._config.update) {
             this._config.update(this);

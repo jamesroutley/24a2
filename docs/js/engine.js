@@ -52,12 +52,26 @@ var Game = /** @class */ (function () {
         this._gapSize = 8;
         this._gridHeight = 24;
         this._gridWidth = 24;
+        this._clear = true;
         this._config = config;
+        // Retain support for the deprecated _gridHeight and _gridWidth config
+        // options
         if (config._gridHeight && config._gridHeight > 0) {
+            console.log("The config option _gridHeight is deprecated, please use gridHeight instead");
             this._gridHeight = config._gridHeight;
         }
         if (config._gridWidth && config._gridWidth > 0) {
+            console.log("The config option _gridWidth is deprecated, please use gridWidth instead");
             this._gridWidth = config._gridWidth;
+        }
+        if (config.gridHeight && config.gridHeight > 0) {
+            this._gridHeight = config.gridHeight;
+        }
+        if (config.gridWidth && config.gridWidth > 0) {
+            this._gridWidth = config.gridWidth;
+        }
+        if (config.clearGrid === false) {
+            this._clear = false;
         }
         this._dots = new Array(this._gridHeight || 24);
         for (var y = 0; y < this._dots.length; y++) {
@@ -157,7 +171,9 @@ var Game = /** @class */ (function () {
                 }
                 // Clear the drawing
                 p.clear();
-                this._clearGrid();
+                if (this._clear) {
+                    this._clearGrid();
+                }
                 if (this._config.update) {
                     this._config.update(this);
                 }

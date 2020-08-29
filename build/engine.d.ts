@@ -62,17 +62,32 @@ interface GameConfig {
      */
     defaultDotColor?: Color;
     /**
-     * @ignore
      *
-     * Sets the width of the grid
+     * Sets the width of the grid. By default, this is set to 24.
+     */
+    gridWidth?: number;
+    /**
+     *
+     * Sets the height of the grid. By default, this is set to 24.
+     */
+    gridHeight?: number;
+    /**
+     * @ignore
      */
     _gridWidth?: number;
     /**
      * @ignore
-     *
-     * Sets the height of the grid
      */
     _gridHeight?: number;
+    /**
+     * Specifies whether 24a2 should clear the grid at the beginning of each
+     * frame. 24a2 clears the grid by setting the colour of every dot to
+     * {@Link GameConfig.defaultDotColor}. Setting clearGrid to false lets you
+     * simplify the code for some games by letting 24a2 store the state for each
+     * dot. You can use {@Link Game.getDot} to read back the colour of dots. By
+     * default, this is set to true.
+     */
+    clearGrid?: boolean;
 }
 /**
  * Game is the object that controls the actual running of the game. You
@@ -99,6 +114,7 @@ declare class Game {
     private _gapSize;
     private _gridHeight;
     private _gridWidth;
+    private _clear;
     constructor(config: GameConfig);
     /**
      * 24a2 games have a line of text below the grid which can be set to show

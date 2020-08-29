@@ -14,15 +14,31 @@ GameConfig is the object you pass when contructing a new [Game](../../classes/ga
 
 ### Properties
 
+* [clearGrid](../gameconfig#optional-cleargrid)
 * [containerId](../gameconfig#optional-containerid)
 * [create](../gameconfig#optional-create)
 * [defaultDotColor](../gameconfig#optional-defaultdotcolor)
 * [frameRate](../gameconfig#optional-framerate)
+* [gridHeight](../gameconfig#optional-gridheight)
+* [gridWidth](../gameconfig#optional-gridwidth)
 * [onDotClicked](../gameconfig#optional-ondotclicked)
 * [onKeyPress](../gameconfig#optional-onkeypress)
 * [update](../gameconfig#optional-update)
 
 ## Properties
+
+### `Optional` clearGrid
+
+• **clearGrid**? : *undefined | false | true*
+
+Specifies whether 24a2 should clear the grid at the beginning of each
+frame. 24a2 clears the grid by setting the colour of every dot to
+[GameConfig.defaultDotColor](../gameconfig#optional-defaultdotcolor). Setting clearGrid to false lets you
+simplify the code for some games by letting 24a2 store the state for each
+dot. You can use [Game.getDot](../../classes/game#getdot) to read back the colour of dots. By
+default, this is set to true.
+
+___
 
 ### `Optional` containerId
 
@@ -55,6 +71,22 @@ ___
 • **frameRate**? : *undefined | number*
 
 Sets the game's frame rate. By default, this is set to 24.
+
+___
+
+### `Optional` gridHeight
+
+• **gridHeight**? : *undefined | number*
+
+Sets the height of the grid. By default, this is set to 24.
+
+___
+
+### `Optional` gridWidth
+
+• **gridWidth**? : *undefined | number*
+
+Sets the width of the grid. By default, this is set to 24.
 
 ___
 
