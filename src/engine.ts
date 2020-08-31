@@ -1,3 +1,6 @@
+// TODO:
+// - Game ending
+
 /**
  * Color is a set of constants which you can use to set the color of dots.
  *
@@ -99,6 +102,147 @@ interface GameConfig {
 }
 
 /**
+ * @ignore
+ * Renderer is the interface used by {@Link Game} to draw the dots.
+ */
+interface Renderer {
+  setDot: (x: number, y: number, val: Color) => void;
+  setText: (text: string) => void;
+}
+
+class P5Renderer {
+  private _gridHeight = 24;
+  private _gridWidth = 24;
+  private _text = "";
+  private _dots: Array<Array<Color>>;
+
+  // Variables used when rendering the grid
+  private _dotSize = 16;
+  private _gapSize = 8;
+
+  constructor(gridHeight: number, gridWidth: number, containerId?: string) {
+    this._gridHeight = gridHeight;
+    this._gridWidth = gridWidth;
+
+    // Initialise internal dot store
+    this._dots = new Array(this._gridHeight);
+    for (let y = 0; y < this._dots.length; y++) {
+      let row = new Array(this._gridWidth);
+      for (let i = 0; i < row.length; i++) {
+        row[i] = Color.Gray;
+      }
+      this._dots[y] = row;
+    }
+
+    // Start P5
+    // This implementation is inefficient because of P5's API - we're also
+    // running the P5 update loop alongside our internal update loop
+    let parentElement = undefined;
+    if (containerId) {
+      parentElement = document.getElementById(containerId) || undefined;
+    }
+
+    new p5(
+      function (this: P5Renderer, p: p5) {
+        p.setup = function (this: P5Renderer) {
+          let width =
+            this._dotSize * this._gridWidth +
+            this._gapSize * (this._gridWidth - 1);
+          let height =
+            this._dotSize * this._gridHeight +
+            this._gapSize * (this._gridHeight - 1) +
+            50;
+          p.createCanvas(width, height);
+
+          // Don't draw outlines around circles
+          p.noStroke();
+
+          // TODO: maybe we should just make this much greater than the 24a2
+          // frame rate to avoid stuttering issues?
+          p.frameRate(24);
+        }.bind(this);
+
+        p.draw = function (this: P5Renderer) {
+          // Clear the drawing
+          p.clear();
+          // Draw the grid
+          this._drawGrid(p);
+
+          // Draw the text
+          p.push();
+          p.textFont("monospace");
+          p.textSize(18);
+          let textY =
+            this._dotSize * this._gridHeight +
+            this._gapSize * (this._gridHeight - 1) +
+            32;
+          p.text(this._text, 0, textY);
+          p.pop();
+        }.bind(this);
+      }.bind(this),
+      parentElement
+    );
+  }
+
+  private _drawGrid(p: p5) {
+    const offset = this._dotSize + this._gapSize;
+    p.push();
+    p.translate(this._dotSize / 2, this._dotSize / 2);
+    this._dots.forEach((row, y) => {
+      row.forEach((dot, x) => {
+        p.fill(p.color(this._getCSSColor(dot)));
+        p.circle(x * offset, y * offset, this._dotSize);
+      });
+    });
+    p.pop();
+  }
+
+  private _getCSSColor(color: Color): string {
+    switch (color) {
+      case Color.Gray:
+        return "gainsboro";
+      case Color.Black:
+        return "black";
+      case Color.Red:
+        return "red";
+      case Color.Orange:
+        return "orange";
+      case Color.Yellow:
+        return "gold";
+      case Color.Green:
+        return "green";
+      case Color.Blue:
+        return "blue";
+      case Color.Indigo:
+        return "indigo";
+      case Color.Violet:
+        return "violet";
+      default:
+        console.error(`no CSS color defined for ${color}`);
+        return "";
+    }
+  }
+
+  setDot(x: number, y: number, val: Color): void {
+    if (y < 0 || y >= this._dots.length) {
+      throw new Error(
+        `P5Renderer: Error trying to set dot (${x}, ${y}): y is out of bounds`
+      );
+    }
+    if (x < 0 || x >= this._dots[y].length) {
+      throw new Error(
+        `P5Renderer: Error trying to set dot (${x}, ${y}): x is out of bounds`
+      );
+    }
+    this._dots[y][x] = val;
+  }
+
+  setText(text: string): void {
+    this._text = text;
+  }
+}
+
+/**
  * Game is the object that controls the actual running of the game. You
  * create a new one by passing in a {@Link GameConfig}. Calling `game.run()`
  * will start the game.
@@ -131,6 +275,10 @@ class Game {
 
   private _clear = true;
 
+  private _renderer?: Renderer;
+
+  private _interval?: number;
+
   constructor(config: GameConfig) {
     this._config = config;
 
@@ -160,10 +308,12 @@ class Game {
       this._clear = false;
     }
 
+    // TODO: remove 24s here? I think we already default them
     this._dots = new Array(this._gridHeight || 24);
     for (let y = 0; y < this._dots.length; y++) {
       let row = new Array(this._gridWidth || 24);
       for (let i = 0; i < row.length; i++) {
+        // TODO: should be config.defaultDotColor?
         row[i] = Color.Gray;
       }
       this._dots[y] = row;
@@ -242,71 +392,75 @@ class Game {
    * Calling `run` starts the game.
    */
   run() {
-    // TODO: there's probably a nicer way of expressing this
-    let parentElement = undefined;
-    if (this._config.containerId) {
-      parentElement =
-        document.getElementById(this._config.containerId) || undefined;
+    if (!this._renderer) {
+      this._renderer = new P5Renderer(
+        this._gridHeight,
+        this._gridWidth,
+        this._config.containerId
+      );
     }
 
+    if (this._config.create) {
+      this._config.create(this);
+      this._render();
+    }
+
+    // Initialise a `setInterval` to call a render func every X milliseconds
+    // Delay is in milliseconds
+    const delay = 1000 / (this._config.frameRate || 24);
+    this._interval = window.setInterval(this._update.bind(this), delay);
+
+    this._listenForInput();
+  }
+
+  /**
+   * The internal function that's called on every frame.
+   */
+  private _update() {
+    if (this._ended) {
+      window.clearInterval(this._interval);
+      return;
+    }
+    this._frameCount++;
+    if (this._clear) {
+      this._clearGrid();
+    }
+    if (this._config.update) {
+      this._config.update(this);
+    }
+    this._render();
+  }
+
+  private _clearGrid() {
+    this._dots.forEach((row, y) => {
+      for (let x = 0; x < row.length; x++) {
+        this.setDot(x, y, this._config.defaultDotColor || Color.Gray);
+      }
+    });
+  }
+
+  private _render() {
+    this._dots.forEach((row, y) => {
+      row.forEach((dot, x) => {
+        // TODO: don't perform this check every time
+        if (!this._renderer) {
+          console.error("renderer undefined");
+          return;
+        }
+        this._renderer.setDot(x, y, dot);
+      });
+    });
+    this._renderer?.setText(this._text);
+  }
+
+  /**
+   * This function sets up listeners for keyboard and mouse input. We
+   * currently use P5 for this
+   * TODO: switch to native functions
+   */
+  _listenForInput() {
     new p5(
       function (this: Game, p: p5) {
-        p.setup = function (this: Game) {
-          let width =
-            this._dotSize * this._gridWidth +
-            this._gapSize * (this._gridWidth - 1);
-          let height =
-            this._dotSize * this._gridHeight +
-            this._gapSize * (this._gridHeight - 1) +
-            50;
-          p.createCanvas(width, height);
-
-          // Don't draw outlines around circles
-          p.noStroke();
-
-          p.frameRate(this._config.frameRate || 24);
-
-          if (this._config.create) {
-            this._config.create(this);
-          }
-        }.bind(this);
-
-        p.draw = function (this: Game) {
-          // Set the internal frame count to P5's frame count. This lets us
-          // return the frame count in `getFrameCount`
-          this._frameCount = p.frameCount;
-
-          // If the game has ended, end the P5 iteration and exit.
-          if (this._ended) {
-            p.noLoop();
-            return;
-          }
-
-          // Clear the drawing
-          p.clear();
-          if (this._clear) {
-            this._clearGrid();
-          }
-
-          if (this._config.update) {
-            this._config.update(this);
-          }
-
-          // Draw the grid
-          this._drawGrid(p);
-
-          // Draw the text
-          p.push();
-          p.textFont("monospace");
-          p.textSize(18);
-          let textY =
-            this._dotSize * this._gridHeight +
-            this._gapSize * (this._gridHeight - 1) +
-            32;
-          p.text(this._text, 0, textY);
-          p.pop();
-        }.bind(this);
-
         p.keyPressed = function (this: Game): boolean {
           if (!this._config.onKeyPress) {
             // Return true to not prevent the browser's default behaviour for
@@ -363,55 +517,7 @@ class Game {
             }
           }
         }.bind(this);
-      }.bind(this),
-      parentElement
+      }.bind(this)
     );
-  }
-
-  private _drawGrid(p: p5) {
-    const offset = this._dotSize + this._gapSize;
-    p.push();
-    p.translate(this._dotSize / 2, this._dotSize / 2);
-    this._dots.forEach((row, y) => {
-      row.forEach((dot, x) => {
-        p.fill(p.color(this._getCSSColor(dot)));
-        p.circle(x * offset, y * offset, this._dotSize);
-      });
-    });
-    p.pop();
-  }
-
-  private _clearGrid() {
-    this._dots.forEach((row, y) => {
-      for (let x = 0; x < row.length; x++) {
-        this.setDot(x, y, this._config.defaultDotColor || Color.Gray);
-      }
-    });
-  }
-
-  private _getCSSColor(color: Color): string {
-    switch (color) {
-      case Color.Gray:
-        return "gainsboro";
-      case Color.Black:
-        return "black";
-      case Color.Red:
-        return "red";
-      case Color.Orange:
-        return "orange";
-      case Color.Yellow:
-        return "gold";
-      case Color.Green:
-        return "green";
-      case Color.Blue:
-        return "blue";
-      case Color.Indigo:
-        return "indigo";
-      case Color.Violet:
-        return "violet";
-      default:
-        console.error(`no CSS color defined for ${color}`);
-        return "";
-    }
   }
 }

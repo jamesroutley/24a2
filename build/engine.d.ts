@@ -90,6 +90,27 @@ interface GameConfig {
     clearGrid?: boolean;
 }
 /**
+ * @ignore
+ * Renderer is the interface used by {@Link Game} to draw the dots.
+ */
+interface Renderer {
+    setDot: (x: number, y: number, val: Color) => void;
+    setText: (text: string) => void;
+}
+declare class P5Renderer {
+    private _gridHeight;
+    private _gridWidth;
+    private _text;
+    private _dots;
+    private _dotSize;
+    private _gapSize;
+    constructor(gridHeight: number, gridWidth: number, containerId?: string);
+    private _drawGrid;
+    private _getCSSColor;
+    setDot(x: number, y: number, val: Color): void;
+    setText(text: string): void;
+}
+/**
  * Game is the object that controls the actual running of the game. You
  * create a new one by passing in a {@Link GameConfig}. Calling `game.run()`
  * will start the game.
@@ -115,6 +136,8 @@ declare class Game {
     private _gridHeight;
     private _gridWidth;
     private _clear;
+    private _renderer?;
+    private _interval?;
     constructor(config: GameConfig);
     /**
      * 24a2 games have a line of text below the grid which can be set to show
@@ -151,7 +174,16 @@ declare class Game {
      * Calling `run` starts the game.
      */
     run(): void;
-    private _drawGrid;
+    /**
+     * The internal function that's called on every frame.
+     */
+    private _update;
     private _clearGrid;
-    private _getCSSColor;
+    private _render;
+    /**
+     * This function sets up listeners for keyboard and mouse input. We
+     * currently use P5 for this
+     * TODO: switch to native functions
+     */
+    _listenForInput(): void;
 }

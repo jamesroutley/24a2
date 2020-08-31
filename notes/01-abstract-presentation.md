@@ -23,6 +23,8 @@ of the game.
 interface Renderer {
   setDot: (x: number, y: number, val: Color) => void;
   setText: (text: string) => void;
+  // TODO: maybe we don't need this?
+  render: () => void;
 }
 ```
 
