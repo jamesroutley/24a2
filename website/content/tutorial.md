@@ -202,7 +202,7 @@ function update(game) {
   }
 
   // ...
-  
+
   game.setText(Score: ${score}`)
 }
 ```
