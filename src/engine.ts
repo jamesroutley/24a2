@@ -107,6 +107,120 @@ interface Renderer {
   setText: (text: string) => void;
 }
 
+class CanvasRenderer {
+  private _gridHeight = 24;
+  private _gridWidth = 24;
+  private _text = "";
+
+  // Variables used when rendering the grid
+  private _dotSize = 16;
+  private _gapSize = 8;
+
+  private _ctx: CanvasRenderingContext2D;
+
+  private _pixelRatio: number;
+
+  constructor(gridHeight: number, gridWidth: number, containerId?: string) {
+    this._gridHeight = gridHeight;
+    this._gridWidth = gridWidth;
+    this._pixelRatio = window.devicePixelRatio || 1;
+
+    this._ctx = this._createCanvasContext();
+  }
+
+  private _createCanvasContext(): CanvasRenderingContext2D {
+    // TODO: implement containerId
+
+    const width =
+      this._dotSize * this._gridWidth + this._gapSize * (this._gridWidth - 1);
+    const height =
+      this._dotSize * this._gridHeight +
+      this._gapSize * (this._gridHeight - 1) +
+      50;
+
+    const canvas = document.createElement("canvas");
+    // Set the DOM/CSS sizes to get good looking drawings on high DPI screens
+    // https://stackoverflow.com/a/26047748
+    // https://www.html5rocks.com/en/tutorials/canvas/hidpi/
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
+    canvas.width = width * this._pixelRatio;
+    canvas.height = height * this._pixelRatio;
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext("2d");
+    if (ctx == null) {
+      throw new Error("CanvasRenderer: error getting canvas context");
+    }
+    ctx.scale(this._pixelRatio, this._pixelRatio);
+
+    return ctx;
+  }
+
+  setDot(x: number, y: number, val: Color) {
+    // TODO: we can improve efficiency by keeping a cache of what the dot
+    // previously was, and only writing it to the canvas if it's changed.
+    // I'd like to have a benchmark test set up before coding this so we can
+    // demonstrate the benefit
+    const ctx = this._ctx;
+    const offset = this._dotSize + this._gapSize;
+
+    ctx.save();
+    // Move coordinates, so plotting a dot a (0, 0) is fully visible
+    ctx.translate(this._dotSize / 2, this._dotSize / 2);
+
+    // Move coordinates again, to where the dot should be plotted
+    ctx.translate(x * offset, y * offset);
+
+    // TODO: this doesn't seem to be necessary since we've added the DOM/CSS
+    // sizes code.
+    // Clear the space the dot occupies. This prevents some odd vertex
+    // reduction issues I've seen when drawing dots over themselves multiple
+    // times.
+    // ctx.clearRect(
+    //   -this._dotSize / 2,
+    //   -this._dotSize / 2,
+    //   this._dotSize,
+    //   this._dotSize
+    // );
+
+    ctx.fillStyle = this._getCSSColor(val);
+    ctx.beginPath();
+    ctx.arc(0, 0, this._dotSize / 2, 0, 2 * Math.PI);
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  private _getCSSColor(color: Color): string {
+    switch (color) {
+      case Color.Gray:
+        return "gainsboro";
+      case Color.Black:
+        return "black";
+      case Color.Red:
+        return "red";
+      case Color.Orange:
+        return "orange";
+      case Color.Yellow:
+        return "gold";
+      case Color.Green:
+        return "green";
+      case Color.Blue:
+        return "blue";
+      case Color.Indigo:
+        return "indigo";
+      case Color.Violet:
+        return "violet";
+      default:
+        console.error(`no CSS color defined for ${color}`);
+        return "";
+    }
+  }
+
+  setText(text: string) {}
+}
+
 class P5Renderer {
   private _gridHeight = 24;
   private _gridWidth = 24;
@@ -389,8 +503,13 @@ class Game {
    * Calling `run` starts the game.
    */
   run() {
+    console.log(document.readyState);
+    if (document.readyState !== "complete") {
+      window.addEventListener("load", this.run.bind(this));
+      return;
+    }
     if (!this._renderer) {
-      this._renderer = new P5Renderer(
+      this._renderer = new CanvasRenderer(
         this._gridHeight,
         this._gridWidth,
         this._config.containerId
@@ -406,6 +525,7 @@ class Game {
     // Delay is in milliseconds
     const delay = 1000 / (this._config.frameRate || 24);
     this._interval = window.setInterval(this._update.bind(this), delay);
+    // this._update.bind(this);
 
     this._listenForInput();
   }

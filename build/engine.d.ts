@@ -97,6 +97,20 @@ interface Renderer {
     setDot: (x: number, y: number, val: Color) => void;
     setText: (text: string) => void;
 }
+declare class CanvasRenderer {
+    private _gridHeight;
+    private _gridWidth;
+    private _text;
+    private _dotSize;
+    private _gapSize;
+    private _ctx;
+    private _pixelRatio;
+    constructor(gridHeight: number, gridWidth: number, containerId?: string);
+    private _createCanvasContext;
+    setDot(x: number, y: number, val: Color): void;
+    private _getCSSColor;
+    setText(text: string): void;
+}
 declare class P5Renderer {
     private _gridHeight;
     private _gridWidth;

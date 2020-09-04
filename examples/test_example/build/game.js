@@ -47,9 +47,6 @@ var config = {
     onKeyPress: onKeyPress,
     onDotClicked: onDotClicked,
     clearGrid: false,
-    gridHeight: 15,
-    gridWidth: 20,
-    frameRate: 10,
 };
 var game = new Game(config);
 game.run();

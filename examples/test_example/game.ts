@@ -66,9 +66,9 @@ let config: GameConfig = {
   onKeyPress: onKeyPress,
   onDotClicked: onDotClicked,
   clearGrid: false,
-  gridHeight: 15,
-  gridWidth: 20,
-  frameRate: 10,
+  // gridHeight: 15,
+  // gridWidth: 20,
+  // frameRate: 1,
 };
 
 let game = new Game(config);
