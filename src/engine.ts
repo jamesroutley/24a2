@@ -105,6 +105,8 @@ interface GameConfig {
 interface Renderer {
   setDot: (x: number, y: number, val: Color) => void;
   setText: (text: string) => void;
+  registerDotClicked: (dotClicked: (x: number, y: number) => void) => void;
+  registerKeyPressed: (keyPressed: (direction: Direction) => void) => void;
 }
 
 class CanvasRenderer {
@@ -116,19 +118,116 @@ class CanvasRenderer {
   private _dotSize = 16;
   private _gapSize = 8;
 
+  private _canvas: HTMLCanvasElement;
   private _ctx: CanvasRenderingContext2D;
 
   private _pixelRatio: number;
+
+  private _dotClicked?: (x: number, y: number) => void;
+  private _keyPressed?: (direction: Direction) => void;
 
   constructor(gridHeight: number, gridWidth: number, containerId?: string) {
     this._gridHeight = gridHeight;
     this._gridWidth = gridWidth;
     this._pixelRatio = window.devicePixelRatio || 1;
 
-    this._ctx = this._createCanvasContext(containerId);
+    const { canvas, ctx } = this._createCanvasContext(containerId);
+    this._ctx = ctx;
+    this._canvas = canvas;
+
+    this._listenForMouseClick();
+    this._listenForKeyPress();
   }
 
-  private _createCanvasContext(containerId?: string): CanvasRenderingContext2D {
+  registerDotClicked(dotClicked: (x: number, y: number) => void): void {
+    this._dotClicked = dotClicked;
+  }
+
+  registerKeyPressed(keyPressed: (direction: Direction) => void): void {
+    this._keyPressed = keyPressed;
+  }
+
+  private _listenForMouseClick() {
+    function onMouseClick(this: CanvasRenderer, event: MouseEvent) {
+      if (!this._dotClicked) {
+        return;
+      }
+      const rect = this._canvas.getBoundingClientRect();
+
+      // cx and cy are the x y coordinates of the mouse click relative to the
+      // canvas
+      const cx = event.clientX - rect.left;
+      const cy = event.clientY - rect.top;
+
+      const offset = this._dotSize + this._gapSize;
+      // Iterate over all dot locations, and check whether the distance
+      // between the click and the dot centre is less than the dot's
+      // radius
+      for (let y = 0; y < this._gridHeight; y++) {
+        for (let x = 0; x < this._gridWidth; x++) {
+          const dx = this._dotSize / 2 + x * offset;
+          const dy = this._dotSize / 2 + y * offset;
+
+          const distance = Math.sqrt(
+            Math.pow(cx - dx, 2) + Math.pow(cy - dy, 2)
+          );
+
+          if (distance < this._dotSize / 2) {
+            this._dotClicked(x, y);
+            // We've found the dot, so exit early
+            return;
+          }
+        }
+      }
+    }
+
+    this._canvas.addEventListener("click", onMouseClick.bind(this));
+  }
+
+  private _listenForKeyPress() {
+    function onKeyPress(this: CanvasRenderer, event: KeyboardEvent) {
+      if (!this._keyPressed) {
+        return;
+      }
+
+      // TODO: We currently ignore repeat keydown events. These are fired when
+      // a key is held down. We do this because there's a pause between the
+      // first (repeat: false) event and subsequent (repeat: true) events. This
+      // causes jittery behaviour.
+      // We should probably do something like call this._keyPressed at a
+      // constant rate.
+      // In the meantime, we just ignore repeated events. This is also how the
+      // P5 implementation worked.
+      if (event.repeat) {
+        return;
+      }
+
+      switch (event.key) {
+        case "ArrowUp":
+          event.preventDefault();
+          this._keyPressed(Direction.Up);
+          return;
+        case "ArrowDown":
+          event.preventDefault();
+          this._keyPressed(Direction.Down);
+          return;
+        case "ArrowLeft":
+          event.preventDefault();
+          this._keyPressed(Direction.Left);
+          return;
+        case "ArrowRight":
+          event.preventDefault();
+          this._keyPressed(Direction.Right);
+          return;
+      }
+    }
+
+    document.addEventListener("keydown", onKeyPress.bind(this));
+  }
+
+  private _createCanvasContext(
+    containerId?: string
+  ): { canvas: HTMLCanvasElement; ctx: CanvasRenderingContext2D } {
     const width =
       this._dotSize * this._gridWidth + this._gapSize * (this._gridWidth - 1);
     const height =
@@ -154,7 +253,7 @@ class CanvasRenderer {
     }
     ctx.scale(this._pixelRatio, this._pixelRatio);
 
-    return ctx;
+    return { canvas, ctx };
   }
 
   /**
@@ -565,6 +664,12 @@ class Game {
         this._gridWidth,
         this._config.containerId
       );
+      if (this._config.onDotClicked) {
+        this._renderer.registerDotClicked(this._config.onDotClicked);
+      }
+      if (this._config.onKeyPress) {
+        this._renderer.registerKeyPressed(this._config.onKeyPress);
+      }
     }
 
     if (this._config.create) {
@@ -578,7 +683,7 @@ class Game {
     this._interval = window.setInterval(this._update.bind(this), delay);
     // this._update.bind(this);
 
-    this._listenForInput();
+    // this._listenForInput();
   }
 
   /**

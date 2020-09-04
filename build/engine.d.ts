@@ -96,6 +96,8 @@ interface GameConfig {
 interface Renderer {
     setDot: (x: number, y: number, val: Color) => void;
     setText: (text: string) => void;
+    registerDotClicked: (dotClicked: (x: number, y: number) => void) => void;
+    registerKeyPressed: (keyPressed: (direction: Direction) => void) => void;
 }
 declare class CanvasRenderer {
     private _gridHeight;
@@ -103,9 +105,16 @@ declare class CanvasRenderer {
     private _text;
     private _dotSize;
     private _gapSize;
+    private _canvas;
     private _ctx;
     private _pixelRatio;
+    private _dotClicked?;
+    private _keyPressed?;
     constructor(gridHeight: number, gridWidth: number, containerId?: string);
+    registerDotClicked(dotClicked: (x: number, y: number) => void): void;
+    registerKeyPressed(keyPressed: (direction: Direction) => void): void;
+    private _listenForMouseClick;
+    private _listenForKeyPress;
     private _createCanvasContext;
     /**
      * Returns the element that should be our canvas's parent.
