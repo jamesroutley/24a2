@@ -218,7 +218,27 @@ class CanvasRenderer {
     }
   }
 
-  setText(text: string) {}
+  setText(text: string) {
+    const ctx = this._ctx;
+    const textSize = 20; // px
+    ctx.save();
+    const textX = 0;
+    const textY =
+      this._dotSize * this._gridHeight +
+      this._gapSize * (this._gridHeight - 1) +
+      32;
+
+    ctx.clearRect(
+      textX,
+      textY - textSize,
+      this._dotSize * this._gridWidth + this._gapSize * (this._gridWidth - 1),
+      100 // This is a bit arbitrary - we just want to clear the whole bottom of the canvas
+    );
+
+    ctx.font = `${textSize}px monospace`;
+    ctx.fillText(text, textX, textY);
+    ctx.restore();
+  }
 }
 
 class P5Renderer {
@@ -567,7 +587,11 @@ class Game {
         this._renderer.setDot(x, y, dot);
       });
     });
-    this._renderer?.setText(this._text);
+    if (!this._renderer) {
+      console.error("renderer undefined");
+      return;
+    }
+    this._renderer.setText(this._text);
   }
 
   /**

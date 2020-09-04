@@ -116,7 +116,20 @@ var CanvasRenderer = /** @class */ (function () {
                 return "";
         }
     };
-    CanvasRenderer.prototype.setText = function (text) { };
+    CanvasRenderer.prototype.setText = function (text) {
+        var ctx = this._ctx;
+        var textSize = 20; // px
+        ctx.save();
+        var textX = 0;
+        var textY = this._dotSize * this._gridHeight +
+            this._gapSize * (this._gridHeight - 1) +
+            32;
+        ctx.clearRect(textX, textY - textSize, this._dotSize * this._gridWidth + this._gapSize * (this._gridWidth - 1), 100 // This is a bit arbitrary - we just want to clear the whole bottom of the canvas
+        );
+        ctx.font = textSize + "px monospace";
+        ctx.fillText(text, textX, textY);
+        ctx.restore();
+    };
     return CanvasRenderer;
 }());
 var P5Renderer = /** @class */ (function () {
@@ -388,7 +401,6 @@ var Game = /** @class */ (function () {
     };
     Game.prototype._render = function () {
         var _this = this;
-        var _a;
         this._dots.forEach(function (row, y) {
             row.forEach(function (dot, x) {
                 // TODO: don't perform this check every time
@@ -399,7 +411,11 @@ var Game = /** @class */ (function () {
                 _this._renderer.setDot(x, y, dot);
             });
         });
-        (_a = this._renderer) === null || _a === void 0 ? void 0 : _a.setText(this._text);
+        if (!this._renderer) {
+            console.error("renderer undefined");
+            return;
+        }
+        this._renderer.setText(this._text);
     };
     /**
      * This function sets up listeners for keyboard and mouse input. We
