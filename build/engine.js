@@ -38,10 +38,9 @@ var CanvasRenderer = /** @class */ (function () {
         this._gridHeight = gridHeight;
         this._gridWidth = gridWidth;
         this._pixelRatio = window.devicePixelRatio || 1;
-        this._ctx = this._createCanvasContext();
+        this._ctx = this._createCanvasContext(containerId);
     }
-    CanvasRenderer.prototype._createCanvasContext = function () {
-        // TODO: implement containerId
+    CanvasRenderer.prototype._createCanvasContext = function (containerId) {
         var width = this._dotSize * this._gridWidth + this._gapSize * (this._gridWidth - 1);
         var height = this._dotSize * this._gridHeight +
             this._gapSize * (this._gridHeight - 1) +
@@ -54,13 +53,38 @@ var CanvasRenderer = /** @class */ (function () {
         canvas.style.height = height + "px";
         canvas.width = width * this._pixelRatio;
         canvas.height = height * this._pixelRatio;
-        document.body.appendChild(canvas);
+        var parent = this._getCanvasParent(containerId);
+        parent.appendChild(canvas);
         var ctx = canvas.getContext("2d");
         if (ctx == null) {
             throw new Error("CanvasRenderer: error getting canvas context");
         }
         ctx.scale(this._pixelRatio, this._pixelRatio);
         return ctx;
+    };
+    /**
+     * Returns the element that should be our canvas's parent.
+     * - If a containerId is specified, it'll be the element with that ID
+     * - If one isn't, the parent will be the <main> element
+     * - If a <main> element doesn't exist, we'll append one to the <body>
+     * - If multiple <main> elements exist, the first will be the parent
+     */
+    CanvasRenderer.prototype._getCanvasParent = function (containerId) {
+        if (containerId) {
+            var parent_1 = document.getElementById(containerId);
+            if (!parent_1) {
+                throw new Error("CanvasRenderer: could not find element with ID " + containerId);
+            }
+            return parent_1;
+        }
+        var mains = document.getElementsByTagName("main");
+        if (mains.length > 0) {
+            return mains[0];
+        }
+        // No main element exists - let's create one
+        var main = document.createElement("main");
+        document.body.appendChild(main);
+        return main;
     };
     CanvasRenderer.prototype.setDot = function (x, y, val) {
         // TODO: we can improve efficiency by keeping a cache of what the dot
@@ -271,11 +295,11 @@ var Game = /** @class */ (function () {
         // Retain support for the deprecated _gridHeight and _gridWidth config
         // options
         if (config._gridHeight && config._gridHeight > 0) {
-            console.log("The config option _gridHeight is deprecated, please use gridHeight instead");
+            console.warn("The config option _gridHeight is deprecated, please use gridHeight instead");
             this._gridHeight = config._gridHeight;
         }
         if (config._gridWidth && config._gridWidth > 0) {
-            console.log("The config option _gridWidth is deprecated, please use gridWidth instead");
+            console.warn("The config option _gridWidth is deprecated, please use gridWidth instead");
             this._gridWidth = config._gridWidth;
         }
         if (config.gridHeight && config.gridHeight > 0) {
@@ -355,7 +379,8 @@ var Game = /** @class */ (function () {
      * Calling `run` starts the game.
      */
     Game.prototype.run = function () {
-        console.log(document.readyState);
+        // We interact with the DOM when creating the canvas, so let's wait till
+        // the document has fully loaded
         if (document.readyState !== "complete") {
             window.addEventListener("load", this.run.bind(this));
             return;

@@ -107,6 +107,14 @@ declare class CanvasRenderer {
     private _pixelRatio;
     constructor(gridHeight: number, gridWidth: number, containerId?: string);
     private _createCanvasContext;
+    /**
+     * Returns the element that should be our canvas's parent.
+     * - If a containerId is specified, it'll be the element with that ID
+     * - If one isn't, the parent will be the <main> element
+     * - If a <main> element doesn't exist, we'll append one to the <body>
+     * - If multiple <main> elements exist, the first will be the parent
+     */
+    private _getCanvasParent;
     setDot(x: number, y: number, val: Color): void;
     private _getCSSColor;
     setText(text: string): void;

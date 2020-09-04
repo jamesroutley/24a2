@@ -125,12 +125,10 @@ class CanvasRenderer {
     this._gridWidth = gridWidth;
     this._pixelRatio = window.devicePixelRatio || 1;
 
-    this._ctx = this._createCanvasContext();
+    this._ctx = this._createCanvasContext(containerId);
   }
 
-  private _createCanvasContext(): CanvasRenderingContext2D {
-    // TODO: implement containerId
-
+  private _createCanvasContext(containerId?: string): CanvasRenderingContext2D {
     const width =
       this._dotSize * this._gridWidth + this._gapSize * (this._gridWidth - 1);
     const height =
@@ -146,7 +144,9 @@ class CanvasRenderer {
     canvas.style.height = height + "px";
     canvas.width = width * this._pixelRatio;
     canvas.height = height * this._pixelRatio;
-    document.body.appendChild(canvas);
+
+    const parent = this._getCanvasParent(containerId);
+    parent.appendChild(canvas);
 
     const ctx = canvas.getContext("2d");
     if (ctx == null) {
@@ -155,6 +155,36 @@ class CanvasRenderer {
     ctx.scale(this._pixelRatio, this._pixelRatio);
 
     return ctx;
+  }
+
+  /**
+   * Returns the element that should be our canvas's parent.
+   * - If a containerId is specified, it'll be the element with that ID
+   * - If one isn't, the parent will be the <main> element
+   * - If a <main> element doesn't exist, we'll append one to the <body>
+   * - If multiple <main> elements exist, the first will be the parent
+   */
+  private _getCanvasParent(containerId?: string): HTMLElement {
+    if (containerId) {
+      const parent = document.getElementById(containerId);
+      if (!parent) {
+        throw new Error(
+          `CanvasRenderer: could not find element with ID ${containerId}`
+        );
+      }
+      return parent;
+    }
+
+    const mains = document.getElementsByTagName("main");
+    if (mains.length > 0) {
+      return mains[0];
+    }
+
+    // No main element exists - let's create one
+    const main = document.createElement("main");
+    document.body.appendChild(main);
+
+    return main;
   }
 
   setDot(x: number, y: number, val: Color) {
@@ -416,13 +446,13 @@ class Game {
     // Retain support for the deprecated _gridHeight and _gridWidth config
     // options
     if (config._gridHeight && config._gridHeight > 0) {
-      console.log(
+      console.warn(
         "The config option _gridHeight is deprecated, please use gridHeight instead"
       );
       this._gridHeight = config._gridHeight;
     }
     if (config._gridWidth && config._gridWidth > 0) {
-      console.log(
+      console.warn(
         "The config option _gridWidth is deprecated, please use gridWidth instead"
       );
       this._gridWidth = config._gridWidth;
@@ -523,7 +553,8 @@ class Game {
    * Calling `run` starts the game.
    */
   run() {
-    console.log(document.readyState);
+    // We interact with the DOM when creating the canvas, so let's wait till
+    // the document has fully loaded
     if (document.readyState !== "complete") {
       window.addEventListener("load", this.run.bind(this));
       return;
