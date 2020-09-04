@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>24a2 on 24a2 - an ultra minimalist game engine</title>
@@ -9,6 +9,21 @@
     
 	<atom:link href="http://24a2.routley.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CanvasRenderer</title>
+      <link>http://24a2.routley.io/reference/classes/canvasrenderer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://24a2.routley.io/reference/classes/canvasrenderer/</guid>
+      <description>Hierarchy  CanvasRenderer  Index Constructors  constructor  Methods  registerDotClicked registerKeyPressed setDot setText  Constructors constructor + new CanvasRenderer(gridHeight: number, gridWidth: number, containerId?: undefined | string): CanvasRenderer
+Parameters:
+   Name Type     gridHeight number   gridWidth number   containerId? undefined &amp;#124; string    Returns: CanvasRenderer
+Methods registerDotClicked ▸ registerDotClicked(dotClicked: function): void
+Parameters:
+▪ dotClicked: function
+▸ (x: number, y: number): void</description>
+    </item>
     
     <item>
       <title>Color</title>

@@ -128,19 +128,6 @@ declare class CanvasRenderer {
     private _getCSSColor;
     setText(text: string): void;
 }
-declare class P5Renderer {
-    private _gridHeight;
-    private _gridWidth;
-    private _text;
-    private _dots;
-    private _dotSize;
-    private _gapSize;
-    constructor(gridHeight: number, gridWidth: number, containerId?: string);
-    private _drawGrid;
-    private _getCSSColor;
-    setDot(x: number, y: number, val: Color): void;
-    setText(text: string): void;
-}
 /**
  * Game is the object that controls the actual running of the game. You
  * create a new one by passing in a {@Link GameConfig}. Calling `game.run()`
@@ -211,10 +198,4 @@ declare class Game {
     private _update;
     private _clearGrid;
     private _render;
-    /**
-     * This function sets up listeners for keyboard and mouse input. We
-     * currently use P5 for this
-     * TODO: switch to native functions
-     */
-    _listenForInput(): void;
 }
