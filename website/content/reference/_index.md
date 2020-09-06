@@ -13,7 +13,6 @@ sidebar_label: "Globals"
 
 ### Classes
 
-* [CanvasRenderer](classes/canvasrenderer)
 * [Game](classes/game)
 
 ### Interfaces

@@ -79,7 +79,7 @@ default, this is set to true.</p>
 
 <p>• <strong>containerId</strong>? : <em>undefined | string</em></p>
 
-<p>The ID of a container to create the canvas in</p>
+<p>The ID of a container to create the canvas in.</p>
 
 <hr />
 
@@ -87,8 +87,8 @@ default, this is set to true.</p>
 
 <p>• <strong>create</strong>? : <em>undefined | function</em></p>
 
-<p><code>create</code> is a function which is called once, just before the game starts
-running. You can use it to initialise game state, if needed.</p>
+<p><code>create(game)</code> is a function which is called once, just before the game
+starts running. You can use it to initialise game state, if needed.</p>
 
 <hr />
 
@@ -129,8 +129,8 @@ running. You can use it to initialise game state, if needed.</p>
 
 <p>• <strong>onDotClicked</strong>? : <em>undefined | function</em></p>
 
-<p><code>onDotClicked</code> is a function which is called when the player clicks on a
-dot.</p>
+<p><code>onDotClicked(x, y)</code> is a function which is called when the player clicks
+on a dot.</p>
 
 <hr />
 
@@ -138,8 +138,8 @@ dot.</p>
 
 <p>• <strong>onKeyPress</strong>? : <em>undefined | function</em></p>
 
-<p><code>onKeyPress</code> is a function which is called when the player presses one of
-the arrow keys.</p>
+<p><code>onKeyPress(direction)</code> is a function which is called when the player
+presses one of the arrow keys.</p>
 
 <hr />
 
@@ -147,8 +147,8 @@ the arrow keys.</p>
 
 <p>• <strong>update</strong>? : <em>undefined | function</em></p>
 
-<p><code>update</code> is repeatedly called as the game runs. You can use it to define
-the main functionality of your game.</p>
+<p><code>update(game)</code> is repeatedly called as the game runs. You can use it to
+define the main functionality of your game.</p>
  
           </main>
         </div>

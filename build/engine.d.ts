@@ -29,27 +29,27 @@ declare enum Direction {
  */
 interface GameConfig {
     /**
-     * `create` is a function which is called once, just before the game starts
-     * running. You can use it to initialise game state, if needed.
+     * `create(game)` is a function which is called once, just before the game
+     * starts running. You can use it to initialise game state, if needed.
      */
     create?: (game: Game) => void;
     /**
-     * `update` is repeatedly called as the game runs. You can use it to define
-     * the main functionality of your game.
+     * `update(game)` is repeatedly called as the game runs. You can use it to
+     * define the main functionality of your game.
      */
     update?: (game: Game) => void;
     /**
-     * `onKeyPress` is a function which is called when the player presses one of
-     * the arrow keys.
+     * `onKeyPress(direction)` is a function which is called when the player
+     * presses one of the arrow keys.
      */
     onKeyPress?: (direction: Direction) => void;
     /**
-     * `onDotClicked` is a function which is called when the player clicks on a
-     * dot.
+     * `onDotClicked(x, y)` is a function which is called when the player clicks
+     * on a dot.
      */
     onDotClicked?: (x: number, y: number) => void;
     /**
-     * The ID of a container to create the canvas in
+     * The ID of a container to create the canvas in.
      */
     containerId?: string;
     /**
@@ -90,45 +90,6 @@ interface GameConfig {
     clearGrid?: boolean;
 }
 /**
- * @ignore
- * Renderer is the interface used by {@Link Game} to draw the dots.
- */
-interface Renderer {
-    setDot: (x: number, y: number, val: Color) => void;
-    setText: (text: string) => void;
-    registerDotClicked: (dotClicked: (x: number, y: number) => void) => void;
-    registerKeyPressed: (keyPressed: (direction: Direction) => void) => void;
-}
-declare class CanvasRenderer {
-    private _gridHeight;
-    private _gridWidth;
-    private _text;
-    private _dotSize;
-    private _gapSize;
-    private _canvas;
-    private _ctx;
-    private _pixelRatio;
-    private _dotClicked?;
-    private _keyPressed?;
-    constructor(gridHeight: number, gridWidth: number, containerId?: string);
-    registerDotClicked(dotClicked: (x: number, y: number) => void): void;
-    registerKeyPressed(keyPressed: (direction: Direction) => void): void;
-    private _listenForMouseClick;
-    private _listenForKeyPress;
-    private _createCanvasContext;
-    /**
-     * Returns the element that should be our canvas's parent.
-     * - If a containerId is specified, it'll be the element with that ID
-     * - If one isn't, the parent will be the <main> element
-     * - If a <main> element doesn't exist, we'll append one to the <body>
-     * - If multiple <main> elements exist, the first will be the parent
-     */
-    private _getCanvasParent;
-    setDot(x: number, y: number, val: Color): void;
-    private _getCSSColor;
-    setText(text: string): void;
-}
-/**
  * Game is the object that controls the actual running of the game. You
  * create a new one by passing in a {@Link GameConfig}. Calling `game.run()`
  * will start the game.
@@ -149,8 +110,6 @@ declare class Game {
     private _ended;
     private _frameCount;
     private _dots;
-    private _dotSize;
-    private _gapSize;
     private _gridHeight;
     private _gridWidth;
     private _clear;
@@ -198,4 +157,52 @@ declare class Game {
     private _update;
     private _clearGrid;
     private _render;
+}
+/**
+ * @ignore
+ * IOManager is the interface used by {@Link Game} to manage the game's input
+ * (e.g. keyboard or mouse events) and output (drawing the game).
+ * IOManager does not form part of 24a2's public API, and can change without
+ * warning
+ */
+interface IOManager {
+    setDot: (x: number, y: number, val: Color) => void;
+    setText: (text: string) => void;
+    registerDotClicked: (dotClicked: (x: number, y: number) => void) => void;
+    registerKeyPressed: (keyPressed: (direction: Direction) => void) => void;
+}
+/**
+ * @ignore
+ * CanvasIOManager is the object that manages 24a2's input (capturing keyboard
+ * and mouse events) and output (rendering the game to a HTML Canvas). It's the
+ * only bit of 24a2 which is aware we're running in a browser.
+ * CanvasIOManager does not form part of 24a2's public API, and can change
+ * without warning
+ */
+declare class CanvasIOManager {
+    private _gridHeight;
+    private _gridWidth;
+    private _dotSize;
+    private _gapSize;
+    private _canvas;
+    private _ctx;
+    private _dotClicked?;
+    private _keyPressed?;
+    constructor(gridHeight: number, gridWidth: number, containerId?: string);
+    registerDotClicked(dotClicked: (x: number, y: number) => void): void;
+    registerKeyPressed(keyPressed: (direction: Direction) => void): void;
+    private _listenForMouseClick;
+    private _listenForKeyPress;
+    private _createCanvasContext;
+    /**
+     * Returns the element that should be our canvas's parent.
+     * - If a containerId is specified, it'll be the element with that ID
+     * - If one isn't, the parent will be the <main> element
+     * - If a <main> element doesn't exist, we'll append one to the <body>
+     * - If multiple <main> elements exist, the first will be the parent
+     */
+    private _getCanvasParent;
+    setDot(x: number, y: number, val: Color): void;
+    private _getCSSColor;
+    setText(text: string): void;
 }

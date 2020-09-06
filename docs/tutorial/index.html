@@ -35,7 +35,7 @@
         <div>
           <main> 
 
-<p>Let&rsquo;s build a simple game using 24a2. In our game, we&rsquo;ll have a player who has a
+<p>Let&rsquo;s build a simple game using 24a2. In our game, the player will have a
 limited time to move around and collect items. Each item will give the player a
 point.</p>
 
@@ -53,16 +53,14 @@ webpage, and <code>game.js</code>, which contains our game code.</p>
 the following code into it:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;html&gt;
   &lt;head&gt;
-    &lt;script src=<span style="color:#a31515">&#34;https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js&#34;</span>&gt;&lt;/script&gt;
     &lt;script src=<span style="color:#a31515">&#34;https://cdn.jsdelivr.net/gh/jamesroutley/24a2/build/engine.js&#34;</span>&gt;&lt;/script&gt;
     &lt;script src=<span style="color:#a31515">&#34;game.js&#34;</span>&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;&lt;/body&gt;
 &lt;/html&gt;</code></pre></div>
-<p>Here, we&rsquo;ve created a HTML file that runs three JavaScript scripts:</p>
+<p>Here, we&rsquo;ve created a HTML file that runs two JavaScript scripts:</p>
 
 <ol>
-<li>Imports <a href="https://p5js.org">P5.js</a>, the graphics library we use to draw things</li>
 <li>Imports the 24a2 game engine code</li>
 <li>Runs the script where we&rsquo;ll define our game</li>
 </ol>
@@ -196,15 +194,15 @@ to stop this from happening:</p>
 </code></pre></div>
 <p>We create a new global variable to store the coordinates of each item, <code>items</code>.</p>
 
-<p>In the <code>update</code> function, we generate a new item at a random location, but only
-on 5% of the calls to <code>update</code>. We also only create the item if it isn&rsquo;t where
-the player currently is.</p>
+<p>In the <code>update</code> function, we generate a new item at a random location<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>, but
+only on 5% of the calls to <code>update</code>. We also only create the item if it isn&rsquo;t
+where the player currently is.</p>
 
 <h2 id="6-collecting-items">6. Collecting items</h2>
 
-<p>Currently, nothing happens when our player walks over an item. Lets change it so
-the item disappears, and the user&rsquo;s score increases. We can display the user&rsquo;s
-current score using the <code>game.setText</code> function.</p>
+<p>Currently, nothing happens when our player walks over an item. Let&rsquo;s change it
+so the item disappears, and the user&rsquo;s score increases. We can display the
+user&rsquo;s current score using the <code>game.setText</code> function.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">function</span> update(game) {
   <span style="color:#00f">for</span> (<span style="color:#00f">let</span> i = 0; i &lt; items.length; i++) {
     <span style="color:#00f">const</span> item = items[i];
@@ -224,7 +222,7 @@ player, we increment the score and remove the item from the list.</p>
 <h2 id="7-time-limit">7. Time limit</h2>
 
 <p>So far, we&rsquo;ve got a game that lets us move around, and collect items which give
-us points. Let&rsquo;s add a bit of drama by adding a time limit to the game, after
+us points. Let&rsquo;s create some drama by adding a time limit to the game, after
 which the game ends.</p>
 
 <p>To do this, we&rsquo;ll want to have a variable which stores the current time left.
@@ -275,6 +273,25 @@ ideas for things to do:</p>
 <li>Use <code>localStorage</code> to store the player&rsquo;s high score, and let them know if
 they&rsquo;ve beaten it when the game ends</li>
 </ol>
+
+<!-- prettier-ignore -->
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1"><p>The <code>x</code> and <code>y</code> coordinates are both chosen with the code
+  <code>Math.floor(Math.random() * 24)</code>. Let&rsquo;s have a quick look at what this is
+  doing.</p>
+
+<p><code>Math.random()</code> returns a number greater than or equal to 0, and
+  less than 1. We multiply this by 24, to give us a number greater than or
+  equal to 0, and less that 24. This number can inclued a fraction, so we
+  use <code>Math.floor</code> to remove it. This gives us an integer in the range 0 to
+  23 (inclusive).</p>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
  
           </main>
         </div>

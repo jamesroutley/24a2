@@ -44,7 +44,7 @@ ___
 
 • **containerId**? : *undefined | string*
 
-The ID of a container to create the canvas in
+The ID of a container to create the canvas in.
 
 ___
 
@@ -52,8 +52,8 @@ ___
 
 • **create**? : *undefined | function*
 
-`create` is a function which is called once, just before the game starts
-running. You can use it to initialise game state, if needed.
+`create(game)` is a function which is called once, just before the game
+starts running. You can use it to initialise game state, if needed.
 
 ___
 
@@ -94,8 +94,8 @@ ___
 
 • **onDotClicked**? : *undefined | function*
 
-`onDotClicked` is a function which is called when the player clicks on a
-dot.
+`onDotClicked(x, y)` is a function which is called when the player clicks
+on a dot.
 
 ___
 
@@ -103,8 +103,8 @@ ___
 
 • **onKeyPress**? : *undefined | function*
 
-`onKeyPress` is a function which is called when the player presses one of
-the arrow keys.
+`onKeyPress(direction)` is a function which is called when the player
+presses one of the arrow keys.
 
 ___
 
@@ -112,5 +112,5 @@ ___
 
 • **update**? : *undefined | function*
 
-`update` is repeatedly called as the game runs. You can use it to define
-the main functionality of your game.
+`update(game)` is repeatedly called as the game runs. You can use it to
+define the main functionality of your game.

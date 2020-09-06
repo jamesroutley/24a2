@@ -2,7 +2,7 @@
 title: Tutorial
 ---
 
-Let's build a simple game using 24a2. In our game, we'll have a player who has a
+Let's build a simple game using 24a2. In our game, the player will have a
 limited time to move around and collect items. Each item will give the player a
 point.
 
@@ -22,7 +22,6 @@ the following code into it:
 ```html
 <html>
   <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jamesroutley/24a2/build/engine.js"></script>
     <script src="game.js"></script>
   </head>
@@ -30,11 +29,10 @@ the following code into it:
 </html>
 ```
 
-Here, we've created a HTML file that runs three JavaScript scripts:
+Here, we've created a HTML file that runs two JavaScript scripts:
 
-1. Imports [P5.js](https://p5js.org), the graphics library we use to draw things
-2. Imports the 24a2 game engine code
-3. Runs the script where we'll define our game
+1. Imports the 24a2 game engine code
+2. Runs the script where we'll define our game
 
 Next, create a new file called `game.js`, and copy and paste the following code
 into it:
@@ -178,15 +176,15 @@ function update(game) {
 
 We create a new global variable to store the coordinates of each item, `items`.
 
-In the `update` function, we generate a new item at a random location, but only
-on 5% of the calls to `update`. We also only create the item if it isn't where
-the player currently is.
+In the `update` function, we generate a new item at a random location[^1], but
+only on 5% of the calls to `update`. We also only create the item if it isn't
+where the player currently is.
 
 ## 6. Collecting items
 
-Currently, nothing happens when our player walks over an item. Lets change it so
-the item disappears, and the user's score increases. We can display the user's
-current score using the `game.setText` function.
+Currently, nothing happens when our player walks over an item. Let's change it
+so the item disappears, and the user's score increases. We can display the
+user's current score using the `game.setText` function.
 
 ```javascript
 function update(game) {
@@ -209,7 +207,7 @@ player, we increment the score and remove the item from the list.
 ## 7. Time limit
 
 So far, we've got a game that lets us move around, and collect items which give
-us points. Let's add a bit of drama by adding a time limit to the game, after
+us points. Let's create some drama by adding a time limit to the game, after
 which the game ends.
 
 To do this, we'll want to have a variable which stores the current time left.
@@ -267,3 +265,14 @@ ideas for things to do:
 3. Add items which give the player more time
 4. Use `localStorage` to store the player's high score, and let them know if
    they've beaten it when the game ends
+
+<!-- prettier-ignore -->
+[^1]: The `x` and `y` coordinates are both chosen with the code
+      `Math.floor(Math.random() * 24)`. Let's have a quick look at what this is
+      doing. 
+      
+      `Math.random()` returns a number greater than or equal to 0, and
+      less than 1. We multiply this by 24, to give us a number greater than or
+      equal to 0, and less that 24. This number can inclued a fraction, so we
+      use `Math.floor` to remove it. This gives us an integer in the range 0 to
+      23 (inclusive).
