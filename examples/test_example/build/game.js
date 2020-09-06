@@ -46,6 +46,11 @@ var config = {
     update: update,
     onKeyPress: onKeyPress,
     onDotClicked: onDotClicked,
+    clearGrid: false,
+    gridHeight: 20,
+    gridWidth: 20,
+    frameRate: 20,
+    containerId: "my_id",
 };
 var game = new Game(config);
 game.run();

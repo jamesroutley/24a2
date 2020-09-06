@@ -48,10 +48,13 @@
 <h3 id="properties">Properties</h3>
 
 <ul>
+<li><a href="../gameconfig#optional-cleargrid">clearGrid</a></li>
 <li><a href="../gameconfig#optional-containerid">containerId</a></li>
 <li><a href="../gameconfig#optional-create">create</a></li>
 <li><a href="../gameconfig#optional-defaultdotcolor">defaultDotColor</a></li>
 <li><a href="../gameconfig#optional-framerate">frameRate</a></li>
+<li><a href="../gameconfig#optional-gridheight">gridHeight</a></li>
+<li><a href="../gameconfig#optional-gridwidth">gridWidth</a></li>
 <li><a href="../gameconfig#optional-ondotclicked">onDotClicked</a></li>
 <li><a href="../gameconfig#optional-onkeypress">onKeyPress</a></li>
 <li><a href="../gameconfig#optional-update">update</a></li>
@@ -59,11 +62,24 @@
 
 <h2 id="properties-1">Properties</h2>
 
+<h3 id="optional-cleargrid"><code>Optional</code> clearGrid</h3>
+
+<p>• <strong>clearGrid</strong>? : <em>undefined | false | true</em></p>
+
+<p>Specifies whether 24a2 should clear the grid at the beginning of each
+frame. 24a2 clears the grid by setting the colour of every dot to
+<a href="../gameconfig#optional-defaultdotcolor">GameConfig.defaultDotColor</a>. Setting clearGrid to false lets you
+simplify the code for some games by letting 24a2 store the state for each
+dot. You can use <a href="../../classes/game#getdot">Game.getDot</a> to read back the colour of dots. By
+default, this is set to true.</p>
+
+<hr />
+
 <h3 id="optional-containerid"><code>Optional</code> containerId</h3>
 
 <p>• <strong>containerId</strong>? : <em>undefined | string</em></p>
 
-<p>The ID of a container to create the canvas in</p>
+<p>The ID of a container to create the canvas in.</p>
 
 <hr />
 
@@ -71,8 +87,8 @@
 
 <p>• <strong>create</strong>? : <em>undefined | function</em></p>
 
-<p><code>create</code> is a function which is called once, just before the game starts
-running. You can use it to initialise game state, if needed.</p>
+<p><code>create(game)</code> is a function which is called once, just before the game
+starts running. You can use it to initialise game state, if needed.</p>
 
 <hr />
 
@@ -93,12 +109,28 @@ running. You can use it to initialise game state, if needed.</p>
 
 <hr />
 
+<h3 id="optional-gridheight"><code>Optional</code> gridHeight</h3>
+
+<p>• <strong>gridHeight</strong>? : <em>undefined | number</em></p>
+
+<p>Sets the height of the grid. By default, this is set to 24.</p>
+
+<hr />
+
+<h3 id="optional-gridwidth"><code>Optional</code> gridWidth</h3>
+
+<p>• <strong>gridWidth</strong>? : <em>undefined | number</em></p>
+
+<p>Sets the width of the grid. By default, this is set to 24.</p>
+
+<hr />
+
 <h3 id="optional-ondotclicked"><code>Optional</code> onDotClicked</h3>
 
 <p>• <strong>onDotClicked</strong>? : <em>undefined | function</em></p>
 
-<p><code>onDotClicked</code> is a function which is called when the player clicks on a
-dot.</p>
+<p><code>onDotClicked(x, y)</code> is a function which is called when the player clicks
+on a dot.</p>
 
 <hr />
 
@@ -106,8 +138,8 @@ dot.</p>
 
 <p>• <strong>onKeyPress</strong>? : <em>undefined | function</em></p>
 
-<p><code>onKeyPress</code> is a function which is called when the player presses one of
-the arrow keys.</p>
+<p><code>onKeyPress(direction)</code> is a function which is called when the player
+presses one of the arrow keys.</p>
 
 <hr />
 
@@ -115,8 +147,8 @@ the arrow keys.</p>
 
 <p>• <strong>update</strong>? : <em>undefined | function</em></p>
 
-<p><code>update</code> is repeatedly called as the game runs. You can use it to define
-the main functionality of your game.</p>
+<p><code>update(game)</code> is repeatedly called as the game runs. You can use it to
+define the main functionality of your game.</p>
  
           </main>
         </div>

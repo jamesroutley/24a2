@@ -54,10 +54,8 @@ let config = { create: create, // A function you&amp;#39;ve defined  update: upd
       
       <guid>http://24a2.routley.io/reference/interfaces/gameconfig/</guid>
       <description>GameConfig is the object you pass when contructing a new Game.
-Hierarchy  GameConfig  Index Properties  containerId create defaultDotColor frameRate onDotClicked onKeyPress update  Properties Optional containerId • containerId? : undefined | string
-The ID of a container to create the canvas in
-Optional create • create? : undefined | function
-create is a function which is called once, just before the game starts running. You can use it to initialise game state, if needed.</description>
+Hierarchy  GameConfig  Index Properties  clearGrid containerId create defaultDotColor frameRate gridHeight gridWidth onDotClicked onKeyPress update  Properties Optional clearGrid • clearGrid? : undefined | false | true
+Specifies whether 24a2 should clear the grid at the beginning of each frame. 24a2 clears the grid by setting the colour of every dot to GameConfig.defaultDotColor. Setting clearGrid to false lets you simplify the code for some games by letting 24a2 store the state for each dot.</description>
     </item>
     
     <item>
@@ -93,7 +91,7 @@ create is a function which is called once, just before the game starts running. 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://24a2.routley.io/tutorial/</guid>
-      <description>Let&amp;rsquo;s build a simple game using 24a2. In our game, we&amp;rsquo;ll have a player who has a limited time to move around and collect items. Each item will give the player a point.
+      <description>Let&amp;rsquo;s build a simple game using 24a2. In our game, the player will have a limited time to move around and collect items. Each item will give the player a point.
 Play the game
 See the source code
 1. Basic setup 24a2 games are written in JavaScript, and are played in the browser. In this step, we&amp;rsquo;ll create two files, an index.html which stores the content of our webpage, and game.</description>
