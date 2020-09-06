@@ -136,13 +136,13 @@ var Game = /** @class */ (function () {
      * Calling `run` starts the game.
      */
     Game.prototype.run = function () {
-        // We interact with the DOM when creating the canvas, so let's wait till
-        // the document has fully loaded
-        if (document.readyState !== "complete") {
-            window.addEventListener("load", this.run.bind(this));
-            return;
-        }
         if (!this._renderer) {
+            // We interact with the DOM when creating the canvas, so let's wait till
+            // the document has fully loaded
+            if (document.readyState !== "complete") {
+                window.addEventListener("load", this.run.bind(this));
+                return;
+            }
             this._renderer = new CanvasIOManager(this._gridHeight, this._gridWidth, this._config.containerId);
             if (this._config.onDotClicked) {
                 this._renderer.registerDotClicked(this._config.onDotClicked);
@@ -159,7 +159,6 @@ var Game = /** @class */ (function () {
         // Delay is in milliseconds
         var delay = 1000 / (this._config.frameRate || 24);
         this._interval = window.setInterval(this._update.bind(this), delay);
-        // this._update.bind(this);
     };
     /**
      * The internal function that's called on every frame.

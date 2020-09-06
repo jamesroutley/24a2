@@ -203,7 +203,9 @@ where the player currently is.</p>
 <p>Currently, nothing happens when our player walks over an item. Let&rsquo;s change it
 so the item disappears, and the user&rsquo;s score increases. We can display the
 user&rsquo;s current score using the <code>game.setText</code> function.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">function</span> update(game) {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">let</span> score = 0;
+
+<span style="color:#00f">function</span> update(game) {
   <span style="color:#00f">for</span> (<span style="color:#00f">let</span> i = 0; i &lt; items.length; i++) {
     <span style="color:#00f">const</span> item = items[i];
     <span style="color:#00f">if</span> (item.x == player.x &amp;&amp; item.y == player.y) {
@@ -214,8 +216,10 @@ user&rsquo;s current score using the <code>game.setText</code> function.</p>
   }
 
   <span style="color:#008000">// ...
-</span><span style="color:#008000"></span>}
-</code></pre></div>
+</span><span style="color:#008000"></span>
+  game.setText(Score: ${score}<span style="color:#a31515">`)
+</span><span style="color:#a31515">}
+</span></code></pre></div>
 <p>We iterate through all the items, and if the item is at the same position as the
 player, we increment the score and remove the item from the list.</p>
 
