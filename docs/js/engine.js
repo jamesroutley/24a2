@@ -74,7 +74,7 @@ var Game = /** @class */ (function () {
         for (var y = 0; y < this._dots.length; y++) {
             var row = new Array(this._gridWidth);
             for (var i = 0; i < row.length; i++) {
-                row[i] = this._config.defaultDotColor;
+                row[i] = this._config.defaultDotColor || Color.Gray;
             }
             this._dots[y] = row;
         }
@@ -353,6 +353,9 @@ var CanvasIOManager = /** @class */ (function () {
         ctx.translate(this._dotSize / 2, this._dotSize / 2);
         // Move coordinates again, to where the dot should be plotted
         ctx.translate(x * offset, y * offset);
+        // Clear the space the dot occupies. This prevents minor outline issues
+        // when changing the colour of a dot
+        ctx.clearRect(-this._dotSize / 2, -this._dotSize / 2, this._dotSize, this._dotSize);
         ctx.fillStyle = this._getCSSColor(val);
         ctx.beginPath();
         ctx.arc(0, 0, this._dotSize / 2, 0, 2 * Math.PI);

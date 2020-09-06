@@ -65,7 +65,7 @@ let config: GameConfig = {
   update: update,
   onKeyPress: onKeyPress,
   onDotClicked: onDotClicked,
-  clearGrid: false,
+  // clearGrid: false,
   gridHeight: 20,
   gridWidth: 20,
   frameRate: 20,
