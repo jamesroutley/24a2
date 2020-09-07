@@ -1,6 +1,6 @@
 {
   "name": "24a2",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "license": "MIT",
   "devDependencies": {
     "typedoc": "^0.17.6",
