@@ -2,6 +2,14 @@
   "name": "24a2",
   "version": "0.2.1",
   "license": "MIT",
+  "main": "build/engine.js",
+  "typings": "build/engine.d.ts",
+  "keywords": [
+    "24a2",
+    "game",
+    "engine",
+    "javascript"
+  ],
   "devDependencies": {
     "typedoc": "^0.17.6",
     "typedoc-plugin-markdown": "^2.2.17",

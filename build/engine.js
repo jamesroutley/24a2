@@ -1,4 +1,6 @@
 "use strict";
+exports.__esModule = true;
+exports.Game = exports.Direction = exports.Color = void 0;
 /**
  * Color is a set of constants which you can use to set the color of dots.
  *
@@ -20,6 +22,7 @@ var Color;
     Color["Indigo"] = "INDIGO";
     Color["Violet"] = "VIOLET";
 })(Color || (Color = {}));
+exports.Color = Color;
 var Direction;
 (function (Direction) {
     Direction["Left"] = "LEFT";
@@ -27,6 +30,7 @@ var Direction;
     Direction["Up"] = "UP";
     Direction["Down"] = "DOWN";
 })(Direction || (Direction = {}));
+exports.Direction = Direction;
 /**
  * Game is the object that controls the actual running of the game. You
  * create a new one by passing in a {@Link GameConfig}. Calling `game.run()`
@@ -201,6 +205,7 @@ var Game = /** @class */ (function () {
     };
     return Game;
 }());
+exports.Game = Game;
 /**
  * @ignore
  * CanvasIOManager is the object that manages 24a2's input (capturing keyboard

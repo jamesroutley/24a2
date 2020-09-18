@@ -79,10 +79,12 @@ interface GameConfig {
   gridHeight?: number;
 
   /**
+   * @deprecated
    * @ignore
    */
   _gridWidth?: number;
   /**
+   * @deprecated
    * @ignore
    */
   _gridHeight?: number;
@@ -596,3 +598,5 @@ class CanvasIOManager {
     ctx.restore();
   }
 }
+
+export { Color, Direction, GameConfig, Game };

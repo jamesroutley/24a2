@@ -72,10 +72,12 @@ interface GameConfig {
      */
     gridHeight?: number;
     /**
+     * @deprecated
      * @ignore
      */
     _gridWidth?: number;
     /**
+     * @deprecated
      * @ignore
      */
     _gridHeight?: number;
@@ -158,51 +160,4 @@ declare class Game {
     private _clearGrid;
     private _render;
 }
-/**
- * @ignore
- * IOManager is the interface used by {@Link Game} to manage the game's input
- * (e.g. keyboard or mouse events) and output (drawing the game).
- * IOManager does not form part of 24a2's public API, and can change without
- * warning
- */
-interface IOManager {
-    setDot: (x: number, y: number, val: Color) => void;
-    setText: (text: string) => void;
-    registerDotClicked: (dotClicked: (x: number, y: number) => void) => void;
-    registerKeyPressed: (keyPressed: (direction: Direction) => void) => void;
-}
-/**
- * @ignore
- * CanvasIOManager is the object that manages 24a2's input (capturing keyboard
- * and mouse events) and output (rendering the game to a HTML Canvas). It's the
- * only bit of 24a2 which is aware we're running in a browser.
- * CanvasIOManager does not form part of 24a2's public API, and can change
- * without warning
- */
-declare class CanvasIOManager {
-    private _gridHeight;
-    private _gridWidth;
-    private _dotSize;
-    private _gapSize;
-    private _canvas;
-    private _ctx;
-    private _dotClicked?;
-    private _keyPressed?;
-    constructor(gridHeight: number, gridWidth: number, containerId?: string);
-    registerDotClicked(dotClicked: (x: number, y: number) => void): void;
-    registerKeyPressed(keyPressed: (direction: Direction) => void): void;
-    private _listenForMouseClick;
-    private _listenForKeyPress;
-    private _createCanvasContext;
-    /**
-     * Returns the element that should be our canvas's parent.
-     * - If a containerId is specified, it'll be the element with that ID
-     * - If one isn't, the parent will be the <main> element
-     * - If a <main> element doesn't exist, we'll append one to the <body>
-     * - If multiple <main> elements exist, the first will be the parent
-     */
-    private _getCanvasParent;
-    setDot(x: number, y: number, val: Color): void;
-    private _getCSSColor;
-    setText(text: string): void;
-}
+export { Color, Direction, GameConfig, Game };

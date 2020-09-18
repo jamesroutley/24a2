@@ -1,3 +1,5 @@
+import { Direction, Color, Game } from "../../build/engine";
+
 interface Point {
   x: number;
   y: number;
@@ -20,7 +22,7 @@ let snakeDirection = Direction.Right;
 // TODO: randomise snake start position
 let snake: Array<Point> = [
   { x: 7, y: 7 },
-  { x: 6, y: 7 }
+  { x: 6, y: 7 },
 ];
 
 let pill: Point;
@@ -45,7 +47,7 @@ function createPill() {
   do {
     proposedPill = {
       x: Math.floor(Math.random() * 24),
-      y: Math.floor(Math.random() * 24)
+      y: Math.floor(Math.random() * 24),
     };
   } while (pointInSnake(proposedPill));
 
@@ -65,7 +67,7 @@ function update(game: Game) {
   if (pointInSnake(nextLocation)) {
     console.log("here");
     // Color the snake in red
-    snake.forEach(dot => {
+    snake.forEach((dot) => {
       game.setDot(dot.x, dot.y, Color.Red);
     });
     game.end();
@@ -94,7 +96,7 @@ function update(game: Game) {
   }
 
   // Draw snake and pill
-  snake.forEach(dot => {
+  snake.forEach((dot) => {
     game.setDot(dot.x, dot.y, Color.Black);
   });
   game.setDot(pill.x, pill.y, Color.Red);
@@ -174,7 +176,7 @@ let config = {
   create: create,
   update: update,
   onKeyPress: onKeyPress,
-  frameRate: 5
+  frameRate: 5,
 };
 
 let game = new Game(config);
