@@ -7,7 +7,7 @@
  * game.setDot(x, y, Color.Red)
  * ```
  */
-enum Color {
+export enum Color {
   Gray = "GRAY",
   Black = "BLACK",
   Red = "RED",
@@ -19,7 +19,7 @@ enum Color {
   Violet = "VIOLET",
 }
 
-enum Direction {
+export enum Direction {
   Left = "LEFT",
   Right = "RIGHT",
   Up = "UP",
@@ -29,7 +29,7 @@ enum Direction {
 /**
  * GameConfig is the object you pass when contructing a new {@link Game}.
  */
-interface GameConfig {
+export interface GameConfig {
   /**
    * `create(game)` is a function which is called once, just before the game
    * starts running. You can use it to initialise game state, if needed.
@@ -113,7 +113,7 @@ interface GameConfig {
  * game.run()
  * ```
  */
-class Game {
+export class Game {
   private _config: GameConfig;
 
   private _text = "";

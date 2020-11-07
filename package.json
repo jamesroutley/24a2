@@ -1,10 +1,14 @@
 {
   "name": "24a2",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "license": "MIT",
   "devDependencies": {
     "typedoc": "^0.17.6",
     "typedoc-plugin-markdown": "^2.2.17",
     "typescript": "^3.8.3"
-  }
+  },
+  "description": "![](/website/static/img/banner.png)",
+  "type": "module",
+  "types": "build/engine.d.ts",
+  "main": "build/engine.js"
 }
