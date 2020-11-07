@@ -25,5 +25,6 @@ Please see our [website for more information, examples, and a tutorial](https://
 - [Paint](https://bernardini687.github.io/paint/index.html), by [@bernardini687](https://github.com/bernardini687)
 - [24MadRush](https://keatonfs.github.io/24.../), by [@keatonfs](https://github.com/keatonfs/24MadRush)
 - [Helter Shelter](https://tolbish.github.io/helter-shelter), by @tolbish
+- [Conway's Game of Life](https://micahcantor.xyz/game-of-life-24a2/), by @[micahcantor](https://github.com/micahcantor)
 
 If you've built something using 24a2 please let us know! Feel free to open an Issue or Pull Request to add it to this list.
