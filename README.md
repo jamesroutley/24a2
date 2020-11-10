@@ -26,5 +26,6 @@ Please see our [website for more information, examples, and a tutorial](https://
 - [24MadRush](https://keatonfs.github.io/24.../), by [@keatonfs](https://github.com/keatonfs/24MadRush)
 - [Helter Shelter](https://tolbish.github.io/helter-shelter), by @tolbish
 - [Tic-Tac-Toe](https://r3pwn.github.io/24a2-tic-tac-toe/), by [@r3pwn](https://github.com/r3pwn)
+- [Conway's Game of Life](https://micahcantor.xyz/game-of-life-24a2/), by @[micahcantor](https://github.com/micahcantor)
 
 If you've built something using 24a2 please let us know! Feel free to open an Issue or Pull Request to add it to this list.
