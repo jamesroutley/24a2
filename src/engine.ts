@@ -17,6 +17,7 @@ enum Color {
   Blue = "BLUE",
   Indigo = "INDIGO",
   Violet = "VIOLET",
+  White = "WHITE",
 }
 
 enum Direction {
@@ -568,6 +569,8 @@ class CanvasIOManager {
         return "indigo";
       case Color.Violet:
         return "violet";
+      case Color.White:
+        return "white";
       default:
         console.error(`no CSS color defined for ${color}`);
         return "";
