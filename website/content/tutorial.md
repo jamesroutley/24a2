@@ -201,7 +201,7 @@ function update(game) {
 
   // ...
 
-  game.setText(Score: ${score}`)
+  game.setText(`Score: ${score}`)
 }
 ```
 
@@ -277,6 +277,6 @@ ideas for things to do:
       
       `Math.random()` returns a number greater than or equal to 0, and
       less than 1. We multiply this by 24, to give us a number greater than or
-      equal to 0, and less that 24. This number can inclued a fraction, so we
+      equal to 0, and less that 24. This number can include a fraction, so we
       use `Math.floor` to remove it. This gives us an integer in the range 0 to
       23 (inclusive).
