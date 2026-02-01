@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Examples on 24a2 - an ultra minimalist game engine</title>
-    <link>http://localhost:1313/games/</link>
+    <link>http://24a2.routley.io/games/</link>
     <description>Recent content in Examples on 24a2 - an ultra minimalist game engine</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:1313/games/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://24a2.routley.io/games/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Skiing</title>
-      <link>http://localhost:1313/games/skiing/</link>
+      <link>http://24a2.routley.io/games/skiing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/games/skiing/</guid>
+      <guid>http://24a2.routley.io/games/skiing/</guid>
       <description></description>
     </item>
     <item>
       <title>Snake</title>
-      <link>http://localhost:1313/games/snake/</link>
+      <link>http://24a2.routley.io/games/snake/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/games/snake/</guid>
+      <guid>http://24a2.routley.io/games/snake/</guid>
       <description></description>
     </item>
     <item>
       <title>Tutorial</title>
-      <link>http://localhost:1313/games/tutorial/</link>
+      <link>http://24a2.routley.io/games/tutorial/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/games/tutorial/</guid>
+      <guid>http://24a2.routley.io/games/tutorial/</guid>
       <description></description>
     </item>
   </channel>

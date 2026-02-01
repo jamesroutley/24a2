@@ -2,28 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/reference/</loc>
+    <loc>http://24a2.routley.io/reference/</loc>
   </url><url>
-    <loc>http://localhost:1313/reference/classes/game/</loc>
+    <loc>http://24a2.routley.io/reference/classes/game/</loc>
   </url><url>
-    <loc>http://localhost:1313/reference/enumerations/color/</loc>
+    <loc>http://24a2.routley.io/reference/enumerations/color/</loc>
   </url><url>
-    <loc>http://localhost:1313/reference/interfaces/gameconfig/</loc>
+    <loc>http://24a2.routley.io/reference/enumerations/direction/</loc>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://24a2.routley.io/reference/interfaces/gameconfig/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>http://24a2.routley.io/</loc>
   </url><url>
-    <loc>http://localhost:1313/games/</loc>
+    <loc>http://24a2.routley.io/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/games/skiing/</loc>
+    <loc>http://24a2.routley.io/games/</loc>
   </url><url>
-    <loc>http://localhost:1313/games/snake/</loc>
+    <loc>http://24a2.routley.io/games/skiing/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>http://24a2.routley.io/games/snake/</loc>
   </url><url>
-    <loc>http://localhost:1313/games/tutorial/</loc>
+    <loc>http://24a2.routley.io/tags/</loc>
   </url><url>
-    <loc>http://localhost:1313/tutorial/</loc>
+    <loc>http://24a2.routley.io/games/tutorial/</loc>
+  </url><url>
+    <loc>http://24a2.routley.io/tutorial/</loc>
   </url>
 </urlset>

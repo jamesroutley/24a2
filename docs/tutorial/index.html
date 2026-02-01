@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -190,9 +190,9 @@ user&rsquo;s current score using the <code>game.setText</code> function.</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#008000">// ...
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  game.setText(Score: ${score}<span style="color:#a31515">`)
-</span></span></span><span style="display:flex;"><span><span style="color:#a31515">}
-</span></span></span></code></pre></div><p>We iterate through all the items, and if the item is at the same position as the
+</span></span><span style="display:flex;"><span>  game.setText(<span style="color:#a31515">`Score: </span><span style="color:#a31515">${</span>score<span style="color:#a31515">}</span><span style="color:#a31515">`</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We iterate through all the items, and if the item is at the same position as the
 player, we increment the score and remove the item from the list.</p>
 <h2 id="7-time-limit">7. Time limit</h2>
 <p>So far, we&rsquo;ve got a game that lets us move around, and collect items which give
@@ -249,7 +249,7 @@ they&rsquo;ve beaten it when the game ends</li>
 doing.</p>
 <p><code>Math.random()</code> returns a number greater than or equal to 0, and
 less than 1. We multiply this by 24, to give us a number greater than or
-equal to 0, and less that 24. This number can inclued a fraction, so we
+equal to 0, and less that 24. This number can include a fraction, so we
 use <code>Math.floor</code> to remove it. This gives us an integer in the range 0 to
 23 (inclusive).&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
