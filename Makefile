@@ -1,19 +1,19 @@
 .PHONY: build docs typedoc examples all
 
 build:
-	tsc
+	yarn run tsc
 
 docs: build typedoc
-	rm -r docs
+	rm -rf docs
 	cd website && hugo
 
 typedoc:
-	rm -r website/content/reference
+	rm -rf website/content/reference
 	yarn run typedoc
 	/bin/bash website/fix_reference_links.sh
 
 examples: build
-	cd examples/snake && tsc
-	cd examples/skiing && tsc
+	cd examples/snake && yarn run tsc
+	cd examples/skiing && yarn run tsc
 
 all: examples docs

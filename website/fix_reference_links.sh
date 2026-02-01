@@ -9,4 +9,4 @@ sed -i '' 's/\.md//g' website/content/reference/**/*.md
 sed -i '' 's/](/](..\//g' website/content/reference/**/*.md
 
 # Rename index.md to fit Hugo naming conventions
-mv website/content/reference/index.md website/content/reference/_index.md
+mv website/content/reference/README.md website/content/reference/_index.md

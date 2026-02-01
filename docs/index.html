@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<meta name="generator" content="Hugo 0.58.3" />
+	<meta name="generator" content="Hugo 0.155.1">
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,79 +37,66 @@
           <main>
 <script src="/js/engine.js"></script>
 <script src="/js/landing.js"></script>
-
-
-<div id="landing-sketch"></div>
-
+<!-- raw HTML omitted -->
 <p>24a2 is a simple game engine that lets you to build a game in a few hours. It
 has a very limited set of features which makes it easy to learn, and encourages
 you to solve problems creatively.</p>
-
 <p>24a2 games are written in JavaScript (or TypeScript) and are played in a web
 browser, so you can easily share what you&rsquo;ve created.</p>
-
 <blockquote>
 <p>ℹ️ 24a2 is new, and may have bugs. If you spot anything, please
 <a href="https://github.com/jamesroutley/24a2/issues">raise an issue</a>. If you like
 24a2, please support us by giving us a
 <a href="https://github.com/jamesroutley/24a2">star on GitHub</a> ⭐️</p>
 </blockquote>
-
 <h2 id="introduction">Introduction</h2>
-
 <p>All 24a2 games feature a 24 by 24 grid of dots. You can set the color of each
 dot, and read the color of each dot back. 24a2 can also run a function you
 define when an arrow key is pressed, or when a dot is clicked on.</p>
-
 <p>That&rsquo;s about it! There are a few other features, which you can find out about in
-the <a href="/tutorial">tutorial</a> and the <a href="/reference">API reference</a>.</p>
-
+the <a href="/tutorial">tutorial</a> and the <a href="/reference%22">API reference</a>.</p>
 <p>Using 24a2 means you don&rsquo;t have to think about the visual style of your game,
 complicated physics or sound - you can just focus on actually building
 something.</p>
-
 <h2 id="example-games">Example games</h2>
-
 <p>Here are a few demo games you can play to get a feel for what 24a2 is like:</p>
-
 <ul>
 <li><a href="/games/snake">Snake</a></li>
 <li><a href="/games/skiing">Skiing</a></li>
 </ul>
-
 <h2 id="example-code">Example code</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#008000">// We use this config object to specify the functions that
-</span><span style="color:#008000">// 24a2 should call on each frame of the game
-</span><span style="color:#008000"></span><span style="color:#00f">let</span> config = {
-  create: create,
-  update: update,
-  onKeyPress: onKeyPress,
-};
-
-<span style="color:#008000">// Initialise a new game
-</span><span style="color:#008000"></span><span style="color:#00f">let</span> game = <span style="color:#00f">new</span> Game(config);
-
-<span style="color:#008000">// Create is called once, at startup. Use this function to
-</span><span style="color:#008000">// initialise variables etc
-</span><span style="color:#008000"></span><span style="color:#00f">function</span> create(game: Game) {}
-
-<span style="color:#008000">// Update is called on each iteration of the game
-</span><span style="color:#008000"></span><span style="color:#00f">function</span> update(game: Game) {
-  <span style="color:#00f">const</span> frameCount = game.getFrameCount();
-  game.setText(<span style="color:#a31515">`Frame count: </span><span style="color:#a31515">${</span>frameCount<span style="color:#a31515">}</span><span style="color:#a31515">`</span>);
-
-  <span style="color:#00f">if</span> (frameCount === 100) {
-    <span style="color:#008000">// We can stop the game with game.end()
-</span><span style="color:#008000"></span>    game.end();
-  }
-}
-
-<span style="color:#008000">// onKeyPress is called when one of the arrow keys is called
-</span><span style="color:#008000"></span><span style="color:#00f">function</span> onKeyPress(direction: Direction) {}
-
-<span style="color:#008000">// Start the game
-</span><span style="color:#008000"></span>game.run();
-</code></pre></div> 
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#008000">// We use this config object to specify the functions that
+</span></span></span><span style="display:flex;"><span><span style="color:#008000">// 24a2 should call on each frame of the game
+</span></span></span><span style="display:flex;"><span><span style="color:#00f">let</span> config = {
+</span></span><span style="display:flex;"><span>  create: create,
+</span></span><span style="display:flex;"><span>  update: update,
+</span></span><span style="display:flex;"><span>  onKeyPress: onKeyPress,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#008000">// Initialise a new game
+</span></span></span><span style="display:flex;"><span><span style="color:#00f">let</span> game = <span style="color:#00f">new</span> Game(config);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#008000">// Create is called once, at startup. Use this function to
+</span></span></span><span style="display:flex;"><span><span style="color:#008000">// initialise variables etc
+</span></span></span><span style="display:flex;"><span><span style="color:#00f">function</span> create(game: Game) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#008000">// Update is called on each iteration of the game
+</span></span></span><span style="display:flex;"><span><span style="color:#00f">function</span> update(game: Game) {
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">const</span> frameCount = game.getFrameCount();
+</span></span><span style="display:flex;"><span>  game.setText(<span style="color:#a31515">`Frame count: </span><span style="color:#a31515">${</span>frameCount<span style="color:#a31515">}</span><span style="color:#a31515">`</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">if</span> (frameCount === 100) {
+</span></span><span style="display:flex;"><span>    <span style="color:#008000">// We can stop the game with game.end()
+</span></span></span><span style="display:flex;"><span>    game.end();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#008000">// onKeyPress is called when one of the arrow keys is called
+</span></span></span><span style="display:flex;"><span><span style="color:#00f">function</span> onKeyPress(direction: Direction) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#008000">// Start the game
+</span></span></span><span style="display:flex;"><span>game.run();
+</span></span></code></pre></div> 
           </main>
         </div>
       </div>

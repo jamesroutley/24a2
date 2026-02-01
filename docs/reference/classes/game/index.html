@@ -11,7 +11,7 @@
 </head>
 
   <body>
-    <h1>Game</h1>
+    <h1></h1>
     <div class="with-sidebar">
       <div>
         
@@ -33,209 +33,102 @@
 </div>
 
         <div>
-          <main> 
-
+          <main> <p><a href="../../README"><strong>24a2</strong></a></p>
+<hr>
+<h1 id="class-game">Class: Game</h1>
 <p>Game is the object that controls the actual running of the game. You
-create a new one by passing in a <a href="../../interfaces/gameconfig">GameConfig</a>. Calling <code>game.run()</code>
+create a new one by passing in a <a href="../../interfaces/GameConfig">GameConfig</a>. Calling <code>game.run()</code>
 will start the game.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">let</span> config = {
-   create: create, <span style="color:#008000">// A function you&#39;ve defined
-</span><span style="color:#008000"></span>   update: update, <span style="color:#008000">// A function you&#39;ve defined
-</span><span style="color:#008000"></span>}
-
-<span style="color:#00f">let</span> game = <span style="color:#00f">new</span> Game(config)
-game.run()
-</code></pre></div>
-<h2 id="hierarchy">Hierarchy</h2>
-
-<ul>
-<li><strong>Game</strong></li>
-</ul>
-
-<h2 id="index">Index</h2>
-
-<h3 id="constructors">Constructors</h3>
-
-<ul>
-<li><a href="../game#constructor">constructor</a></li>
-</ul>
-
-<h3 id="methods">Methods</h3>
-
-<ul>
-<li><a href="../game#end">end</a></li>
-<li><a href="../game#getdot">getDot</a></li>
-<li><a href="../game#getframecount">getFrameCount</a></li>
-<li><a href="../game#run">run</a></li>
-<li><a href="../game#setdot">setDot</a></li>
-<li><a href="../game#settext">setText</a></li>
-</ul>
-
-<h2 id="constructors-1">Constructors</h2>
-
-<h3 id="constructor">constructor</h3>
-
-<p>+ <strong>new Game</strong>(<code>config</code>: <a href="../../interfaces/gameconfig">GameConfig</a>): <em><a href="../game">Game</a></em></p>
-
-<p><strong>Parameters:</strong></p>
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td><code>config</code></td>
-<td><a href="../../interfaces/gameconfig">GameConfig</a></td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>Returns:</strong> <em><a href="../game">Game</a></em></p>
-
-<h2 id="methods-1">Methods</h2>
-
-<h3 id="end">end</h3>
-
-<p>▸ <strong>end</strong>(): <em>void</em></p>
-
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#00f">let</span> config = {
+</span></span><span style="display:flex;"><span>   create: create, <span style="color:#008000">// A function you&#39;ve defined
+</span></span></span><span style="display:flex;"><span>   update: update, <span style="color:#008000">// A function you&#39;ve defined
+</span></span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">let</span> game = <span style="color:#00f">new</span> Game(config)
+</span></span><span style="display:flex;"><span>game.run()
+</span></span></code></pre></div><h2 id="constructors">Constructors</h2>
+<h3 id="constructor">Constructor</h3>
+<blockquote>
+<p><strong>new Game</strong>(<code>config</code>): <code>Game</code></p>
+</blockquote>
+<h4 id="parameters">Parameters</h4>
+<h5 id="config">config</h5>
+<p><a href="../../interfaces/GameConfig"><code>GameConfig</code></a></p>
+<h4 id="returns">Returns</h4>
+<p><code>Game</code></p>
+<h2 id="methods">Methods</h2>
+<h3 id="end">end()</h3>
+<blockquote>
+<p><strong>end</strong>(): <code>void</code></p>
+</blockquote>
 <p>Calling <code>end</code> stops the game loop. You should call it when the game is
 finished. After you call it, the game is rendered one final time. Because
 of this, you often want to <code>return</code> just after you call <code>game.end()</code> to
 make sure any code after it is executed.</p>
-
-<p><strong>Returns:</strong> <em>void</em></p>
-
-<hr />
-
-<h3 id="getdot">getDot</h3>
-
-<p>▸ <strong>getDot</strong>(<code>x</code>: number, <code>y</code>: number): <em><a href="../../enums/color">Color</a></em></p>
-
+<h4 id="returns-1">Returns</h4>
+<p><code>void</code></p>
+<hr>
+<h3 id="getdot">getDot()</h3>
+<blockquote>
+<p><strong>getDot</strong>(<code>x</code>, <code>y</code>): <a href="../../enumerations/Color"><code>Color</code></a></p>
+</blockquote>
 <p>Returns the color of a dot.</p>
-
-<p><strong>Parameters:</strong></p>
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td><code>x</code></td>
-<td>number</td>
-</tr>
-
-<tr>
-<td><code>y</code></td>
-<td>number</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>Returns:</strong> <em><a href="../../enums/color">Color</a></em></p>
-
-<hr />
-
-<h3 id="getframecount">getFrameCount</h3>
-
-<p>▸ <strong>getFrameCount</strong>(): <em>number</em></p>
-
+<h4 id="parameters-1">Parameters</h4>
+<h5 id="x">x</h5>
+<p><code>number</code></p>
+<h5 id="y">y</h5>
+<p><code>number</code></p>
+<h4 id="returns-2">Returns</h4>
+<p><a href="../../enumerations/Color"><code>Color</code></a></p>
+<hr>
+<h3 id="getframecount">getFrameCount()</h3>
+<blockquote>
+<p><strong>getFrameCount</strong>(): <code>number</code></p>
+</blockquote>
 <p>Returns the number of frames that have passed since the game started. The
 speed at which this increases is dependent on the frame rate. The higher
 the frame rate is, the faster this number will increment, and vice versa.
-You can set the frame rate with <a href="../../interfaces/gameconfig#optional-framerate">GameConfig.frameRate</a>.</p>
-
+You can set the frame rate with <a href="../../interfaces/GameConfig#framerate">GameConfig.frameRate</a>.</p>
 <p>You can use this function to do things like increase difficulty as time
 goes on.</p>
-
-<p><strong>Returns:</strong> <em>number</em></p>
-
-<hr />
-
-<h3 id="run">run</h3>
-
-<p>▸ <strong>run</strong>(): <em>void</em></p>
-
+<h4 id="returns-3">Returns</h4>
+<p><code>number</code></p>
+<hr>
+<h3 id="run">run()</h3>
+<blockquote>
+<p><strong>run</strong>(): <code>void</code></p>
+</blockquote>
 <p>Calling <code>run</code> starts the game.</p>
-
-<p><strong>Returns:</strong> <em>void</em></p>
-
-<hr />
-
-<h3 id="setdot">setDot</h3>
-
-<p>▸ <strong>setDot</strong>(<code>x</code>: number, <code>y</code>: number, <code>val</code>: <a href="../../enums/color">Color</a>): <em>void</em></p>
-
+<h4 id="returns-4">Returns</h4>
+<p><code>void</code></p>
+<hr>
+<h3 id="setdot">setDot()</h3>
+<blockquote>
+<p><strong>setDot</strong>(<code>x</code>, <code>y</code>, <code>val</code>): <code>void</code></p>
+</blockquote>
 <p>Sets the color of a dot.</p>
-
-<p><strong>Parameters:</strong></p>
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td><code>x</code></td>
-<td>number</td>
-</tr>
-
-<tr>
-<td><code>y</code></td>
-<td>number</td>
-</tr>
-
-<tr>
-<td><code>val</code></td>
-<td><a href="../../enums/color">Color</a></td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>Returns:</strong> <em>void</em></p>
-
-<hr />
-
-<h3 id="settext">setText</h3>
-
-<p>▸ <strong>setText</strong>(<code>text</code>: string): <em>void</em></p>
-
+<h4 id="parameters-2">Parameters</h4>
+<h5 id="x-1">x</h5>
+<p><code>number</code></p>
+<h5 id="y-1">y</h5>
+<p><code>number</code></p>
+<h5 id="val">val</h5>
+<p><a href="../../enumerations/Color"><code>Color</code></a></p>
+<h4 id="returns-5">Returns</h4>
+<p><code>void</code></p>
+<hr>
+<h3 id="settext">setText()</h3>
+<blockquote>
+<p><strong>setText</strong>(<code>text</code>): <code>void</code></p>
+</blockquote>
 <p>24a2 games have a line of text below the grid which can be set to show
 information to the player. This is commonly used to show instructions or
 the player&rsquo;s score. Use this function to set that text.</p>
-
-<p><strong>Parameters:</strong></p>
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td><code>text</code></td>
-<td>string</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>Returns:</strong> <em>void</em></p>
+<h4 id="parameters-3">Parameters</h4>
+<h5 id="text">text</h5>
+<p><code>string</code></p>
+<h4 id="returns-6">Returns</h4>
+<p><code>void</code></p>
  
           </main>
         </div>

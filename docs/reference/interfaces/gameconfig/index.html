@@ -11,7 +11,7 @@
 </head>
 
   <body>
-    <h1>GameConfig</h1>
+    <h1></h1>
     <div class="with-sidebar">
       <div>
         
@@ -33,122 +33,102 @@
 </div>
 
         <div>
-          <main> 
-
-<p>GameConfig is the object you pass when contructing a new <a href="../../classes/game">Game</a>.</p>
-
-<h2 id="hierarchy">Hierarchy</h2>
-
-<ul>
-<li><strong>GameConfig</strong></li>
-</ul>
-
-<h2 id="index">Index</h2>
-
-<h3 id="properties">Properties</h3>
-
-<ul>
-<li><a href="../gameconfig#optional-cleargrid">clearGrid</a></li>
-<li><a href="../gameconfig#optional-containerid">containerId</a></li>
-<li><a href="../gameconfig#optional-create">create</a></li>
-<li><a href="../gameconfig#optional-defaultdotcolor">defaultDotColor</a></li>
-<li><a href="../gameconfig#optional-framerate">frameRate</a></li>
-<li><a href="../gameconfig#optional-gridheight">gridHeight</a></li>
-<li><a href="../gameconfig#optional-gridwidth">gridWidth</a></li>
-<li><a href="../gameconfig#optional-ondotclicked">onDotClicked</a></li>
-<li><a href="../gameconfig#optional-onkeypress">onKeyPress</a></li>
-<li><a href="../gameconfig#optional-update">update</a></li>
-</ul>
-
-<h2 id="properties-1">Properties</h2>
-
-<h3 id="optional-cleargrid"><code>Optional</code> clearGrid</h3>
-
-<p>• <strong>clearGrid</strong>? : <em>undefined | false | true</em></p>
-
+          <main> <p><a href="../../README"><strong>24a2</strong></a></p>
+<hr>
+<h1 id="interface-gameconfig">Interface: GameConfig</h1>
+<p>GameConfig is the object you pass when contructing a new <a href="../../classes/Game">Game</a>.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="cleargrid">clearGrid?</h3>
+<blockquote>
+<p><code>optional</code> <strong>clearGrid</strong>: <code>boolean</code></p>
+</blockquote>
 <p>Specifies whether 24a2 should clear the grid at the beginning of each
 frame. 24a2 clears the grid by setting the colour of every dot to
-<a href="../gameconfig#optional-defaultdotcolor">GameConfig.defaultDotColor</a>. Setting clearGrid to false lets you
+<a href="../#defaultdotcolor">GameConfig.defaultDotColor</a>. Setting clearGrid to false lets you
 simplify the code for some games by letting 24a2 store the state for each
-dot. You can use <a href="../../classes/game#getdot">Game.getDot</a> to read back the colour of dots. By
+dot. You can use <a href="../../classes/Game#getdot">Game.getDot</a> to read back the colour of dots. By
 default, this is set to true.</p>
-
-<hr />
-
-<h3 id="optional-containerid"><code>Optional</code> containerId</h3>
-
-<p>• <strong>containerId</strong>? : <em>undefined | string</em></p>
-
+<hr>
+<h3 id="containerid">containerId?</h3>
+<blockquote>
+<p><code>optional</code> <strong>containerId</strong>: <code>string</code></p>
+</blockquote>
 <p>The ID of a container to create the canvas in.</p>
-
-<hr />
-
-<h3 id="optional-create"><code>Optional</code> create</h3>
-
-<p>• <strong>create</strong>? : <em>undefined | function</em></p>
-
+<hr>
+<h3 id="create">create()?</h3>
+<blockquote>
+<p><code>optional</code> <strong>create</strong>: (<code>game</code>) =&gt; <code>void</code></p>
+</blockquote>
 <p><code>create(game)</code> is a function which is called once, just before the game
 starts running. You can use it to initialise game state, if needed.</p>
-
-<hr />
-
-<h3 id="optional-defaultdotcolor"><code>Optional</code> defaultDotColor</h3>
-
-<p>• <strong>defaultDotColor</strong>? : <em><a href="../../enums/color">Color</a></em></p>
-
+<h4 id="parameters">Parameters</h4>
+<h5 id="game">game</h5>
+<p><a href="../../classes/Game"><code>Game</code></a></p>
+<h4 id="returns">Returns</h4>
+<p><code>void</code></p>
+<hr>
+<h3 id="defaultdotcolor">defaultDotColor?</h3>
+<blockquote>
+<p><code>optional</code> <strong>defaultDotColor</strong>: <a href="../../enumerations/Color"><code>Color</code></a></p>
+</blockquote>
 <p>Set the default color of the dots. By default, this is set to
-<a href="../../enums/color#gray">Color.Gray</a>.</p>
-
-<hr />
-
-<h3 id="optional-framerate"><code>Optional</code> frameRate</h3>
-
-<p>• <strong>frameRate</strong>? : <em>undefined | number</em></p>
-
+<a href="../../enumerations/Color#gray">Color.Gray</a>.</p>
+<hr>
+<h3 id="framerate">frameRate?</h3>
+<blockquote>
+<p><code>optional</code> <strong>frameRate</strong>: <code>number</code></p>
+</blockquote>
 <p>Sets the game&rsquo;s frame rate. By default, this is set to 24.</p>
-
-<hr />
-
-<h3 id="optional-gridheight"><code>Optional</code> gridHeight</h3>
-
-<p>• <strong>gridHeight</strong>? : <em>undefined | number</em></p>
-
+<hr>
+<h3 id="gridheight">gridHeight?</h3>
+<blockquote>
+<p><code>optional</code> <strong>gridHeight</strong>: <code>number</code></p>
+</blockquote>
 <p>Sets the height of the grid. By default, this is set to 24.</p>
-
-<hr />
-
-<h3 id="optional-gridwidth"><code>Optional</code> gridWidth</h3>
-
-<p>• <strong>gridWidth</strong>? : <em>undefined | number</em></p>
-
+<hr>
+<h3 id="gridwidth">gridWidth?</h3>
+<blockquote>
+<p><code>optional</code> <strong>gridWidth</strong>: <code>number</code></p>
+</blockquote>
 <p>Sets the width of the grid. By default, this is set to 24.</p>
-
-<hr />
-
-<h3 id="optional-ondotclicked"><code>Optional</code> onDotClicked</h3>
-
-<p>• <strong>onDotClicked</strong>? : <em>undefined | function</em></p>
-
+<hr>
+<h3 id="ondotclicked">onDotClicked()?</h3>
+<blockquote>
+<p><code>optional</code> <strong>onDotClicked</strong>: (<code>x</code>, <code>y</code>) =&gt; <code>void</code></p>
+</blockquote>
 <p><code>onDotClicked(x, y)</code> is a function which is called when the player clicks
 on a dot.</p>
-
-<hr />
-
-<h3 id="optional-onkeypress"><code>Optional</code> onKeyPress</h3>
-
-<p>• <strong>onKeyPress</strong>? : <em>undefined | function</em></p>
-
+<h4 id="parameters-1">Parameters</h4>
+<h5 id="x">x</h5>
+<p><code>number</code></p>
+<h5 id="y">y</h5>
+<p><code>number</code></p>
+<h4 id="returns-1">Returns</h4>
+<p><code>void</code></p>
+<hr>
+<h3 id="onkeypress">onKeyPress()?</h3>
+<blockquote>
+<p><code>optional</code> <strong>onKeyPress</strong>: (<code>direction</code>) =&gt; <code>void</code></p>
+</blockquote>
 <p><code>onKeyPress(direction)</code> is a function which is called when the player
 presses one of the arrow keys.</p>
-
-<hr />
-
-<h3 id="optional-update"><code>Optional</code> update</h3>
-
-<p>• <strong>update</strong>? : <em>undefined | function</em></p>
-
+<h4 id="parameters-2">Parameters</h4>
+<h5 id="direction">direction</h5>
+<p><a href="../../enumerations/Direction"><code>Direction</code></a></p>
+<h4 id="returns-2">Returns</h4>
+<p><code>void</code></p>
+<hr>
+<h3 id="update">update()?</h3>
+<blockquote>
+<p><code>optional</code> <strong>update</strong>: (<code>game</code>) =&gt; <code>void</code></p>
+</blockquote>
 <p><code>update(game)</code> is repeatedly called as the game runs. You can use it to
 define the main functionality of your game.</p>
+<h4 id="parameters-3">Parameters</h4>
+<h5 id="game-1">game</h5>
+<p><a href="../../classes/Game"><code>Game</code></a></p>
+<h4 id="returns-3">Returns</h4>
+<p><code>void</code></p>
  
           </main>
         </div>

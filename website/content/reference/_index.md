@@ -1,20 +1,18 @@
----
-id: "index"
-title: "24a2"
-sidebar_label: "Globals"
----
+**24a2**
 
-## Index
+***
 
-### Enumerations
+# 24a2
 
-* [Color](enums/color)
-* [Direction](enums/direction)
+## Enumerations
 
-### Classes
+- [Color](enumerations/Color)
+- [Direction](enumerations/Direction)
 
-* [Game](classes/game)
+## Classes
 
-### Interfaces
+- [Game](classes/Game)
 
-* [GameConfig](interfaces/gameconfig)
+## Interfaces
+
+- [GameConfig](interfaces/GameConfig)

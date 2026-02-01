@@ -1,116 +1,141 @@
----
-id: "gameconfig"
-title: "GameConfig"
-sidebar_label: "GameConfig"
----
+[**24a2**](../../README)
 
-GameConfig is the object you pass when contructing a new [Game](../../classes/game).
+***
 
-## Hierarchy
+# Interface: GameConfig
 
-* **GameConfig**
-
-## Index
-
-### Properties
-
-* [clearGrid](../gameconfig#optional-cleargrid)
-* [containerId](../gameconfig#optional-containerid)
-* [create](../gameconfig#optional-create)
-* [defaultDotColor](../gameconfig#optional-defaultdotcolor)
-* [frameRate](../gameconfig#optional-framerate)
-* [gridHeight](../gameconfig#optional-gridheight)
-* [gridWidth](../gameconfig#optional-gridwidth)
-* [onDotClicked](../gameconfig#optional-ondotclicked)
-* [onKeyPress](../gameconfig#optional-onkeypress)
-* [update](../gameconfig#optional-update)
+GameConfig is the object you pass when contructing a new [Game](../../classes/Game).
 
 ## Properties
 
-### `Optional` clearGrid
+### clearGrid?
 
-• **clearGrid**? : *undefined | false | true*
+> `optional` **clearGrid**: `boolean`
 
 Specifies whether 24a2 should clear the grid at the beginning of each
 frame. 24a2 clears the grid by setting the colour of every dot to
-[GameConfig.defaultDotColor](../gameconfig#optional-defaultdotcolor). Setting clearGrid to false lets you
+[GameConfig.defaultDotColor](../#defaultdotcolor). Setting clearGrid to false lets you
 simplify the code for some games by letting 24a2 store the state for each
-dot. You can use [Game.getDot](../../classes/game#getdot) to read back the colour of dots. By
+dot. You can use [Game.getDot](../../classes/Game#getdot) to read back the colour of dots. By
 default, this is set to true.
 
-___
+***
 
-### `Optional` containerId
+### containerId?
 
-• **containerId**? : *undefined | string*
+> `optional` **containerId**: `string`
 
 The ID of a container to create the canvas in.
 
-___
+***
 
-### `Optional` create
+### create()?
 
-• **create**? : *undefined | function*
+> `optional` **create**: (`game`) => `void`
 
 `create(game)` is a function which is called once, just before the game
 starts running. You can use it to initialise game state, if needed.
 
-___
+#### Parameters
 
-### `Optional` defaultDotColor
+##### game
 
-• **defaultDotColor**? : *[Color](../../enums/color)*
+[`Game`](../../classes/Game)
+
+#### Returns
+
+`void`
+
+***
+
+### defaultDotColor?
+
+> `optional` **defaultDotColor**: [`Color`](../../enumerations/Color)
 
 Set the default color of the dots. By default, this is set to
-[Color.Gray](../../enums/color#gray).
+[Color.Gray](../../enumerations/Color#gray).
 
-___
+***
 
-### `Optional` frameRate
+### frameRate?
 
-• **frameRate**? : *undefined | number*
+> `optional` **frameRate**: `number`
 
 Sets the game's frame rate. By default, this is set to 24.
 
-___
+***
 
-### `Optional` gridHeight
+### gridHeight?
 
-• **gridHeight**? : *undefined | number*
+> `optional` **gridHeight**: `number`
 
 Sets the height of the grid. By default, this is set to 24.
 
-___
+***
 
-### `Optional` gridWidth
+### gridWidth?
 
-• **gridWidth**? : *undefined | number*
+> `optional` **gridWidth**: `number`
 
 Sets the width of the grid. By default, this is set to 24.
 
-___
+***
 
-### `Optional` onDotClicked
+### onDotClicked()?
 
-• **onDotClicked**? : *undefined | function*
+> `optional` **onDotClicked**: (`x`, `y`) => `void`
 
 `onDotClicked(x, y)` is a function which is called when the player clicks
 on a dot.
 
-___
+#### Parameters
 
-### `Optional` onKeyPress
+##### x
 
-• **onKeyPress**? : *undefined | function*
+`number`
+
+##### y
+
+`number`
+
+#### Returns
+
+`void`
+
+***
+
+### onKeyPress()?
+
+> `optional` **onKeyPress**: (`direction`) => `void`
 
 `onKeyPress(direction)` is a function which is called when the player
 presses one of the arrow keys.
 
-___
+#### Parameters
 
-### `Optional` update
+##### direction
 
-• **update**? : *undefined | function*
+[`Direction`](../../enumerations/Direction)
+
+#### Returns
+
+`void`
+
+***
+
+### update()?
+
+> `optional` **update**: (`game`) => `void`
 
 `update(game)` is repeatedly called as the game runs. You can use it to
 define the main functionality of your game.
+
+#### Parameters
+
+##### game
+
+[`Game`](../../classes/Game)
+
+#### Returns
+
+`void`

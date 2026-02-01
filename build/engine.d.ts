@@ -58,7 +58,7 @@ interface GameConfig {
     frameRate?: number;
     /**
      * Set the default color of the dots. By default, this is set to
-     * {@Link Color.Gray}.
+     * {@link Color.Gray}.
      */
     defaultDotColor?: Color;
     /**
@@ -82,16 +82,16 @@ interface GameConfig {
     /**
      * Specifies whether 24a2 should clear the grid at the beginning of each
      * frame. 24a2 clears the grid by setting the colour of every dot to
-     * {@Link GameConfig.defaultDotColor}. Setting clearGrid to false lets you
+     * {@link GameConfig.defaultDotColor}. Setting clearGrid to false lets you
      * simplify the code for some games by letting 24a2 store the state for each
-     * dot. You can use {@Link Game.getDot} to read back the colour of dots. By
+     * dot. You can use {@link Game.getDot} to read back the colour of dots. By
      * default, this is set to true.
      */
     clearGrid?: boolean;
 }
 /**
  * Game is the object that controls the actual running of the game. You
- * create a new one by passing in a {@Link GameConfig}. Calling `game.run()`
+ * create a new one by passing in a {@link GameConfig}. Calling `game.run()`
  * will start the game.
  *
  * ```javascript
@@ -126,7 +126,7 @@ declare class Game {
      * Returns the number of frames that have passed since the game started. The
      * speed at which this increases is dependent on the frame rate. The higher
      * the frame rate is, the faster this number will increment, and vice versa.
-     * You can set the frame rate with {@Link GameConfig.frameRate}.
+     * You can set the frame rate with {@link GameConfig.frameRate}.
      *
      * You can use this function to do things like increase difficulty as time
      * goes on.
@@ -160,7 +160,7 @@ declare class Game {
 }
 /**
  * @ignore
- * IOManager is the interface used by {@Link Game} to manage the game's input
+ * IOManager is the interface used by {@link Game} to manage the game's input
  * (e.g. keyboard or mouse events) and output (drawing the game).
  * IOManager does not form part of 24a2's public API, and can change without
  * warning

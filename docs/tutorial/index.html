@@ -33,64 +33,50 @@
 </div>
 
         <div>
-          <main> 
-
-<p>Let&rsquo;s build a simple game using 24a2. In our game, the player will have a
+          <main> <p>Let&rsquo;s build a simple game using 24a2. In our game, the player will have a
 limited time to move around and collect items. Each item will give the player a
 point.</p>
-
 <p><a href="/games/tutorial">Play the game</a></p>
-
 <p><a href="https://github.com/jamesroutley/24a2/tree/master/examples/tutorial">See the source code</a></p>
-
 <h2 id="1-basic-setup">1. Basic setup</h2>
-
 <p>24a2 games are written in JavaScript, and are played in the browser. In this
 step, we&rsquo;ll create two files, an <code>index.html</code> which stores the content of our
 webpage, and <code>game.js</code>, which contains our game code.</p>
-
 <p>In your text editor, create a new file named <code>index.html</code>, and copy and paste
 the following code into it:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;html&gt;
-  &lt;head&gt;
-    &lt;script src=<span style="color:#a31515">&#34;https://cdn.jsdelivr.net/gh/jamesroutley/24a2/build/engine.js&#34;</span>&gt;&lt;/script&gt;
-    &lt;script src=<span style="color:#a31515">&#34;game.js&#34;</span>&gt;&lt;/script&gt;
-  &lt;/head&gt;
-  &lt;body&gt;&lt;/body&gt;
-&lt;/html&gt;</code></pre></div>
-<p>Here, we&rsquo;ve created a HTML file that runs two JavaScript scripts:</p>
-
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;html&gt;
+</span></span><span style="display:flex;"><span>  &lt;head&gt;
+</span></span><span style="display:flex;"><span>    &lt;script src=<span style="color:#a31515">&#34;https://cdn.jsdelivr.net/gh/jamesroutley/24a2/build/engine.js&#34;</span>&gt;&lt;/script&gt;
+</span></span><span style="display:flex;"><span>    &lt;script src=<span style="color:#a31515">&#34;game.js&#34;</span>&gt;&lt;/script&gt;
+</span></span><span style="display:flex;"><span>  &lt;/head&gt;
+</span></span><span style="display:flex;"><span>  &lt;body&gt;&lt;/body&gt;
+</span></span><span style="display:flex;"><span>&lt;/html&gt;
+</span></span></code></pre></div><p>Here, we&rsquo;ve created a HTML file that runs two JavaScript scripts:</p>
 <ol>
 <li>Imports the 24a2 game engine code</li>
 <li>Runs the script where we&rsquo;ll define our game</li>
 </ol>
-
 <p>Next, create a new file called <code>game.js</code>, and copy and paste the following code
 into it:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">function</span> create(game) {}
-
-<span style="color:#00f">function</span> update(game) {}
-
-<span style="color:#00f">function</span> onKeyPress(direction) {}
-
-<span style="color:#00f">let</span> config = {
-  create: create,
-  update: update,
-  onKeyPress: onKeyPress,
-};
-
-<span style="color:#00f">let</span> game = <span style="color:#00f">new</span> Game(config);
-game.run();
-</code></pre></div>
-<p>Make sure that <code>game.js</code> is saved in the same folder as your <code>index.html</code> file.</p>
-
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#00f">function</span> create(game) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">function</span> update(game) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">function</span> onKeyPress(direction) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">let</span> config = {
+</span></span><span style="display:flex;"><span>  create: create,
+</span></span><span style="display:flex;"><span>  update: update,
+</span></span><span style="display:flex;"><span>  onKeyPress: onKeyPress,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">let</span> game = <span style="color:#00f">new</span> Game(config);
+</span></span><span style="display:flex;"><span>game.run();
+</span></span></code></pre></div><p>Make sure that <code>game.js</code> is saved in the same folder as your <code>index.html</code> file.</p>
 <p>Open <code>index.html</code> in your browser, and you should see a 24 by 24 grid of gray
 dots.</p>
-
 <h2 id="2-24a2-overview">2. 24a2 overview</h2>
-
 <p>Let&rsquo;s take a look at the code that currently makes up our <code>game.js</code> file:</p>
-
 <ul>
 <li>The <code>create</code> function is called once by 24a2, before the game starts running.
 We can use this function to initialise anything we need before the game
@@ -102,174 +88,151 @@ where we&rsquo;ll implement most of our game mechanics.</li>
 <li>Finally, we create the config object, which lets us tell 24a2 which functions
 it should call, we create a new game and run it.</li>
 </ul>
-
 <h2 id="3-setting-up-our-game">3. Setting up our game</h2>
-
 <p>To set up our game, we need to create a player:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">let</span> player = {};
-
-<span style="color:#00f">function</span> create(game) {
-  player = {
-    x: 5,
-    y: 10,
-  };
-  game.setDot(player.x, player.y, Color.Black);
-}
-
-<span style="color:#00f">function</span> update(game) {
-  game.setDot(player.x, player.y, Color.Black);
-}
-</code></pre></div>
-<p>We declare a new global variable <code>player</code>, which stores the player&rsquo;s <code>x</code> and <code>y</code>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#00f">let</span> player = {};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">function</span> create(game) {
+</span></span><span style="display:flex;"><span>  player = {
+</span></span><span style="display:flex;"><span>    x: 5,
+</span></span><span style="display:flex;"><span>    y: 10,
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  game.setDot(player.x, player.y, Color.Black);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">function</span> update(game) {
+</span></span><span style="display:flex;"><span>  game.setDot(player.x, player.y, Color.Black);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We declare a new global variable <code>player</code>, which stores the player&rsquo;s <code>x</code> and <code>y</code>
 coordinates. <code>player</code> needs to be global, because we access it in both <code>create</code>
 and <code>update</code>. In the <code>create</code> function, we set the player&rsquo;s initial coordinates,
 and in <code>update</code>, we draw the player, by setting the dot at the player&rsquo;s location
 to the color black.</p>
-
 <p>The grid&rsquo;s coordinates are counted from the top left corner, and go from 0
 to 23. So the coordinate <code>{x: 0, y: 0}</code> is the top left corner, <code>{x: 23, y: 0}</code>
 is the top right corner and <code>{x: 23, y: 23}</code> is the bottom right corner.</p>
-
 <h2 id="4-movement">4. Movement</h2>
-
 <p>Let&rsquo;s wire up the <code>onKeyPress</code> function to let us move the player using the
 arrow keys:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">function</span> onKeyPress(direction) {
-  <span style="color:#00f">if</span> (direction == Direction.Up) {
-    player.y--;
-  }
-  <span style="color:#00f">if</span> (direction == Direction.Down) {
-    player.y++;
-  }
-  <span style="color:#00f">if</span> (direction == Direction.Left) {
-    player.x--;
-  }
-  <span style="color:#00f">if</span> (direction == Direction.Right) {
-    player.x++;
-  }
-}
-</code></pre></div>
-<p>If you refresh the webpage, you should be able to control the player with the
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#00f">function</span> onKeyPress(direction) {
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">if</span> (direction == Direction.Up) {
+</span></span><span style="display:flex;"><span>    player.y--;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">if</span> (direction == Direction.Down) {
+</span></span><span style="display:flex;"><span>    player.y++;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">if</span> (direction == Direction.Left) {
+</span></span><span style="display:flex;"><span>    player.x--;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">if</span> (direction == Direction.Right) {
+</span></span><span style="display:flex;"><span>    player.x++;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If you refresh the webpage, you should be able to control the player with the
 arrow keys. You might notice a bug though - if we keep going in one direction
 long enough, our player goes off the edge of the grid! Let&rsquo;s update <code>onKeyPress</code>
 to stop this from happening:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">function</span> onKeyPress(direction) {
-  <span style="color:#00f">if</span> (direction == Direction.Up &amp;&amp; player.y &gt; 0) {
-    player.y--;
-  }
-  <span style="color:#00f">if</span> (direction == Direction.Down &amp;&amp; player.y &lt; 23) {
-    player.y++;
-  }
-  <span style="color:#00f">if</span> (direction == Direction.Left &amp;&amp; player.x &gt; 0) {
-    player.x--;
-  }
-  <span style="color:#00f">if</span> (direction == Direction.Right &amp;&amp; player.x &lt; 23) {
-    player.x++;
-  }
-}
-</code></pre></div>
-<h2 id="5-generating-items">5. Generating items</h2>
-
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#00f">function</span> onKeyPress(direction) {
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">if</span> (direction == Direction.Up &amp;&amp; player.y &gt; 0) {
+</span></span><span style="display:flex;"><span>    player.y--;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">if</span> (direction == Direction.Down &amp;&amp; player.y &lt; 23) {
+</span></span><span style="display:flex;"><span>    player.y++;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">if</span> (direction == Direction.Left &amp;&amp; player.x &gt; 0) {
+</span></span><span style="display:flex;"><span>    player.x--;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">if</span> (direction == Direction.Right &amp;&amp; player.x &lt; 23) {
+</span></span><span style="display:flex;"><span>    player.x++;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="5-generating-items">5. Generating items</h2>
 <p>Let&rsquo;s add some code to randomly generate an item.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">let</span> items = [];
-
-<span style="color:#00f">function</span> update(game) {
-  <span style="color:#008000">// Only generate an item 5% of the time
-</span><span style="color:#008000"></span>  <span style="color:#00f">if</span> (Math.random() &lt; 0.05) {
-    item = {
-      x: Math.floor(Math.random() * 24),
-      y: Math.floor(Math.random() * 24),
-    };
-    <span style="color:#00f">if</span> (item.x !== player.x || item.y !== player.y) {
-      items.push(item);
-    }
-  }
-
-  <span style="color:#00f">for</span> (item <span style="color:#00f">of</span> items) {
-    game.setDot(item.x, item.y, Color.Green);
-  }
-
-  game.setDot(player.x, player.y, Color.Black);
-}
-</code></pre></div>
-<p>We create a new global variable to store the coordinates of each item, <code>items</code>.</p>
-
-<p>In the <code>update</code> function, we generate a new item at a random location<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>, but
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#00f">let</span> items = [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">function</span> update(game) {
+</span></span><span style="display:flex;"><span>  <span style="color:#008000">// Only generate an item 5% of the time
+</span></span></span><span style="display:flex;"><span>  <span style="color:#00f">if</span> (Math.random() &lt; 0.05) {
+</span></span><span style="display:flex;"><span>    item = {
+</span></span><span style="display:flex;"><span>      x: Math.floor(Math.random() * 24),
+</span></span><span style="display:flex;"><span>      y: Math.floor(Math.random() * 24),
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#00f">if</span> (item.x !== player.x || item.y !== player.y) {
+</span></span><span style="display:flex;"><span>      items.push(item);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">for</span> (item <span style="color:#00f">of</span> items) {
+</span></span><span style="display:flex;"><span>    game.setDot(item.x, item.y, Color.Green);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  game.setDot(player.x, player.y, Color.Black);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We create a new global variable to store the coordinates of each item, <code>items</code>.</p>
+<p>In the <code>update</code> function, we generate a new item at a random location<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, but
 only on 5% of the calls to <code>update</code>. We also only create the item if it isn&rsquo;t
 where the player currently is.</p>
-
 <h2 id="6-collecting-items">6. Collecting items</h2>
-
 <p>Currently, nothing happens when our player walks over an item. Let&rsquo;s change it
 so the item disappears, and the user&rsquo;s score increases. We can display the
 user&rsquo;s current score using the <code>game.setText</code> function.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">let</span> score = 0;
-
-<span style="color:#00f">function</span> update(game) {
-  <span style="color:#00f">for</span> (<span style="color:#00f">let</span> i = 0; i &lt; items.length; i++) {
-    <span style="color:#00f">const</span> item = items[i];
-    <span style="color:#00f">if</span> (item.x == player.x &amp;&amp; item.y == player.y) {
-      score++;
-      items.splice(i, 1);
-      <span style="color:#00f">break</span>;
-    }
-  }
-
-  <span style="color:#008000">// ...
-</span><span style="color:#008000"></span>
-  game.setText(Score: ${score}<span style="color:#a31515">`)
-</span><span style="color:#a31515">}
-</span></code></pre></div>
-<p>We iterate through all the items, and if the item is at the same position as the
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#00f">let</span> score = 0;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">function</span> update(game) {
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">for</span> (<span style="color:#00f">let</span> i = 0; i &lt; items.length; i++) {
+</span></span><span style="display:flex;"><span>    <span style="color:#00f">const</span> item = items[i];
+</span></span><span style="display:flex;"><span>    <span style="color:#00f">if</span> (item.x == player.x &amp;&amp; item.y == player.y) {
+</span></span><span style="display:flex;"><span>      score++;
+</span></span><span style="display:flex;"><span>      items.splice(i, 1);
+</span></span><span style="display:flex;"><span>      <span style="color:#00f">break</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#008000">// ...
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  game.setText(Score: ${score}<span style="color:#a31515">`)
+</span></span></span><span style="display:flex;"><span><span style="color:#a31515">}
+</span></span></span></code></pre></div><p>We iterate through all the items, and if the item is at the same position as the
 player, we increment the score and remove the item from the list.</p>
-
 <h2 id="7-time-limit">7. Time limit</h2>
-
 <p>So far, we&rsquo;ve got a game that lets us move around, and collect items which give
 us points. Let&rsquo;s create some drama by adding a time limit to the game, after
 which the game ends.</p>
-
 <p>To do this, we&rsquo;ll want to have a variable which stores the current time left.
 Every second, we&rsquo;ll run a function which decrease the time left by 1. When we
 hit zero, we&rsquo;ll stop the game, and show the player their final score.</p>
-
 <p>24a2 doesn&rsquo;t provide support for running a function every second, but luckily
 the browser does. Because 24a2 games are written in JavaScript and run in the
 browser, we can access all functionality that the browser provides.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#008000">// Games last 45 seconds
-</span><span style="color:#008000"></span><span style="color:#00f">let</span> timeRemaining = 45;
-
-<span style="color:#00f">let</span> interval = setInterval(decreaseTimer, 1000);
-
-<span style="color:#00f">function</span> decreaseTimer() {
-  timeRemaining--;
-  <span style="color:#00f">if</span> (timeRemaining == 0) {
-    clearInterval(interval);
-  }
-}
-</code></pre></div>
-<p>To show the time remaining, let&rsquo;s update the call to <code>game.setText</code> in <code>update</code>:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">function</span> update(game) {
-  <span style="color:#008000">// ...
-</span><span style="color:#008000"></span>  game.setText(<span style="color:#a31515">`Time left: </span><span style="color:#a31515">${</span>timeRemaining<span style="color:#a31515">}</span><span style="color:#a31515">s. Score: </span><span style="color:#a31515">${</span>score<span style="color:#a31515">}</span><span style="color:#a31515">`</span>);
-}
-</code></pre></div>
-<p>Finally, when the remaining time hits 0, let&rsquo;s end the game:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00f">function</span> update(game) {
-  <span style="color:#008000">// ...
-</span><span style="color:#008000"></span>
-  <span style="color:#00f">if</span> (timeRemaining &lt;= 0) {
-    game.setText(<span style="color:#a31515">`Game over! Final score: </span><span style="color:#a31515">${</span>score<span style="color:#a31515">}</span><span style="color:#a31515">`</span>);
-    game.end();
-  }
-}
-</code></pre></div>
-<h2 id="8-next-steps">8. Next steps</h2>
-
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#008000">// Games last 45 seconds
+</span></span></span><span style="display:flex;"><span><span style="color:#00f">let</span> timeRemaining = 45;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">let</span> interval = setInterval(decreaseTimer, 1000);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">function</span> decreaseTimer() {
+</span></span><span style="display:flex;"><span>  timeRemaining--;
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">if</span> (timeRemaining == 0) {
+</span></span><span style="display:flex;"><span>    clearInterval(interval);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>To show the time remaining, let&rsquo;s update the call to <code>game.setText</code> in <code>update</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#00f">function</span> update(game) {
+</span></span><span style="display:flex;"><span>  <span style="color:#008000">// ...
+</span></span></span><span style="display:flex;"><span>  game.setText(<span style="color:#a31515">`Time left: </span><span style="color:#a31515">${</span>timeRemaining<span style="color:#a31515">}</span><span style="color:#a31515">s. Score: </span><span style="color:#a31515">${</span>score<span style="color:#a31515">}</span><span style="color:#a31515">`</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Finally, when the remaining time hits 0, let&rsquo;s end the game:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#00f">function</span> update(game) {
+</span></span><span style="display:flex;"><span>  <span style="color:#008000">// ...
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">if</span> (timeRemaining &lt;= 0) {
+</span></span><span style="display:flex;"><span>    game.setText(<span style="color:#a31515">`Game over! Final score: </span><span style="color:#a31515">${</span>score<span style="color:#a31515">}</span><span style="color:#a31515">`</span>);
+</span></span><span style="display:flex;"><span>    game.end();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="8-next-steps">8. Next steps</h2>
 <p>That&rsquo;s our game! It&rsquo;s not super fun, but hopefully you&rsquo;ve learnt how to build a
 game using 24a2. If you&rsquo;d like to contine working on your game, here are some
 ideas for things to do:</p>
-
 <ol>
 <li>Randomise the player&rsquo;s start position</li>
 <li>Add different items, which give the player different numbers of points</li>
@@ -277,23 +240,19 @@ ideas for things to do:</p>
 <li>Use <code>localStorage</code> to store the player&rsquo;s high score, and let them know if
 they&rsquo;ve beaten it when the game ends</li>
 </ol>
-
-<!-- prettier-ignore -->
-<div class="footnotes">
-
-<hr />
-
+<div class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1"><p>The <code>x</code> and <code>y</code> coordinates are both chosen with the code
-  <code>Math.floor(Math.random() * 24)</code>. Let&rsquo;s have a quick look at what this is
-  doing.</p>
-
+<li id="fn:1">
+<p>The <code>x</code> and <code>y</code> coordinates are both chosen with the code
+<code>Math.floor(Math.random() * 24)</code>. Let&rsquo;s have a quick look at what this is
+doing.</p>
 <p><code>Math.random()</code> returns a number greater than or equal to 0, and
-  less than 1. We multiply this by 24, to give us a number greater than or
-  equal to 0, and less that 24. This number can inclued a fraction, so we
-  use <code>Math.floor</code> to remove it. This gives us an integer in the range 0 to
-  23 (inclusive).</p>
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+less than 1. We multiply this by 24, to give us a number greater than or
+equal to 0, and less that 24. This number can inclued a fraction, so we
+use <code>Math.floor</code> to remove it. This gives us an integer in the range 0 to
+23 (inclusive).&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
 </div>
  

@@ -185,3 +185,7 @@ public/
 
 # A directory I use locally to test when making changes to the engine
 local_example/
+
+# Claude settings
+
+.claude/settings.local.json

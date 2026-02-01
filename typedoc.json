@@ -1,11 +1,10 @@
 {
-  "inputFiles": ["./src"],
-  "mode": "file",
+  "entryPoints": ["./src"],
+  "entryPointStrategy": "expand",
   "out": "website/content/reference",
   "readme": "none",
   "excludePrivate": true,
-  "theme": "docusaurus",
-  "skipSidebar": true,
+  "plugin": ["typedoc-plugin-markdown"],
   "hideBreadcrumbs": true,
   "disableSources": true
 }

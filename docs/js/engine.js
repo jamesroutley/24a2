@@ -29,7 +29,7 @@ var Direction;
 })(Direction || (Direction = {}));
 /**
  * Game is the object that controls the actual running of the game. You
- * create a new one by passing in a {@Link GameConfig}. Calling `game.run()`
+ * create a new one by passing in a {@link GameConfig}. Calling `game.run()`
  * will start the game.
  *
  * ```javascript
@@ -91,7 +91,7 @@ var Game = /** @class */ (function () {
      * Returns the number of frames that have passed since the game started. The
      * speed at which this increases is dependent on the frame rate. The higher
      * the frame rate is, the faster this number will increment, and vice versa.
-     * You can set the frame rate with {@Link GameConfig.frameRate}.
+     * You can set the frame rate with {@link GameConfig.frameRate}.
      *
      * You can use this function to do things like increase difficulty as time
      * goes on.
@@ -113,10 +113,10 @@ var Game = /** @class */ (function () {
      */
     Game.prototype.getDot = function (x, y) {
         if (y < 0 || y >= this._dots.length) {
-            throw new Error("Error trying to get dot (" + x + ", " + y + "): y is out of bounds");
+            throw new Error("Error trying to get dot (".concat(x, ", ").concat(y, "): y is out of bounds"));
         }
         if (x < 0 || x >= this._dots[y].length) {
-            throw new Error("Error trying to get dot (" + x + ", " + y + "): x is out of bounds");
+            throw new Error("Error trying to get dot (".concat(x, ", ").concat(y, "): x is out of bounds"));
         }
         return this._dots[y][x];
     };
@@ -125,10 +125,10 @@ var Game = /** @class */ (function () {
      */
     Game.prototype.setDot = function (x, y, val) {
         if (y < 0 || y >= this._dots.length) {
-            throw new Error("Error trying to set dot (" + x + ", " + y + "): y is out of bounds");
+            throw new Error("Error trying to set dot (".concat(x, ", ").concat(y, "): y is out of bounds"));
         }
         if (x < 0 || x >= this._dots[y].length) {
-            throw new Error("Error trying to set dot (" + x + ", " + y + "): x is out of bounds");
+            throw new Error("Error trying to set dot (".concat(x, ", ").concat(y, "): x is out of bounds"));
         }
         this._dots[y][x] = val;
     };
@@ -328,7 +328,7 @@ var CanvasIOManager = /** @class */ (function () {
         if (containerId) {
             var parent_1 = document.getElementById(containerId);
             if (!parent_1) {
-                throw new Error("CanvasIOManager: could not find element with ID " + containerId);
+                throw new Error("CanvasIOManager: could not find element with ID ".concat(containerId));
             }
             return parent_1;
         }
@@ -383,7 +383,7 @@ var CanvasIOManager = /** @class */ (function () {
             case Color.Violet:
                 return "violet";
             default:
-                console.error("no CSS color defined for " + color);
+                console.error("no CSS color defined for ".concat(color));
                 return "";
         }
     };
@@ -397,7 +397,7 @@ var CanvasIOManager = /** @class */ (function () {
             32;
         ctx.clearRect(textX, textY - textSize, this._dotSize * this._gridWidth + this._gapSize * (this._gridWidth - 1), 100 // This is a bit arbitrary - we just want to clear the whole bottom of the canvas
         );
-        ctx.font = textSize + "px monospace";
+        ctx.font = "".concat(textSize, "px monospace");
         ctx.fillText(text, textX, textY);
         ctx.restore();
     };
